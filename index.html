@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maaz Ahmed | Computer Vision and Robotics</title>
+<meta name="description" content="Maaz Ahmed is a machine learning engineer and researcher in computer vision, 3D perception and robotics. Experience, projects and publications.">
+<meta name="color-scheme" content="dark light">
+<script>
+  // Set the theme before first paint so the page never flashes the wrong one.
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0D131F; --panel: #151D2C; --line: #232E42;
+    --text: #C9D2E3; --strong: #F1F4FA; --muted: #8492AB;
+    --accent: #6EA8FF; --accent-ink: #0D131F; --chip: #1A2740; --chip-text: #9CC2FF;
+    --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  }
+  :root[data-theme="light"] {
+    --bg: #F6F7FA; --panel: #FFFFFF; --line: #DDE2EC;
+    --text: #3B4660; --strong: #0F1A2E; --muted: #66728C;
+    --accent: #1D4FD7; --accent-ink: #FFFFFF; --chip: #E6EDFD; --chip-text: #1D4FD7;
+    --shadow: 0 10px 30px rgba(20, 35, 70, .10);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; transition: background-color .2s, color .2s; }
+  a { color: var(--strong); text-decoration: none; }
+  a:hover { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--accent); color: var(--accent-ink); padding: 8px 14px; border-radius: 6px; z-index: 10; }
+  .skip:focus { left: 8px; }
+
+  .page { max-width: 1180px; margin: 0 auto; padding: 0 28px; display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 72px; }
+
+  /* left column */
+  .side { position: sticky; top: 0; height: 100vh; padding: 72px 0 40px; display: flex; flex-direction: column; }
+  .portrait { width: 132px; height: 132px; border-radius: 50%; object-fit: cover; object-position: 50% 18%; border: 3px solid var(--line); background: var(--panel); }
+  .side h1 { margin: 22px 0 4px; font-size: 2.35rem; line-height: 1.1; font-weight: 700; color: var(--strong); letter-spacing: -0.02em; }
+  .side .role { margin: 0; font-size: 1.1rem; font-weight: 500; color: var(--strong); }
+  .side .pitch { margin: 14px 0 0; max-width: 30ch; color: var(--muted); }
+  .side nav { margin-top: 36px; display: grid; gap: 4px; }
+  .side nav a { display: flex; align-items: center; gap: 12px; padding: 6px 0; color: var(--muted); font-weight: 500; font-size: .92rem; }
+  .side nav a::before { content: ""; width: 28px; height: 1px; background: currentColor; transition: width .2s; }
+  .side nav a:hover, .side nav a.on { color: var(--strong); }
+  .side nav a:hover::before, .side nav a.on::before { width: 56px; }
+  .side .foot { margin-top: auto; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .icon { display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 9px; color: var(--muted); border: 1px solid var(--line); background: transparent; cursor: pointer; }
+  .icon:hover { color: var(--accent); border-color: var(--accent); }
+  .icon svg { width: 19px; height: 19px; fill: currentColor; }
+  #theme .sun { display: none; }
+  :root[data-theme="light"] #theme .sun { display: block; }
+  :root[data-theme="light"] #theme .moon { display: none; }
+  .btn { display: inline-block; margin-top: 22px; padding: 9px 16px; border-radius: 9px; background: var(--accent); color: var(--accent-ink); font-weight: 600; font-size: .95rem; }
+  .btn:hover { color: var(--accent-ink); filter: brightness(1.08); }
+
+  /* right column */
+  main { padding: 72px 0 40px; min-width: 0; }
+  section { margin-bottom: 84px; }
+  h2 { margin: 0 0 22px; font-size: 1.35rem; font-weight: 700; color: var(--strong); letter-spacing: -0.01em; }
+  .about p { margin: 0 0 14px; max-width: 66ch; }
+  .about strong { color: var(--strong); font-weight: 600; }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 26px; }
+  .stats div { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .stats b { display: block; color: var(--strong); font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
+  .stats span { color: var(--muted); font-size: .9rem; }
+
+  .list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .row { display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: 20px; padding: 18px; margin: 0 -18px; border-radius: 12px; border: 1px solid transparent; transition: background-color .15s, border-color .15s; }
+  .row:hover { background: var(--panel); border-color: var(--line); box-shadow: var(--shadow); }
+  .when { color: var(--muted); font-size: .84rem; font-weight: 500; padding-top: 4px; font-variant-numeric: tabular-nums; }
+  .row h3 { margin: 0; font-size: 1.05rem; font-weight: 600; color: var(--strong); line-height: 1.35; }
+  .row .org { color: var(--muted); font-size: .95rem; margin: 1px 0 8px; }
+  .row p { margin: 0 0 10px; font-size: .96rem; max-width: 62ch; }
+  .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; padding: 0; }
+  .tags li { background: var(--chip); color: var(--chip-text); font-size: .78rem; font-weight: 500; padding: 3px 10px; border-radius: 999px; }
+  .links { display: flex; gap: 16px; flex-wrap: wrap; font-size: .92rem; font-weight: 500; }
+  .links a { color: var(--accent); }
+  .links a:hover { text-decoration: underline; }
+
+  .thumb { width: 148px; aspect-ratio: 4 / 3; border-radius: 8px; border: 1px solid var(--line); background: #fff; object-fit: cover; display: block; }
+  .thumb.contain { object-fit: contain; padding: 6px; }
+  .thumb.art { background: var(--panel); padding: 10px; color: var(--accent); }
+
+  .pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .pubs li { padding: 14px 18px; margin: 0 -18px; border-radius: 12px; border: 1px solid transparent; }
+  .pubs li:hover { background: var(--panel); border-color: var(--line); }
+  .pubs .t { display: block; color: var(--strong); font-weight: 600; line-height: 1.4; }
+  .pubs a.t:hover { color: var(--accent); }
+  .pubs .v { color: var(--muted); font-size: .92rem; }
+  .pubs .me { color: var(--accent); font-weight: 600; }
+
+  .contact p { max-width: 52ch; margin: 0 0 6px; }
+  footer { color: var(--muted); font-size: .85rem; padding-bottom: 40px; }
+
+  @media (max-width: 960px) {
+    .page { grid-template-columns: 1fr; gap: 0; padding: 0 20px; }
+    .side { position: static; height: auto; padding: 40px 0 8px; }
+    .side nav { display: none; }
+    .side .foot { margin-top: 24px; }
+    main { padding-top: 40px; }
+    section { margin-bottom: 60px; }
+  }
+  @media (max-width: 560px) {
+    .row { grid-template-columns: 1fr; gap: 8px; }
+    .thumb { width: 100%; max-width: 320px; }
+    .stats { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<div class="page">
+
+  <header class="side">
+    <img class="portrait" src="assets/maaz.webp" alt="Portrait of Maaz Ahmed" width="132" height="132">
+    <h1>Maaz Ahmed</h1>
+    <p class="role">Machine Learning Engineer and Researcher</p>
+    <p class="pitch">Computer vision, 3D perception and robotics. I build vision systems that keep working outside the lab.</p>
+    <div><a class="btn" href="mailto:maaz9898@gmail.com">Email me</a></div>
+
+    <nav aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="foot">
+      <a class="icon" href="https://github.com/maaz9898" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.3-.52-1.47.11-3.06 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.06.74.8 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+      <a class="icon" href="https://www.linkedin.com/in/maazahmed98" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
+      <a class="icon" href="https://scholar.google.com/citations?user=TZpghL4AAAAJ" aria-label="Google Scholar" title="Google Scholar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 0 9.5l4.84 3.02A7.5 7.5 0 1 0 19.5 15v-2.69L22 10.75V17h2V9.5L12 2Zm0 18.5A5.5 5.5 0 0 1 6.5 15v-1.44L12 17l5.5-3.44V15a5.5 5.5 0 0 1-5.5 5.5Z"/></svg></a>
+      <button class="icon" id="theme" type="button" aria-label="Switch between dark and light mode" title="Switch theme">
+        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 14.5A8.5 8.5 0 0 1 9.5 3.6a.75.75 0 0 0-.98-.94A10 10 0 1 0 21.34 15.5a.75.75 0 0 0-.94-1Z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0-6a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V2a1 1 0 0 1 1-1Zm0 18a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1ZM1 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H2a1 1 0 0 1-1-1Zm18 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1ZM4.22 4.22a1 1 0 0 1 1.42 0l1.41 1.42a1 1 0 0 1-1.41 1.41L4.22 5.64a1 1 0 0 1 0-1.42Zm12.73 12.73a1 1 0 0 1 1.41 0l1.42 1.41a1 1 0 0 1-1.42 1.42l-1.41-1.42a1 1 0 0 1 0-1.41ZM4.22 19.78a1 1 0 0 1 0-1.42l1.42-1.41a1 1 0 0 1 1.41 1.41l-1.41 1.42a1 1 0 0 1-1.42 0ZM16.95 7.05a1 1 0 0 1 0-1.41l1.41-1.42a1 1 0 1 1 1.42 1.42l-1.42 1.41a1 1 0 0 1-1.41 0Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <section id="about" class="about">
+      <h2>About</h2>
+      <p>I'm a machine learning engineer and researcher working on <strong>computer vision, 3D perception and robotics</strong>. Right now I'm at Hamad Bin Khalifa University in Doha, building models that read social interaction between children from video, using pose, gaze and tracking.</p>
+      <p>Before that I built industrial vision in Seoul, where my pipeline guided a robot arm to fasten bolts with <strong>pose accuracy within 1 mm</strong>, and earlier shipped video analytics on edge hardware in Karachi. I hold an M.S. in computer vision from KOREATECH in South Korea.</p>
+      <p>The thread through all of it is the same question: does the model still work when it leaves the room it was trained in?</p>
+      <div class="stats">
+        <div><b>5</b><span>peer-reviewed papers, 3 as first author</span></div>
+        <div><b>&le; 1 mm</b><span>6-DoF pose accuracy on a factory robot</span></div>
+        <div><b>3 countries</b><span>Pakistan, South Korea, Qatar</span></div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <ul class="list">
+        <li class="row">
+          <div class="when">Sep 2025 to now</div>
+          <div>
+            <h3>Graduate Research Assistant</h3>
+            <div class="org">Hamad Bin Khalifa University (A-Sense), Doha</div>
+            <p>Built STIN, a temporal network that combines body pose, gaze and interpersonal distance to classify social engagement between two people in video. Also built the pipeline under it and am now working on synthetic data for child interaction video.</p>
+            <ul class="tags"><li>PyTorch</li><li>Pose estimation</li><li>Gaze estimation</li><li>Tracking</li><li>Video understanding</li></ul>
+          </div>
+        </li>
+        <li class="row">
+          <div class="when">Feb 2025 to Jul 2025</div>
+          <div>
+            <h3>Machine Learning Researcher</h3>
+            <div class="org">4DiVISION, Seoul</div>
+            <p>Built the vision pipeline for an automated robotic bolt fastening cell, and automated switch-position inspection on the company's Tesseravue product, designed to cut manual QA time by about 70%.</p>
+            <ul class="tags"><li>ROS2</li><li>6-DoF pose</li><li>Point clouds</li><li>Instance segmentation</li><li>C++</li></ul>
+          </div>
+        </li>
+        <li class="row">
+          <div class="when">Mar 2023 to Feb 2025</div>
+          <div>
+            <h3>Graduate Research Assistant</h3>
+            <div class="org">KOREATECH, Computer Vision and Video Processing Lab, Cheonan</div>
+            <p>Master's research on image-to-image translation for historical documents, pose estimation for a mobile manipulator, and a National Museum of Korea funded study of Joseon-era metal type.</p>
+            <ul class="tags"><li>GANs</li><li>PyTorch</li><li>Pose estimation</li><li>Document analysis</li></ul>
+          </div>
+        </li>
+        <li class="row">
+          <div class="when">Jan 2022 to Mar 2023</div>
+          <div>
+            <h3>AI Project Manager</h3>
+            <div class="org">Bleed AI, remote</div>
+            <p>Led a team of five across more than 10 client computer vision projects and built models hands-on, including real-time action recognition for Veeve smart shopping carts on Google Coral Edge TPUs.</p>
+            <ul class="tags"><li>Action recognition</li><li>Edge TPU</li><li>MediaPipe</li><li>Team lead</li></ul>
+          </div>
+        </li>
+        <li class="row">
+          <div class="when">Aug 2021 to Feb 2022</div>
+          <div>
+            <h3>Machine Learning Engineer</h3>
+            <div class="org">Liquid Technologies, Karachi</div>
+            <p>Core developer of <a href="https://vidan.ai/">Vidan.ai</a>, a real-time video analytics platform. Designed its architecture and built the licence plate recognition and train monitoring modules for single-board computers.</p>
+            <ul class="tags"><li>ALPR</li><li>Video analytics</li><li>Jetson</li><li>Edge deployment</li></ul>
+          </div>
+        </li>
+        <li class="row">
+          <div class="when">Jan 2020 to Aug 2021</div>
+          <div>
+            <h3>Embedded Systems Engineer</h3>
+            <div class="org">Sudoware, Karachi</div>
+            <p>Built wireless sensor networks for hydroponic farms and IoT applications for industrial clients.</p>
+            <ul class="tags"><li>ESP32</li><li>Raspberry Pi</li><li>MQTT</li><li>BLE</li></ul>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <ul class="list">
+        <li class="row">
+          <svg class="thumb art" viewBox="0 0 160 120" role="img" aria-label="Diagram: two people linked by gaze and distance">
+            <g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="42" cy="34" r="9"/><path d="M42 43v30M42 52l-14 14M42 52l14 12M42 73l-10 26M42 73l10 26"/>
+              <circle cx="118" cy="34" r="9"/><path d="M118 43v30M118 52l14 14M118 52l-14 12M118 73l10 26M118 73l-10 26"/>
+              <path d="M53 32h54" stroke-dasharray="4 5"/><path d="M52 108h56" opacity=".55"/><path d="M52 104v8M108 104v8" opacity=".55"/>
+            </g>
+          </svg>
+          <div>
+            <h3>STIN: reading social engagement from video</h3>
+            <div class="org">Hamad Bin Khalifa University</div>
+            <p>Decides whether two people are interacting by following their pose, where they look and how far apart they are over time. 94% AP on the UCO-LAEO benchmark and 71% AP on child pairs the model had never seen.</p>
+            <div class="links"><span>Accepted at EUVIP 2026</span></div>
+          </div>
+        </li>
+        <li class="row">
+          <svg class="thumb art" viewBox="0 0 160 120" role="img" aria-label="Diagram: a bolt with pose axes">
+            <g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M62 30l26-8 22 14-4 26-26 8-22-14z"/><path d="M58 56l-22 34a16 9 -30 0 0 28 16l22-34"/>
+              <path d="M84 46l42-10" stroke="#E0475B"/><path d="M84 46L74 10" stroke="#27A888"/><path d="M84 46l14 22" stroke="#6EA8FF"/>
+            </g>
+          </svg>
+          <div>
+            <h3>Vision for a robot that fastens bolts</h3>
+            <div class="org">4DiVISION</div>
+            <p>Finds each bolt, segments it, registers RGB against the point cloud, estimates its 6-DoF pose and streams targets to the manipulator over ROS2. Held accuracy within 1 mm in factory cells the model had not seen in training.</p>
+          </div>
+        </li>
+        <li class="row">
+          <img class="thumb" src="assets/agv.webp" alt="A robot arm on a mobile base in a lab" loading="lazy">
+          <div>
+            <h3>Pose estimation for a mobile manipulator</h3>
+            <div class="org">KOREATECH</div>
+            <p>Camera-based 6-DoF pose estimation for a robot arm mounted on an AGV, so the arm can align itself with its target after the vehicle parks in a slightly different place each time.</p>
+          </div>
+        </li>
+        <li class="row">
+          <img class="thumb contain" src="assets/precisiongan.webp" alt="A printed character, a broken skeleton from a classical method, and a clean skeleton from PrecisionGAN" loading="lazy">
+          <div>
+            <h3>PrecisionGAN</h3>
+            <div class="org">KOREATECH, master's thesis</div>
+            <p>An image-to-image translation GAN that reduces historical Korean and Chinese printed characters to clean skeletons without breaking their strokes. Published in Springer IJDAR.</p>
+            <div class="links"><a href="https://link.springer.com/article/10.1007/s10032-024-00505-7">Paper</a><a href="https://github.com/maaz9898/PrecisionGAN">Code</a></div>
+          </div>
+        </li>
+        <li class="row">
+          <img class="thumb contain" src="assets/metaltype.webp" alt="Pipeline from scanned page to grouped characters to reconstructed metal type" loading="lazy">
+          <div>
+            <h3>Tracing Joseon-era metal type</h3>
+            <div class="org">KOREATECH, with the National Museum of Korea</div>
+            <p>Segments characters from scans of centuries-old books, measures how similar their shapes are and groups the ones printed from the same piece of metal type.</p>
+            <div class="links"><a href="http://journal.auric.kr/ieiespc/XmlViewer/f450827">Paper</a></div>
+          </div>
+        </li>
+        <li class="row">
+          <video class="thumb" src="assets/fitx.mp4" poster="assets/fitx.webp" muted loop playsinline preload="none" aria-label="A person doing squats with a pose skeleton drawn over them"></video>
+          <div>
+            <h3>FitX: real-time exercise coach</h3>
+            <div class="org">Mobile app</div>
+            <p>Counts reps and flags form mistakes from the phone camera. I built the prototype, chose the stack, designed the app architecture and ran the project from proposal to deployment.</p>
+            <ul class="tags"><li>MediaPipe</li><li>Pose estimation</li><li>Mobile</li></ul>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
+      <ul class="pubs">
+        <li><span class="t">STIN: A Socio-Temporal Interaction Network for Dyadic Interaction Analysis</span><span class="v">EUVIP 2026, accepted. <span class="me">First author</span></span></li>
+        <li><a class="t" href="https://link.springer.com/article/10.1007/s10032-024-00505-7">PrecisionGAN: Enhanced Image-to-Image Translation for Preserving Structural Integrity in Skeletonized Images</a><span class="v">International Journal on Document Analysis and Recognition (Springer), 2024. <span class="me">First author</span></span></li>
+        <li><a class="t" href="http://journal.auric.kr/ieiespc/XmlViewer/f450827">Evaluating Similarity between Characters Printed Using Ancient Movable Metal Types</a><span class="v">IEIE Transactions on Smart Processing and Computing, 2025. <span class="me">First author</span></span></li>
+        <li><a class="t" href="https://paper.cricit.kr/user/search/site/ieie2018/cart_rdoc.asp?URL=files/filename%3Fnum%3D457024%26db%3DRD_R&dn=457024&db=RD_R&usernum=0&seid=">Smoothed Boundary Distance Loss Function for Enhancing Character Extraction from High-Resolution Scans of Historical Documents</a><span class="v">IEIE Transactions on Smart Processing and Computing, 2025, accepted. Second author</span></li>
+        <li><a class="t" href="https://diglib.eg.org/items/930f4c5d-f291-4cf6-868a-b03688164b69">Estimating the Number of Chases Used for Printing Books with Movable Metal Types</a><span class="v">Eurographics Workshop on Graphics and Cultural Heritage, 2023. Second author</span></li>
+      </ul>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Contact</h2>
+      <p>I'm open to computer vision and robotics roles and to PhD positions. The fastest way to reach me is email.</p>
+      <div class="links" style="margin-top:12px"><a href="mailto:maaz9898@gmail.com">maaz9898@gmail.com</a><a href="https://www.linkedin.com/in/maazahmed98">LinkedIn</a><a href="https://github.com/maaz9898">GitHub</a><a href="https://scholar.google.com/citations?user=TZpghL4AAAAJ">Google Scholar</a></div>
+    </section>
+
+    <footer>Maaz Ahmed, Doha, Qatar</footer>
+  </main>
+</div>
+
+<script>
+  // Theme switch, remembered per browser.
+  document.getElementById('theme').addEventListener('click', function () {
+    var next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+  // Highlight the section in view in the side nav.
+  (function () {
+    var links = [].slice.call(document.querySelectorAll('.side nav a'));
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); });
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  })();
+  // Play the demo clip while it is hovered or focused.
+  document.querySelectorAll('video.thumb').forEach(function (v) {
+    var row = v.closest('.row');
+    row.addEventListener('mouseenter', function () { v.play().catch(function () {}); });
+    row.addEventListener('mouseleave', function () { v.pause(); });
+  });
+</script>
+</body>
+</html>
