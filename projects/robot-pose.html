@@ -51,11 +51,11 @@
 <div class="tabs" data-tabs><div class="stage" style="--ar:16 / 10"><img class="show" src="../assets/bolt.webp" alt="A robot arm holding a fastening tool over a ring of bolts" loading="lazy"><img src="../assets/bolt_detect.webp" alt="A green box around each bolt" loading="lazy"><img src="../assets/bolt_seg.webp" alt="A colour mask on each bolt" loading="lazy"><img src="../assets/bolt_cloud.webp" alt="The scene as a depth-coloured point cloud" loading="lazy"><img src="../assets/bolt_pose.webp" alt="Red, green and blue pose axes on each bolt" loading="lazy"><video src="../assets/bolt.mp4" poster="../assets/bolt.webp" muted loop playsinline preload="none" aria-label="The robot arm moving the tool to the next bolt"></video><span class="badge">AI-generated illustration</span></div><div class="pills"><button type="button" aria-pressed="true">Scene</button><button type="button" aria-pressed="false">Detect</button><button type="button" aria-pressed="false">Segment</button><button type="button" aria-pressed="false">Point cloud</button><button type="button" aria-pressed="false">6-DoF pose</button><button type="button" aria-pressed="false">Fasten</button></div></div>
 <div class="stats"><div><b>&le; 1 mm</b><span>pose accuracy</span></div><div><b>Unseen cells</b><span>held in factories outside the training data</span></div><div><b>ROS2</b><span>targets streamed to the arm</span></div></div>
 
-<h2>A robot arm on wheels at KOREATECH</h2>
-<p>An arm rides on an AGV that never parks in quite the same place twice. A camera estimates the pose of the target cylinder so the arm can line itself up each time.</p>
+<h2>Lining up film rolls at KOREATECH</h2>
+<p>On lines that cut and align massive rolls of film, one cylinder has to slide into another. A camera estimates the cylinder's pose and sends the offset to an arm on an AGV, so the two line up every time.</p>
 <div class="two-up">
   <figure class="fig"><div class="media" style="--ar:4 / 3"><img class="show" src="../assets/agv.webp" alt="A robot arm on a mobile base in the lab" loading="lazy"></div><figcaption>The lab setup.</figcaption></figure>
-  <figure class="fig"><div class="media paper" style="--ar:4 / 3"><img class="show" src="../assets/agv-cad.webp" alt="CAD view of the cylinder with its measured axis and offsets" loading="lazy"></div><figcaption>What gets estimated: the cylinder axis and its offset.</figcaption></figure>
+  <figure class="fig"><div class="media paper" style="--ar:4 / 3"><img class="show" src="../assets/agv-cad.webp" alt="CAD view of the cylinder with its measured axis and offsets" loading="lazy"></div><figcaption>What gets estimated: where the cylinder axis is, and how far off it sits.</figcaption></figure>
 </div>
 </div>
     <nav class="pn" aria-label="More projects">

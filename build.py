@@ -75,11 +75,11 @@ def projects(pre):
 {tabs([(img('bolt.webp', 'A robot arm holding a fastening tool over a ring of bolts', True, P), 'Scene'), (img('bolt_detect.webp', 'A green box around each bolt', False, P), 'Detect'), (img('bolt_seg.webp', 'A colour mask on each bolt', False, P), 'Segment'), (img('bolt_cloud.webp', 'The scene as a depth-coloured point cloud', False, P), 'Point cloud'), (img('bolt_pose.webp', 'Red, green and blue pose axes on each bolt', False, P), '6-DoF pose'), (vid('bolt', 'The robot arm moving the tool to the next bolt', False, P), 'Fasten')], '16 / 10', AI)}
 {stats([('&le; 1 mm', 'pose accuracy'), ('Unseen cells', 'held in factories outside the training data'), ('ROS2', 'targets streamed to the arm')])}
 
-<h2>A robot arm on wheels at KOREATECH</h2>
-<p>An arm rides on an AGV that never parks in quite the same place twice. A camera estimates the pose of the target cylinder so the arm can line itself up each time.</p>
+<h2>Lining up film rolls at KOREATECH</h2>
+<p>On lines that cut and align massive rolls of film, one cylinder has to slide into another. A camera estimates the cylinder's pose and sends the offset to an arm on an AGV, so the two line up every time.</p>
 <div class="two-up">
   {figure(media(img('agv.webp', 'A robot arm on a mobile base in the lab', True, P), '4 / 3'), 'The lab setup.')}
-  {figure(media(img('agv-cad.webp', 'CAD view of the cylinder with its measured axis and offsets', True, P), '4 / 3', None, True), 'What gets estimated: the cylinder axis and its offset.')}
+  {figure(media(img('agv-cad.webp', 'CAD view of the cylinder with its measured axis and offsets', True, P), '4 / 3', None, True), 'What gets estimated: where the cylinder axis is, and how far off it sits.')}
 </div>
 '''),
         dict(
