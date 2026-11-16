@@ -39,7 +39,7 @@
 <main id="content" class="wrap">
 
   <section class="intro">
-    <img class="portrait" src="assets/maaz.webp" alt="Portrait of Maaz Ahmed" width="148" height="148">
+    <div class="who"><img class="portrait" src="assets/maaz.webp" alt="Portrait of Maaz Ahmed" width="148" height="148"><span class="det" aria-hidden="true"><i>engineer 0.99</i></span></div>
     <div>
       <h1>Maaz Ahmed</h1>
       <p class="role">Machine Learning Engineer and Researcher. I build computer vision systems for robotics, 3D perception and human behaviour analysis.</p>
@@ -47,15 +47,16 @@
     </div>
   </section>
 
-  <div class="hero">
-    <video src="assets/hero.mp4" poster="assets/hero.webp" muted loop playsinline preload="none" data-auto aria-label="A lab bench turning from a photo into a glowing 3D point cloud"></video>
+  <div class="herowrap">
+    <div class="cmp" data-cmp style="--ar:1600 / 672"><img src="assets/hero_cloud.webp" alt="" loading="lazy"><img class="over" src="assets/hero_photo.webp" alt="A robotics lab bench. Drag to reveal the same scene as a 3D point cloud" loading="lazy"><span class="handle" aria-hidden="true"></span><input type="range" min="0" max="100" value="55" aria-label="Drag to compare the camera view with the machine view"></div>
+    <p class="hint">Drag the line. On one side is what you see, on the other what the machine sees.</p>
   </div>
 
   <section id="work">
     <h2>Projects</h2>
     <ul class="cards">
       <li class="card wide">
-        <div class="media" style="--ar:16 / 10"><video class="show" src="assets/engaged.mp4" poster="assets/engaged.webp" muted loop playsinline preload="none" data-auto aria-label="Two children building the same track together"></video></div>
+        <div class="cmp" data-cmp style="--ar:16 / 10"><img src="assets/je_features.webp" alt="" loading="lazy"><img class="over" src="assets/je_frame.webp" alt="Two children at a toy box. Drag to reveal the detected skeletons and gaze" loading="lazy"><span class="handle" aria-hidden="true"></span><input type="range" min="0" max="100" value="55" aria-label="Drag to compare the camera view with the machine view"></div>
         <a class="body" href="projects/joint-engagement.html">
           <h3>Automated Assessment of Joint Engagement in Children</h3>
           <p>Video models that measure social engagement between two children from a single camera.</p>
@@ -64,7 +65,7 @@
         </a>
       </li>
       <li class="card wide">
-        <div class="tabs" data-tabs><div class="stage" style="--ar:16 / 10"><img class="show" src="assets/bolt_pose.webp" alt="A robot arm over a ring of bolts with pose axes drawn on each bolt" loading="lazy"><video src="assets/bolt.mp4" poster="assets/bolt.webp" muted loop playsinline preload="none" aria-label="The robot arm moving the tool to the next bolt"></video></div><div class="pills"><button type="button" aria-pressed="true">Pose</button><button type="button" aria-pressed="false">Clip</button></div></div>
+        <div class="cmp" data-cmp style="--ar:16 / 10"><img src="assets/bolt_pose.webp" alt="" loading="lazy"><img class="over" src="assets/bolt.webp" alt="A robot arm over a ring of bolts. Drag to reveal the estimated pose of each bolt" loading="lazy"><span class="handle" aria-hidden="true"></span><input type="range" min="0" max="100" value="55" aria-label="Drag to compare the camera view with the machine view"></div>
         <a class="body" href="projects/bolt-fastening.html">
           <h3>Vision-Guided Robotic Bolt Fastening</h3>
           <p>6-DoF pose estimation that guides an industrial robot arm to within 1 mm.</p>
@@ -82,7 +83,7 @@
         </a>
       </li>
       <li class="card">
-        <div class="media" style="--ar:16 / 10"><video class="show" src="assets/skeleton.mp4" poster="assets/skeleton.webp" muted loop playsinline preload="none" data-auto aria-label="Three printed characters thinning down to skeletons"></video></div>
+        <div class="cmp" data-cmp style="--ar:16 / 10"><img src="assets/sk_after.webp" alt="" loading="lazy"><img class="over" src="assets/sk_before.webp" alt="Three printed characters. Drag to reveal their skeletons" loading="lazy"><span class="handle" aria-hidden="true"></span><input type="range" min="0" max="100" value="55" aria-label="Drag to compare the camera view with the machine view"></div>
         <a class="body" href="projects/precisiongan.html">
           <h3>PrecisionGAN: Skeletonization of Historical Printed Characters</h3>
           <p>A GAN that extracts clean, structure-preserving skeletons from historical print.</p>
@@ -91,7 +92,7 @@
         </a>
       </li>
       <li class="card">
-        <div class="media" style="--ar:16 / 10"><video class="show" src="assets/metaltype.mp4" poster="assets/metaltype-anim.webp" muted loop playsinline preload="none" data-auto aria-label="Twelve prints of one character sorting into three groups"></video></div>
+        <div class="cmp" data-cmp style="--ar:16 / 10"><img src="assets/mt_after.webp" alt="" loading="lazy"><img class="over" src="assets/mt_before.webp" alt="Twelve prints of one character. Drag to reveal them grouped by metal type" loading="lazy"><span class="handle" aria-hidden="true"></span><input type="range" min="0" max="100" value="55" aria-label="Drag to compare the camera view with the machine view"></div>
         <a class="body" href="projects/metal-type.html">
           <h3>Movable Metal Type Analysis for Joseon-Era Books</h3>
           <p>Shape similarity analysis that identifies prints made from the same metal type.</p>
@@ -100,7 +101,7 @@
         </a>
       </li>
       <li class="card">
-        <div class="tabs" data-tabs><div class="stage" style="--ar:16 / 10"><img class="show" src="assets/veeve_det.webp" alt="A hand placing a box into a cart with keypoints and a box drawn on it" loading="lazy"><video src="assets/veeve.mp4" poster="assets/veeve.webp" muted loop playsinline preload="none" aria-label="A hand placing a box into a shopping cart"></video></div><div class="pills"><button type="button" aria-pressed="true">Model view</button><button type="button" aria-pressed="false">Clip</button></div></div>
+        <div class="cmp" data-cmp style="--ar:16 / 10"><img src="assets/veeve_det.webp" alt="" loading="lazy"><img class="over" src="assets/veeve.webp" alt="A hand placing a box into a cart. Drag to reveal what the model detects" loading="lazy"><span class="handle" aria-hidden="true"></span><input type="range" min="0" max="100" value="55" aria-label="Drag to compare the camera view with the machine view"></div>
         <a class="body" href="projects/smart-cart.html">
           <h3>Real-Time Action Recognition for Smart Shopping Carts</h3>
           <p>Edge models that detect items being added to or removed from a cart.</p>
@@ -109,7 +110,7 @@
         </a>
       </li>
       <li class="card">
-        <div class="tabs" data-tabs><div class="stage" style="--ar:16 / 10"><img class="show" src="assets/vidan_det.webp" alt="A freight train with a box around each wagon" loading="lazy"><img src="assets/gate.webp" alt="A van at a gate with its number plate boxed" loading="lazy"><img src="assets/ppe.webp" alt="Workers on a factory floor boxed green or red by safety gear" loading="lazy"><img src="assets/zone.webp" alt="A forklift entering a red restricted zone in a warehouse" loading="lazy"></div><div class="pills"><button type="button" aria-pressed="true">Trains</button><button type="button" aria-pressed="false">Plates</button><button type="button" aria-pressed="false">Safety gear</button><button type="button" aria-pressed="false">Zones</button></div></div>
+        <div class="cmp" data-cmp style="--ar:16 / 10"><img src="assets/vidan_det.webp" alt="" loading="lazy"><img class="over" src="assets/vidan.webp" alt="A freight train passing a platform. Drag to reveal the detected wagons" loading="lazy"><span class="handle" aria-hidden="true"></span><input type="range" min="0" max="100" value="55" aria-label="Drag to compare the camera view with the machine view"></div>
         <a class="body" href="projects/vidan.html">
           <h3>Vidan.ai Video Analytics Platform</h3>
           <p>Real-time video analytics, dashboards and alerts running on edge devices.</p>

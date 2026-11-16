@@ -50,6 +50,27 @@ h1 { margin: 0 0 8px; font-size: clamp(2.2rem, 5vw, 3.3rem); line-height: 1.05; 
 .hero { position: relative; border-radius: 18px; overflow: hidden; aspect-ratio: 1600 / 672; background: #05080e; }
 .hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
+@view-transition { navigation: auto; }
+
+/* before/after slider */
+.cmp { position: relative; overflow: hidden; aspect-ratio: var(--ar, 16 / 10); background: #05080e; --pos: 55%; touch-action: pan-y; }
+.cmp img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; user-select: none; -webkit-user-drag: none; }
+.cmp .over { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+.cmp .handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 36px; margin-left: -18px; background: linear-gradient(#fff, #fff) center / 2px 100% no-repeat; pointer-events: none; z-index: 2; }
+.cmp .handle::after { content: "\2194"; position: absolute; top: 50%; left: 0; width: 36px; height: 36px; margin-top: -18px; border-radius: 50%; background: #fff; color: #0D131F; display: grid; place-items: center; font-size: 1.05rem; font-weight: 700; line-height: 1; box-shadow: 0 2px 10px rgba(0, 0, 0, .45); }
+.cmp input { position: absolute; inset: 0; z-index: 3; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+.cmp:focus-within .handle::after { outline: 3px solid var(--accent); outline-offset: 2px; }
+.cmp.glide { transition: --pos .9s ease; }
+@property --pos { syntax: "<percentage>"; inherits: true; initial-value: 55%; }
+.herowrap .cmp { border-radius: 18px; }
+.hint { margin: 10px 0 0; color: var(--muted); font-size: .9rem; }
+
+/* detection box on the portrait */
+.who { position: relative; width: 148px; height: 148px; }
+.det { position: absolute; inset: 14px 26px 30px 26px; border: 2px solid #2FD08F; border-radius: 4px; opacity: 0; transform: scale(1.25); transition: opacity .35s, transform .35s; pointer-events: none; }
+.det i { position: absolute; left: -2px; top: -22px; background: #2FD08F; color: #06281b; font: 600 .7rem/1 "IBM Plex Sans", system-ui, sans-serif; padding: 4px 6px; border-radius: 3px 3px 0 0; white-space: nowrap; }
+.who:hover .det, .who.seen .det { opacity: 1; transform: none; }
+
 section { padding-top: 72px; }
 h2 { margin: 0 0 22px; font-size: 1.5rem; font-weight: 700; color: var(--strong); letter-spacing: -0.015em; }
 

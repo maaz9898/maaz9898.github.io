@@ -75,3 +75,26 @@ var STILL = matchMedia('(prefers-reduced-motion: reduce)').matches;
     new IntersectionObserver(function (es) { clearInterval(timer); if (es[0].isIntersecting) timer = setInterval(tick, 2600); }, { threshold: 0.4 }).observe(root);
   });
 })();
+
+// Before/after sliders. They glide once when first seen so people notice they move.
+(function () {
+  document.querySelectorAll('[data-cmp]').forEach(function (root) {
+    var input = root.querySelector('input');
+    function set(v) { root.style.setProperty('--pos', v + '%'); }
+    input.addEventListener('input', function () { root.classList.remove('glide'); set(input.value); });
+    set(input.value);
+    if (STILL || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return;
+      io.disconnect(); root.classList.add('glide'); set(22);
+      setTimeout(function () { set(55); input.value = 55; }, 950);
+    }, { threshold: 0.6 });
+    io.observe(root);
+  });
+})();
+
+// The portrait gets "detected" shortly after the page opens.
+(function () {
+  var who = document.querySelector('.who');
+  if (who) setTimeout(function () { who.classList.add('seen'); }, 700);
+})();

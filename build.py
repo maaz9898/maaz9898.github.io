@@ -23,6 +23,15 @@ def media(inner, ar='16 / 10', badge=None, paper=False):
     b = f'<span class="badge">{badge}</span>' if badge else ''
     return f'<div class="media{" paper" if paper else ""}" style="--ar:{ar}">{inner}{b}</div>'
 
+def compare(human, machine, alt, pre='', ar='16 / 10'):
+    """Before/after slider: the plain view on the left of the handle, the machine view on the right."""
+    return (f'<div class="cmp" data-cmp style="--ar:{ar}">'
+            f'<img src="{pre}assets/{machine}" alt="" loading="lazy">'
+            f'<img class="over" src="{pre}assets/{human}" alt="{html.escape(alt)}" loading="lazy">'
+            f'<span class="handle" aria-hidden="true"></span>'
+            f'<input type="range" min="0" max="100" value="55" aria-label="Drag to compare the camera view with the machine view">'
+            f'</div>')
+
 def figure(inner, caption=None):
     c = f'<figcaption>{caption}</figcaption>' if caption else ''
     return f'<figure class="fig">{inner}{c}</figure>'
@@ -71,7 +80,7 @@ def projects(pre):
             slug='joint-engagement', title='Automated Assessment of Joint Engagement in Children', kicker='Hamad Bin Khalifa University, Sep 2025 – Present',
             line='Video models that measure social engagement between two children from a single camera.',
             tags=['Video understanding', 'Pose', 'Gaze', 'PyTorch'],
-            card=media(vid('engaged', 'Two children building the same track together', True, P, True), '16 / 10'),
+            card=compare('je_frame.webp', 'je_features.webp', 'Two children at a toy box. Drag to reveal the detected skeletons and gaze', P),
             facts=[('Role', 'Lead researcher'), ('Where', 'A-Sense, HBKU, Doha'), ('Paper', 'STIN, EUVIP 2026'), ('Stack', 'PyTorch, pose and gaze models')],
             body=lambda: f'''
 <h2>Problem</h2>
@@ -97,7 +106,7 @@ def projects(pre):
             slug='bolt-fastening', title='Vision-Guided Robotic Bolt Fastening', kicker='4DiVISION, Seoul, Feb 2025 – Jul 2025',
             line='6-DoF pose estimation that guides an industrial robot arm to within 1 mm.',
             tags=['6-DoF pose', 'ROS2', 'Point clouds', 'C++'],
-            card=tabs([(img('bolt_pose.webp', 'A robot arm over a ring of bolts with pose axes drawn on each bolt', True, P), 'Pose'), (vid('bolt', 'The robot arm moving the tool to the next bolt', False, P), 'Clip')], '16 / 10', AI),
+            card=compare('bolt.webp', 'bolt_pose.webp', 'A robot arm over a ring of bolts. Drag to reveal the estimated pose of each bolt', P),
             facts=[('Role', 'ML researcher'), ('Where', '4DiVISION, Seoul'), ('Accuracy', 'Within 1 mm'), ('Stack', 'ROS2, PyTorch, Open3D, C++')],
             body=lambda: f"""
 <h2>Overview</h2>
@@ -126,7 +135,7 @@ def projects(pre):
             slug='precisiongan', title='PrecisionGAN: Skeletonization of Historical Printed Characters', kicker="KOREATECH, master's thesis, Mar 2023 – Feb 2025",
             line='A GAN that extracts clean, structure-preserving skeletons from historical print.',
             tags=['GAN', 'Image-to-image', 'Springer IJDAR'],
-            card=media(vid('skeleton', 'Three printed characters thinning down to skeletons', True, P, True), '16 / 10'),
+            card=compare('sk_before.webp', 'sk_after.webp', 'Three printed characters. Drag to reveal their skeletons', P),
             facts=[('Role', 'First author'), ('Where', 'KOREATECH'), ('Published', 'IJDAR, Springer, 2024'), ('Stack', 'PyTorch')],
             links=[('Paper', 'https://link.springer.com/article/10.1007/s10032-024-00505-7'), ('Code', 'https://github.com/maaz9898/PrecisionGAN')],
             body=lambda: f'''
@@ -145,7 +154,7 @@ def projects(pre):
             slug='metal-type', title='Movable Metal Type Analysis for Joseon-Era Books', kicker='KOREATECH with the National Museum of Korea, Mar 2023 – Feb 2025',
             line='Shape similarity analysis that identifies prints made from the same metal type.',
             tags=['Shape similarity', 'Document analysis', 'Cultural heritage'],
-            card=media(vid('metaltype', 'Twelve prints of one character sorting into three groups', True, P, True, 'metaltype-anim.webp'), '16 / 10'),
+            card=compare('mt_before.webp', 'mt_after.webp', 'Twelve prints of one character. Drag to reveal them grouped by metal type', P),
             facts=[('Role', 'Researcher, first and second author'), ('Where', 'KOREATECH'), ('Funded by', 'National Museum of Korea'), ('Papers', '3')],
             links=[('Similarity paper', 'http://journal.auric.kr/ieiespc/XmlViewer/f450827'), ('Chases paper', 'https://diglib.eg.org/items/930f4c5d-f291-4cf6-868a-b03688164b69')],
             body=lambda: f'''
@@ -160,7 +169,7 @@ def projects(pre):
             slug='smart-cart', title='Real-Time Action Recognition for Smart Shopping Carts', kicker='Bleed AI, for Veeve, Jan 2022 – Mar 2023',
             line='Edge models that detect items being added to or removed from a cart.',
             tags=['Action recognition', 'Edge TPU', 'Real time'],
-            card=tabs([(img('veeve_det.webp', 'A hand placing a box into a cart with keypoints and a box drawn on it', True, P), 'Model view'), (vid('veeve', 'A hand placing a box into a shopping cart', False, P), 'Clip')], '16 / 10', AI),
+            card=compare('veeve.webp', 'veeve_det.webp', 'A hand placing a box into a cart. Drag to reveal what the model detects', P),
             facts=[('Role', 'Project lead and engineer'), ('Client', 'Veeve'), ('Runs on', 'Google Coral Edge TPU'), ('Team', '5 engineers')],
             body=lambda: f'''
 <h2>Overview</h2>
@@ -172,7 +181,7 @@ def projects(pre):
             slug='vidan', title='Vidan.ai Video Analytics Platform', kicker='Liquid Technologies, Karachi, Aug 2021 – Feb 2022',
             line='Real-time video analytics, dashboards and alerts running on edge devices.',
             tags=['Video analytics', 'Dashboards', 'Edge devices'],
-            card=tabs([(img('vidan_det.webp', 'A freight train with a box around each wagon', True, P), 'Trains'), (img('gate.webp', 'A van at a gate with its number plate boxed', False, P), 'Plates'), (img('ppe.webp', 'Workers on a factory floor boxed green or red by safety gear', False, P), 'Safety gear'), (img('zone.webp', 'A forklift entering a red restricted zone in a warehouse', False, P), 'Zones')], '16 / 10', AI),
+            card=compare('vidan.webp', 'vidan_det.webp', 'A freight train passing a platform. Drag to reveal the detected wagons', P),
             facts=[('Role', 'Core developer'), ('Where', 'Liquid Technologies'), ('Built', 'Architecture, ALPR, train monitoring, dashboards'), ('Runs on', 'Single-board computers')],
             links=[('vidan.ai', 'https://vidan.ai/')],
             body=lambda: f"""
@@ -379,7 +388,7 @@ def build_home():
     skills = ''.join(f'<div><dt>{k}</dt><dd>{v}</dd></div>' for k, v in SKILLS)
     body = f'''
   <section class="intro">
-    <img class="portrait" src="assets/maaz.webp" alt="Portrait of Maaz Ahmed" width="148" height="148">
+    <div class="who"><img class="portrait" src="assets/maaz.webp" alt="Portrait of Maaz Ahmed" width="148" height="148"><span class="det" aria-hidden="true"><i>engineer 0.99</i></span></div>
     <div>
       <h1>Maaz Ahmed</h1>
       <p class="role">Machine Learning Engineer and Researcher. I build computer vision systems for robotics, 3D perception and human behaviour analysis.</p>
@@ -387,8 +396,9 @@ def build_home():
     </div>
   </section>
 
-  <div class="hero">
-    <video src="assets/hero.mp4" poster="assets/hero.webp" muted loop playsinline preload="none" data-auto aria-label="A lab bench turning from a photo into a glowing 3D point cloud"></video>
+  <div class="herowrap">
+    {compare('hero_photo.webp', 'hero_cloud.webp', 'A robotics lab bench. Drag to reveal the same scene as a 3D point cloud', '', '1600 / 672')}
+    <p class="hint">Drag the line. On one side is what you see, on the other what the machine sees.</p>
   </div>
 
   <section id="work">
