@@ -3,7 +3,7 @@
 import os, html
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-AI = 'AI-generated illustration'
+AI = None
 
 # ---------- small helpers ----------
 def img(src, alt, show=False, pre=''):
@@ -26,6 +26,36 @@ def media(inner, ar='16 / 10', badge=None, paper=False):
 def figure(inner, caption=None):
     c = f'<figcaption>{caption}</figcaption>' if caption else ''
     return f'<figure class="fig">{inner}{c}</figure>'
+
+def label(x, y, text, w):
+    return f'<g class="lab"><rect x="{x}" y="{y - 30}" width="{w}" height="42" rx="8"/><text x="{x + 14}" y="{y}">{text}</text></g>'
+
+def film_annot(pre):
+    return f"""<div class="annot" data-annot data-step="0">
+  <div class="stage" style="--ar:1312 / 864">
+    <img src="{pre}assets/cadreal.webp" alt="The alignment rig: a hollow white cylinder held in clamps on a gantry, a smaller cylinder on a stage to its left, and a round camera opening in the base plate below" loading="lazy">
+    <video src="{pre}assets/insert.mp4" muted loop playsinline preload="none" aria-label="The smaller cylinder sliding into the hollow one"></video>
+    <svg class="ov" viewBox="0 0 1312 864" aria-hidden="true">
+      <g class="s1">
+        <ellipse class="cam" cx="797" cy="707" rx="108" ry="30"/>
+        <path class="sight draw" pathLength="1" d="M797 707 L465 175"/>
+        {label(850, 790, 'Camera looks up from here', 372)}
+      </g>
+      <g class="s2">
+        <ellipse class="end draw" pathLength="1" cx="465" cy="175" rx="20" ry="92"/>
+        {label(505, 62, 'Open end, found as an ellipse', 412)}
+      </g>
+      <g class="s3">
+        <path class="dx draw" pathLength="1" d="M465 175 L800 172"/>
+        <path class="dy draw" pathLength="1" d="M800 172 L797 707"/>
+        {label(570, 150, 'dX 178 mm', 176)}
+        {label(822, 440, 'dY 281.9 mm', 204)}
+        {label(430, 470, 'Centre distance 333.4 mm', 362)}
+      </g>
+    </svg>
+  </div>
+  <div class="pills"><button type="button" aria-pressed="true">The rig</button><button type="button" aria-pressed="false">Camera</button><button type="button" aria-pressed="false">Find the end</button><button type="button" aria-pressed="false">Measure the offset</button><button type="button" aria-pressed="false">Insert</button></div>
+</div>"""
 
 def stats(items):
     return '<div class="stats">' + ''.join(f'<div><b>{a}</b><span>{b}</span></div>' for a, b in items) + '</div>'
@@ -64,29 +94,39 @@ def projects(pre):
 {stats([('94% AP', 'public UCO-LAEO benchmark'), ('71% AP', 'child pairs never seen in training'), ('EUVIP 2026', 'first-author paper')])}
 '''),
         dict(
-            slug='robot-pose', title='Robots that find things within a millimetre', kicker='4DiVISION and KOREATECH, 2023 to 2025',
-            line='6-DoF pose estimation for industrial robot arms.',
+            slug='bolt-fastening', title='A robot that fastens bolts by sight', kicker='4DiVISION, Seoul, 2025',
+            line='6-DoF pose estimation that holds within a millimetre.',
             tags=['6-DoF pose', 'ROS2', 'Point clouds', 'C++'],
             card=tabs([(img('bolt_pose.webp', 'A robot arm over a ring of bolts with pose axes drawn on each bolt', True, P), 'Pose'), (vid('bolt', 'The robot arm moving the tool to the next bolt', False, P), 'Clip')], '16 / 10', AI),
-            facts=[('Role', 'ML researcher'), ('Where', '4DiVISION, Seoul and KOREATECH'), ('Accuracy', 'Within 1 mm'), ('Stack', 'ROS2, PyTorch, Open3D, C++')],
-            body=lambda: f'''
-<h2>Bolt fastening at 4DiVISION</h2>
+            facts=[('Role', 'ML researcher'), ('Where', '4DiVISION, Seoul'), ('Accuracy', 'Within 1 mm'), ('Stack', 'ROS2, PyTorch, Open3D, C++')],
+            body=lambda: f"""
+<h2>The job</h2>
 <p>A robot arm has to put a tool on every bolt of a part it has never seen in that exact position. The camera does the finding.</p>
 {tabs([(img('bolt.webp', 'A robot arm holding a fastening tool over a ring of bolts', True, P), 'Scene'), (img('bolt_detect.webp', 'A green box around each bolt', False, P), 'Detect'), (img('bolt_seg.webp', 'A colour mask on each bolt', False, P), 'Segment'), (img('bolt_cloud.webp', 'The scene as a depth-coloured point cloud', False, P), 'Point cloud'), (img('bolt_pose.webp', 'Red, green and blue pose axes on each bolt', False, P), '6-DoF pose'), (vid('bolt', 'The robot arm moving the tool to the next bolt', False, P), 'Fasten')], '16 / 10', AI)}
 {stats([('&le; 1 mm', 'pose accuracy'), ('Unseen cells', 'held in factories outside the training data'), ('ROS2', 'targets streamed to the arm')])}
 
-<h2>Lining up film rolls at KOREATECH</h2>
-<p>On lines that cut and align massive rolls of film, one cylinder has to slide into another. A camera estimates the cylinder's pose and sends the offset to an arm on an AGV, so the two line up every time.</p>
-<div class="two-up">
-  {figure(media(img('agv.webp', 'A robot arm on a mobile base in the lab', True, P), '4 / 3'), 'The lab setup.')}
-  {figure(media(img('agv-cad.webp', 'CAD view of the cylinder with its measured axis and offsets', True, P), '4 / 3', None, True), 'What gets estimated: where the cylinder axis is, and how far off it sits.')}
-</div>
-'''),
+<h2>The test cell</h2>
+{figure(media(img('lab.webp', 'A collaborative robot arm with a camera and tool on an aluminium test bench in the lab', True, P), '4 / 3'), 'The lab setup the pipeline was developed on.')}
+"""),
+        dict(
+            slug='film-roll', title='Sliding one cylinder into another', kicker='KOREATECH, 2023 to 2025',
+            line='A camera under the rig measures the offset so film cores line up.',
+            tags=['Pose estimation', 'Ellipse fitting', '3D shape matching'],
+            card=tabs([(img('cadreal.webp', 'The alignment rig with a hollow white cylinder in clamps and a smaller cylinder beside it', True, P), 'The rig'), (vid('insert', 'The smaller cylinder sliding into the hollow one', False, P, False, 'cadreal.webp'), 'Insert')], '1312 / 864', AI),
+            facts=[('Role', 'Graduate researcher'), ('Where', 'KOREATECH'), ('Problem', 'One cylinder into another'), ('Measured', 'dX, dY and centre distance')],
+            body=lambda: f"""
+<h2>The job</h2>
+<p>On lines that cut and align massive rolls of film, one cylinder has to slide into another. A camera in the base looks up at the open end, finds it and measures how far off it sits.</p>
+{film_annot(P)}
+
+<h2>From the real design</h2>
+{figure(media(img('agv-cad.webp', 'CAD view of the rig with the measured dX, dY and centre distance', True, P), '900 / 599', None, True), 'The CAD model with the measured offsets.')}
+"""),
         dict(
             slug='precisiongan', title='PrecisionGAN', kicker="KOREATECH, master's thesis, 2023 to 2025",
             line='Thick historical print in, clean one-pixel skeleton out.',
             tags=['GAN', 'Image-to-image', 'Springer IJDAR'],
-            card=media(vid('skeleton', 'Three printed characters thinning down to skeletons', True, P, True), '16 / 10', 'Illustration'),
+            card=media(vid('skeleton', 'Three printed characters thinning down to skeletons', True, P, True), '16 / 10'),
             facts=[('Role', 'First author'), ('Where', 'KOREATECH'), ('Published', 'IJDAR, Springer, 2024'), ('Stack', 'PyTorch')],
             links=[('Paper', 'https://link.springer.com/article/10.1007/s10032-024-00505-7'), ('Code', 'https://github.com/maaz9898/PrecisionGAN')],
             body=lambda: f'''
@@ -105,13 +145,13 @@ def projects(pre):
             slug='metal-type', title='Tracing Joseon metal type', kicker='KOREATECH with the National Museum of Korea, 2023 to 2025',
             line='Which prints came from the same piece of metal?',
             tags=['Shape similarity', 'Document analysis', 'Cultural heritage'],
-            card=media(vid('metaltype', 'Twelve prints of one character sorting into three groups', True, P, True, 'metaltype-anim.webp'), '16 / 10', 'Illustration'),
+            card=media(vid('metaltype', 'Twelve prints of one character sorting into three groups', True, P, True, 'metaltype-anim.webp'), '16 / 10'),
             facts=[('Role', 'Researcher, first and second author'), ('Where', 'KOREATECH'), ('Funded by', 'National Museum of Korea'), ('Papers', '3')],
             links=[('Similarity paper', 'http://journal.auric.kr/ieiespc/XmlViewer/f450827'), ('Chases paper', 'https://diglib.eg.org/items/930f4c5d-f291-4cf6-868a-b03688164b69')],
             body=lambda: f'''
 <h2>The idea</h2>
 <p>Joseon printers set pages from individual metal types. Every type has tiny quirks, so prints from the same type share a shape. Group the shapes and you recover the type set, and how the book was printed.</p>
-{figure(media(vid('metaltype', 'Twelve prints of one character sorting into three groups', True, P, True, 'metaltype-anim.webp'), '16 / 10', 'Illustration'))}
+{figure(media(vid('metaltype', 'Twelve prints of one character sorting into three groups', True, P, True, 'metaltype-anim.webp'), '16 / 10'))}
 
 <h2>The pipeline</h2>
 {figure(media(img('metaltype.webp', 'From scanned page to segmented characters, similarity grouping and reconstructed type', True, P), '1200 / 298', None, True), 'From scanned page to grouped characters. From the paper.')}
@@ -130,16 +170,44 @@ def projects(pre):
 '''),
         dict(
             slug='vidan', title='Vidan.ai', kicker='Liquid Technologies, Karachi, 2021 to 2022',
-            line='Video analytics on small computers.',
-            tags=['Train monitoring', 'Plate recognition', 'Edge devices'],
-            card=tabs([(img('vidan_det.webp', 'A freight train with a box around each wagon', True, P), 'Model view'), (vid('vidan', 'A freight train passing a platform', False, P), 'Clip')], '16 / 10', AI),
-            facts=[('Role', 'Core developer'), ('Where', 'Liquid Technologies'), ('Built', 'Architecture, ALPR, train monitoring'), ('Runs on', 'Single-board computers')],
+            line='Cameras that count, read and raise the alarm on their own.',
+            tags=['Video analytics', 'Dashboards', 'Edge devices'],
+            card=tabs([(img('vidan_det.webp', 'A freight train with a box around each wagon', True, P), 'Trains'), (img('gate.webp', 'A van at a gate with its number plate boxed', False, P), 'Plates'), (img('ppe.webp', 'Workers on a factory floor boxed green or red by safety gear', False, P), 'Safety gear'), (img('zone.webp', 'A forklift entering a red restricted zone in a warehouse', False, P), 'Zones')], '16 / 10', AI),
+            facts=[('Role', 'Core developer'), ('Where', 'Liquid Technologies'), ('Built', 'Architecture, ALPR, train monitoring, dashboards'), ('Runs on', 'Single-board computers')],
             links=[('vidan.ai', 'https://vidan.ai/')],
-            body=lambda: f'''
-<h2>What it does</h2>
-<p>Cameras that count, read and flag things on their own. I designed the platform architecture and built the licence plate recognition and train monitoring modules.</p>
-{tabs([(img('vidan_det.webp', 'A freight train with a box around each wagon', True, P), 'Model view'), (vid('vidan', 'A freight train passing a platform', False, P), 'Clip')], '16 / 10', AI)}
-'''),
+            body=lambda: f"""
+<h2>One platform, many cameras</h2>
+<p>Every camera runs its own model on a small computer beside it. Events flow into one dashboard, and the right person gets an alert.</p>
+<div class="dash" data-dash>
+  <div class="dash-top"><b>Operations overview</b><span class="live"><i></i>Live</span></div>
+  <div class="dash-grid">
+    <div class="cams">
+      <figure class="cam">{vid('vidan', 'A freight train passing a platform', True, P, True)}<figcaption>Rail yard<span>Train monitoring</span></figcaption></figure>
+      <figure class="cam">{img('gate.webp', 'A van at a gate with its number plate boxed', True, P)}<figcaption>Main gate<span>Plate recognition</span></figcaption></figure>
+      <figure class="cam">{img('ppe.webp', 'Workers on a factory floor boxed green or red by safety gear', True, P)}<figcaption>Floor 2<span>Safety gear</span></figcaption></figure>
+      <figure class="cam">{img('zone.webp', 'A forklift entering a red restricted zone in a warehouse', True, P)}<figcaption>Warehouse B<span>Restricted zone</span></figcaption></figure>
+    </div>
+    <aside class="dash-side">
+      <div class="kpis"><div><b data-count="412">412</b><span>wagons counted</span></div><div><b data-count="128">128</b><span>vehicles read</span></div><div><b>3</b><span>open alerts</span></div></div>
+      <svg class="bars" viewBox="0 0 240 70" role="img" aria-label="Events per hour, rising through the day"><g>{''.join(f'<rect x="{6 + k * 19.5:.1f}" y="{66 - h}" width="13" height="{h}" rx="3"/>' for k, h in enumerate([14, 20, 17, 30, 38, 34, 46, 52, 41, 58, 49, 62]))}</g></svg>
+      <ul class="alerts" data-alerts>
+        <li class="warn"><b>No hard hat</b><span>Floor 2</span></li>
+        <li class="bad"><b>Forklift in restricted zone</b><span>Warehouse B</span></li>
+        <li><b>Unknown vehicle at gate</b><span>Main gate</span></li>
+        <li><b>Train arrived, 34 wagons</b><span>Rail yard</span></li>
+        <li class="warn"><b>Wagon door open</b><span>Rail yard</span></li>
+      </ul>
+    </aside>
+  </div>
+</div>
+<p class="note">A mock-up of the kind of dashboard I built, with generated camera views and made-up numbers.</p>
+
+<h2>What I built</h2>
+{stats([('Architecture', 'the platform design, edge to dashboard'), ('Two modules', 'plate recognition and train monitoring'), ('Dashboards', 'live views, counts and alerts')])}
+
+<h2>What the cameras look for</h2>
+{tabs([(img('vidan_det.webp', 'A freight train with a box around each wagon', True, P), 'Trains'), (img('gate.webp', 'A van at a gate with its number plate boxed', False, P), 'Plates'), (img('ppe.webp', 'Workers on a factory floor boxed green or red by safety gear', False, P), 'Safety gear'), (img('zone.webp', 'A forklift entering a red restricted zone in a warehouse', False, P), 'Restricted zones'), (vid('vidan', 'A freight train passing a platform', False, P), 'Clip')], '16 / 10', AI)}
+"""),
         dict(
             slug='fitx', title='FitX exercise coach', kicker='Mobile app',
             line='Counts reps and catches bad form from a phone camera.',
@@ -223,7 +291,7 @@ def page(title, desc, pre, body):
 {body}
 </main>
 <footer class="wrap foot">
-  <span>Maaz Ahmed, Doha, Qatar</span>
+  <span>Maaz Ahmed, Doha, Qatar. Some project visuals are illustrations made for this site.</span>
   <span class="social">
     <a class="icon" href="https://github.com/maaz9898" aria-label="GitHub" title="GitHub">{icon('github')}</a>
     <a class="icon" href="https://www.linkedin.com/in/maazahmed98" aria-label="LinkedIn" title="LinkedIn">{icon('linkedin')}</a>
@@ -240,7 +308,7 @@ def build_home():
     cards = ''
     for i, p in enumerate(ps):
         cards += f'''
-      <li class="card{" wide" if i < 2 or i >= 5 else ""}">
+      <li class="card{" wide" if i < 2 else ""}">
         {p["card"]}
         <a class="body" href="projects/{p["slug"]}.html">
           <h3>{p["title"]}</h3>
@@ -266,7 +334,6 @@ def build_home():
 
   <div class="hero">
     <video src="assets/hero.mp4" poster="assets/hero.webp" muted loop playsinline preload="none" data-auto aria-label="A lab bench turning from a photo into a glowing 3D point cloud"></video>
-    <span class="badge">{AI}</span>
   </div>
 
   <section id="work">
