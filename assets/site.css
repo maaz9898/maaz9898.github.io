@@ -62,18 +62,28 @@ h1 { margin: 0 0 8px; font-size: clamp(2.2rem, 5vw, 3.3rem); line-height: 1.05; 
 .cmp:focus-within .handle::after { outline: 3px solid var(--accent); outline-offset: 2px; }
 .cmp.glide { transition: --pos .9s ease; }
 @property --pos { syntax: "<percentage>"; inherits: true; initial-value: 55%; }
-.herowrap .cmp { border-radius: 18px; }
-/* Clips that behave like GIFs: play once when seen, rest on a still, replay on hover or tap. */
-.gif { position: relative; overflow: hidden; aspect-ratio: var(--ar, 16 / 10); background: #05080e; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-.gif video, .gif .end { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Card visuals that behave like GIFs on repeat. */
+.gif { position: relative; overflow: hidden; aspect-ratio: var(--ar, 16 / 10); background: #05080e; }
+.gif video, .gif img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .gif .end { transition: opacity .45s ease; }
 .gif.playing .end { opacity: 0; }
-.replay { position: absolute; right: 10px; bottom: 10px; z-index: 3; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: rgba(10, 14, 22, .74); color: #fff; display: grid; place-items: center; cursor: pointer; opacity: 1; transition: opacity .2s, background .15s; }
-.replay:hover { background: var(--accent); color: var(--accent-ink); }
-.playing > .replay { opacity: 0; pointer-events: none; }
-.once { position: relative; cursor: pointer; }
-figure.clip.once > .replay { bottom: auto; top: 10px; }
-@media (prefers-reduced-motion: reduce) { .gif .end, .replay { transition: none; } }
+/* Two-frame reveal: a scan line sweeps across and leaves the annotated frame behind, holds, then resets. */
+.reveal .marked { clip-path: inset(0 0 0 0); }
+.reveal .scan { position: absolute; top: 0; bottom: 0; left: 0; width: 2px; background: #fff; box-shadow: 0 0 14px 2px rgba(110, 168, 255, .9); opacity: 0; }
+.reveal.on .marked { animation: reveal-img 6s linear infinite; }
+.reveal.on .scan { animation: reveal-line 6s linear infinite; }
+@keyframes reveal-img {
+  0%, 12% { clip-path: inset(0 100% 0 0); opacity: 1; }
+  42%, 86% { clip-path: inset(0 0 0 0); opacity: 1; }
+  96%, 100% { clip-path: inset(0 0 0 0); opacity: 0; }
+}
+@keyframes reveal-line {
+  0%, 12% { left: 0; opacity: 0; }
+  13% { left: 0; opacity: 1; }
+  42% { left: 100%; opacity: 1; }
+  43%, 100% { left: 100%; opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .gif .end { transition: none; } .reveal.on .marked, .reveal.on .scan { animation: none; } }
 .hint { margin: 10px 0 0; color: var(--muted); font-size: .9rem; }
 
 /* FitX demo */

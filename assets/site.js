@@ -11,51 +11,42 @@
 
 var STILL = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Clips behave like GIFs: each plays once when it scrolls into view, then rests on a still.
-// Hovering (mouse) or tapping (touch) plays it again; a replay button covers keyboards and screen readers.
-// Clips with the loop attribute are live feeds and simply run while on screen.
+// Clips run like GIFs on repeat, but only while they are on screen.
 (function () {
   var IO = 'IntersectionObserver' in window;
-  var HOVER = matchMedia('(hover: hover) and (pointer: fine)').matches;
-  var ICON = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 1 0 2.6-5.9M4 4v5h5"/></svg>';
+  function watch(el, on, off, t) {
+    new IntersectionObserver(function (es) { if (es[0].isIntersecting) on(); else off(); }, { threshold: t }).observe(el);
+  }
 
-  function wire(root, v) {
-    var btn = root.querySelector('.replay');
-    if (!btn) {
-      btn = document.createElement('button');
-      btn.type = 'button'; btn.className = 'replay'; btn.setAttribute('aria-label', 'Replay clip'); btn.innerHTML = ICON;
-      root.appendChild(btn);
-    }
+  // Plain looping clips on project pages.
+  [].slice.call(document.querySelectorAll('video[data-auto]')).forEach(function (v) {
+    if (STILL || !IO) { v.controls = true; return; }
+    watch(v, function () { v.play().catch(function () {}); }, function () { v.pause(); }, 0.35);
+  });
+
+  // Card clips: play, hold the analysed frame for a moment, play again.
+  document.querySelectorAll('[data-gif]').forEach(function (root) {
+    var v = root.querySelector('video'), hold = root.querySelector('.end') ? 1900 : 600, timer = null, live = false;
     function rest() { root.classList.remove('playing'); }
     function play() {
-      if (root.classList.contains('playing')) return;
+      clearTimeout(timer);
+      if (!live) return;
       root.classList.add('playing');
       try { v.currentTime = 0; } catch (e) {}
       var p = v.play();
-      if (p && p.catch) p.catch(rest);          // autoplay refused (for example low power mode): stay on the still
+      if (p && p.catch) p.catch(rest);           // autoplay refused (for example low power mode): stay on the still
     }
-    v.addEventListener('ended', rest);
+    v.addEventListener('ended', function () { rest(); timer = setTimeout(play, hold); });
     v.addEventListener('error', rest);
-    btn.addEventListener('click', function (e) { e.stopPropagation(); play(); });
-    root.addEventListener('click', play);
-    if (HOVER) root.addEventListener('mouseenter', play);
-    if (STILL || !IO) return;                    // reduced motion: nothing moves until asked
-    var seen = false;
-    new IntersectionObserver(function (es) {
-      if (es[0].isIntersecting) { if (!seen) { seen = true; play(); } }
-      else if (root.classList.contains('playing')) { v.pause(); rest(); }
-    }, { threshold: 0.5 }).observe(root);
-  }
+    root.addEventListener('click', function () { live = true; play(); });   // a tap starts it where autoplay is blocked
+    if (STILL || !IO) return;                     // reduced motion: the still stays
+    watch(root, function () { if (!live) { live = true; play(); } }, function () { live = false; clearTimeout(timer); v.pause(); rest(); }, 0.4);
+  });
 
-  document.querySelectorAll('[data-gif]').forEach(function (root) { wire(root, root.querySelector('video')); });
-
-  [].slice.call(document.querySelectorAll('video[data-auto]')).forEach(function (v) {
-    if (v.loop) {
-      if (STILL || !IO) { v.controls = true; return; }
-      new IntersectionObserver(function (es) { if (es[0].isIntersecting) v.play().catch(function () {}); else v.pause(); }, { threshold: 0.35 }).observe(v);
-      return;
-    }
-    var root = v.parentElement; root.classList.add('once'); wire(root, v);
+  // Two-frame reveals animate in CSS; they only run while visible.
+  document.querySelectorAll('[data-reveal]').forEach(function (root) {
+    if (STILL || !IO) return;
+    watch(root, function () { root.classList.add('on'); }, function () { root.classList.remove('on'); }, 0.4);
   });
 })();
 

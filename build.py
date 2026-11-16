@@ -13,19 +13,23 @@ def sources(name, pre=''):
     """MP4 (H.264) first for Safari and phones, WebM (VP9) for browsers shipped without H.264."""
     return f'<source src="{pre}assets/{name}.mp4" type="video/mp4"><source src="{pre}assets/{name}.webm" type="video/webm">'
 
-def vid(name, alt, show=False, pre='', auto=False, poster=None, loop=False):
-    """A short clip. With auto it plays once when it scrolls into view and again on hover or tap; loop is for live feeds."""
+def vid(name, alt, show=False, pre='', auto=False, poster=None):
+    """A short looping clip. With auto it runs whenever it is on screen."""
     return (f'<video{" class=\"show\"" if show else ""} poster="{pre}assets/{poster or name + ".webp"}" '
-            f'muted{" loop" if loop else ""} playsinline preload="none"{" data-auto" if auto else ""} aria-label="{html.escape(alt)}">{sources(name, pre)}</video>')
+            f'muted loop playsinline preload="none"{" data-auto" if auto else ""} aria-label="{html.escape(alt)}">{sources(name, pre)}</video>')
 
 def clip(name, alt, pre='', end=None, poster=None, ar='16 / 10'):
-    """Card visual that behaves like a GIF: plays once when seen, rests on the analysed frame, replays on hover or tap."""
+    """Card visual that behaves like a GIF on repeat: the clip plays, the analysed frame holds for a moment, then it starts again."""
     e = f'<img class="end" src="{pre}assets/{end}" alt="{html.escape(alt)}" loading="lazy">' if end else ''
     return (f'<div class="gif" data-gif style="--ar:{ar}">'
             f'<video poster="{pre}assets/{poster or name + ".webp"}" muted playsinline preload="none" '
-            f'{"aria-hidden=\"true\"" if end else "aria-label=\"" + html.escape(alt) + "\""}>{sources(name, pre)}</video>{e}'
-            f'<button class="replay" type="button" aria-label="Replay clip"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">'
-            f'<path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 1 0 2.6-5.9M4 4v5h5"/></svg></button></div>')
+            f'{"aria-hidden=\"true\"" if end else "aria-label=\"" + html.escape(alt) + "\""}>{sources(name, pre)}</video>{e}</div>')
+
+def reveal(plain, marked, alt, pre='', ar='16 / 10'):
+    """A still that is repeatedly scanned into its annotated version, like a GIF made from two frames."""
+    return (f'<div class="gif reveal" data-reveal style="--ar:{ar}">'
+            f'<img src="{pre}assets/{plain}" alt="" loading="lazy">'
+            f'<img class="marked" src="{pre}assets/{marked}" alt="{html.escape(alt)}" loading="lazy"><span class="scan" aria-hidden="true"></span></div>')
 
 def tabs(items, ar='16 / 10', badge=None):
     stage = ''.join(m for m, _ in items)
@@ -57,7 +61,7 @@ def film_annot(pre):
     return f"""<div class="annot" data-annot data-step="0">
   <div class="stage" style="--ar:1312 / 864">
     <img src="{pre}assets/cadreal.webp" alt="The alignment rig: a hollow white cylinder held in clamps on a gantry, a smaller cylinder on a stage to its left, and a round camera opening in the base plate below" loading="lazy">
-    <video muted playsinline preload="none" aria-label="The smaller cylinder sliding into the hollow one">{sources("insert", pre)}</video>
+    <video muted loop playsinline preload="none" aria-label="The smaller cylinder sliding into the hollow one">{sources("insert", pre)}</video>
     <svg class="ov" viewBox="0 0 1312 864" aria-hidden="true">
       <g class="s1">
         <ellipse class="cam" cx="797" cy="707" rx="108" ry="30"/>
@@ -94,7 +98,7 @@ def projects(pre):
             slug='joint-engagement', title='Automated Assessment of Joint Engagement in Children', kicker='Hamad Bin Khalifa University, Sep 2025 – Present',
             line='Video models that measure social engagement between two children from a single camera.',
             tags=['Video understanding', 'Pose', 'Gaze', 'PyTorch'],
-            card=clip('engaged', 'Two children at a toy box, with the detected skeletons and gaze drawn over them', P, 'je_features.webp'),
+            card=reveal('je_frame.webp', 'je_features.webp', 'Two children at a toy box, with the detected skeletons and gaze drawn over them', P),
             facts=[('Role', 'Lead researcher'), ('Where', 'A-Sense, HBKU, Doha'), ('Paper', 'STIN, EUVIP 2026'), ('Stack', 'PyTorch, pose and gaze models')],
             body=lambda: f'''
 <h2>Problem</h2>
@@ -205,7 +209,7 @@ def projects(pre):
   <div class="dash-top"><b>Operations overview</b><span class="live"><i></i>Live</span></div>
   <div class="dash-grid">
     <div class="cams">
-      <figure class="cam">{vid('vidan', 'A freight train passing a platform', True, P, True, None, True)}<figcaption>Rail yard<span>Train monitoring</span></figcaption></figure>
+      <figure class="cam">{vid('vidan', 'A freight train passing a platform', True, P, True)}<figcaption>Rail yard<span>Train monitoring</span></figcaption></figure>
       <figure class="cam">{img('gate.webp', 'A van at a gate with its number plate boxed', True, P)}<figcaption>Main gate<span>Plate recognition</span></figcaption></figure>
       <figure class="cam">{img('ppe.webp', 'Workers on a factory floor boxed green or red by safety gear', True, P)}<figcaption>Floor 2<span>Safety gear</span></figcaption></figure>
       <figure class="cam">{img('zone.webp', 'A forklift entering a red restricted zone in a warehouse', True, P)}<figcaption>Warehouse B<span>Restricted zone</span></figcaption></figure>
@@ -436,11 +440,6 @@ def build_home():
       <p class="links"><a class="btn" href="mailto:maaz9898@gmail.com">Email me</a><a href="https://github.com/maaz9898">GitHub</a><a href="https://scholar.google.com/citations?user=TZpghL4AAAAJ">Google Scholar</a><a href="https://www.linkedin.com/in/maazahmed98">LinkedIn</a></p>
     </div>
   </section>
-
-  <div class="herowrap">
-    {compare('hero_photo.webp', 'hero_cloud.webp', 'A robot arm with a camera over a steel part. Drag to reveal the depth map of the same scene', '', '1600 / 672')}
-    <p class="hint">Drag the line to switch between the camera view and the depth map.</p>
-  </div>
 
   <section id="work">
     <h2>Projects</h2>

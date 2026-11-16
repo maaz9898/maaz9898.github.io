@@ -55,16 +55,11 @@
     </div>
   </section>
 
-  <div class="herowrap">
-    <div class="cmp" data-cmp style="--ar:1600 / 672"><img src="assets/hero_cloud.webp" alt="" loading="lazy"><img class="over" src="assets/hero_photo.webp" alt="A robot arm with a camera over a steel part. Drag to reveal the depth map of the same scene" loading="lazy"><span class="handle" aria-hidden="true"></span><input type="range" min="0" max="100" value="55" aria-label="Drag to compare the camera view with the machine view"></div>
-    <p class="hint">Drag the line to switch between the camera view and the depth map.</p>
-  </div>
-
   <section id="work">
     <h2>Projects</h2>
     <ul class="cards">
       <li class="card wide">
-        <div class="gif" data-gif style="--ar:16 / 10"><video poster="assets/engaged.webp" muted playsinline preload="none" aria-hidden="true"><source src="assets/engaged.mp4" type="video/mp4"><source src="assets/engaged.webm" type="video/webm"></video><img class="end" src="assets/je_features.webp" alt="Two children at a toy box, with the detected skeletons and gaze drawn over them" loading="lazy"><button class="replay" type="button" aria-label="Replay clip"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 1 0 2.6-5.9M4 4v5h5"/></svg></button></div>
+        <div class="gif reveal" data-reveal style="--ar:16 / 10"><img src="assets/je_frame.webp" alt="" loading="lazy"><img class="marked" src="assets/je_features.webp" alt="Two children at a toy box, with the detected skeletons and gaze drawn over them" loading="lazy"><span class="scan" aria-hidden="true"></span></div>
         <a class="body" href="projects/joint-engagement.html">
           <h3>Automated Assessment of Joint Engagement in Children</h3>
           <p>Video models that measure social engagement between two children from a single camera.</p>
@@ -73,7 +68,7 @@
         </a>
       </li>
       <li class="card wide">
-        <div class="gif" data-gif style="--ar:16 / 10"><video poster="assets/bolt.webp" muted playsinline preload="none" aria-hidden="true"><source src="assets/bolt.mp4" type="video/mp4"><source src="assets/bolt.webm" type="video/webm"></video><img class="end" src="assets/bolt_pose.webp" alt="A robot arm over a ring of bolts, with the estimated pose of each bolt drawn on it" loading="lazy"><button class="replay" type="button" aria-label="Replay clip"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 1 0 2.6-5.9M4 4v5h5"/></svg></button></div>
+        <div class="gif" data-gif style="--ar:16 / 10"><video poster="assets/bolt.webp" muted playsinline preload="none" aria-hidden="true"><source src="assets/bolt.mp4" type="video/mp4"><source src="assets/bolt.webm" type="video/webm"></video><img class="end" src="assets/bolt_pose.webp" alt="A robot arm over a ring of bolts, with the estimated pose of each bolt drawn on it" loading="lazy"></div>
         <a class="body" href="projects/bolt-fastening.html">
           <h3>Vision-Guided Robotic Bolt Fastening</h3>
           <p>6-DoF pose estimation that guides an industrial robot arm to within 1 mm.</p>
@@ -82,7 +77,7 @@
         </a>
       </li>
       <li class="card">
-        <div class="gif" data-gif style="--ar:1312 / 864"><video poster="assets/cadreal.webp" muted playsinline preload="none" aria-label="The alignment rig sliding the smaller cylinder into the hollow one"><source src="assets/insert.mp4" type="video/mp4"><source src="assets/insert.webm" type="video/webm"></video><button class="replay" type="button" aria-label="Replay clip"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 1 0 2.6-5.9M4 4v5h5"/></svg></button></div>
+        <div class="gif" data-gif style="--ar:1312 / 864"><video poster="assets/cadreal.webp" muted playsinline preload="none" aria-label="The alignment rig sliding the smaller cylinder into the hollow one"><source src="assets/insert.mp4" type="video/mp4"><source src="assets/insert.webm" type="video/webm"></video></div>
         <a class="body" href="projects/film-roll.html">
           <h3>Vision-Based Alignment for Film Roll Handling</h3>
           <p>Camera-based pose estimation that aligns two cylinders for automated insertion.</p>
@@ -91,7 +86,7 @@
         </a>
       </li>
       <li class="card">
-        <div class="gif" data-gif style="--ar:16 / 10"><video poster="assets/sk_before.webp" muted playsinline preload="none" aria-hidden="true"><source src="assets/skeleton.mp4" type="video/mp4"><source src="assets/skeleton.webm" type="video/webm"></video><img class="end" src="assets/sk_after.webp" alt="Three printed characters reduced to their skeletons" loading="lazy"><button class="replay" type="button" aria-label="Replay clip"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 1 0 2.6-5.9M4 4v5h5"/></svg></button></div>
+        <div class="gif" data-gif style="--ar:16 / 10"><video poster="assets/sk_before.webp" muted playsinline preload="none" aria-hidden="true"><source src="assets/skeleton.mp4" type="video/mp4"><source src="assets/skeleton.webm" type="video/webm"></video><img class="end" src="assets/sk_after.webp" alt="Three printed characters reduced to their skeletons" loading="lazy"></div>
         <a class="body" href="projects/precisiongan.html">
           <h3>PrecisionGAN: Skeletonization of Historical Printed Characters</h3>
           <p>A GAN that extracts clean, structure-preserving skeletons from historical print.</p>
@@ -100,7 +95,7 @@
         </a>
       </li>
       <li class="card">
-        <div class="gif" data-gif style="--ar:16 / 10"><video poster="assets/mt_before.webp" muted playsinline preload="none" aria-hidden="true"><source src="assets/metaltype.mp4" type="video/mp4"><source src="assets/metaltype.webm" type="video/webm"></video><img class="end" src="assets/mt_after.webp" alt="Twelve prints of one character grouped by the metal type that printed them" loading="lazy"><button class="replay" type="button" aria-label="Replay clip"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 1 0 2.6-5.9M4 4v5h5"/></svg></button></div>
+        <div class="gif" data-gif style="--ar:16 / 10"><video poster="assets/mt_before.webp" muted playsinline preload="none" aria-hidden="true"><source src="assets/metaltype.mp4" type="video/mp4"><source src="assets/metaltype.webm" type="video/webm"></video><img class="end" src="assets/mt_after.webp" alt="Twelve prints of one character grouped by the metal type that printed them" loading="lazy"></div>
         <a class="body" href="projects/metal-type.html">
           <h3>Movable Metal Type Analysis for Joseon-Era Books</h3>
           <p>Shape similarity analysis that identifies prints made from the same metal type.</p>
@@ -109,7 +104,7 @@
         </a>
       </li>
       <li class="card">
-        <div class="gif" data-gif style="--ar:16 / 10"><video poster="assets/veeve.webp" muted playsinline preload="none" aria-hidden="true"><source src="assets/veeve.mp4" type="video/mp4"><source src="assets/veeve.webm" type="video/webm"></video><img class="end" src="assets/veeve_det.webp" alt="A hand placing a box into a cart, with the detected hand and item outlined" loading="lazy"><button class="replay" type="button" aria-label="Replay clip"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 1 0 2.6-5.9M4 4v5h5"/></svg></button></div>
+        <div class="gif" data-gif style="--ar:16 / 10"><video poster="assets/veeve.webp" muted playsinline preload="none" aria-hidden="true"><source src="assets/veeve.mp4" type="video/mp4"><source src="assets/veeve.webm" type="video/webm"></video><img class="end" src="assets/veeve_det.webp" alt="A hand placing a box into a cart, with the detected hand and item outlined" loading="lazy"></div>
         <a class="body" href="projects/smart-cart.html">
           <h3>Real-Time Action Recognition for Smart Shopping Carts</h3>
           <p>Edge models that detect items being added to or removed from a cart.</p>
@@ -118,7 +113,7 @@
         </a>
       </li>
       <li class="card">
-        <div class="gif" data-gif style="--ar:16 / 10"><video poster="assets/vidan.webp" muted playsinline preload="none" aria-hidden="true"><source src="assets/vidan.mp4" type="video/mp4"><source src="assets/vidan.webm" type="video/webm"></video><img class="end" src="assets/vidan_det.webp" alt="A freight train passing a platform, with each wagon boxed" loading="lazy"><button class="replay" type="button" aria-label="Replay clip"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 1 0 2.6-5.9M4 4v5h5"/></svg></button></div>
+        <div class="gif" data-gif style="--ar:16 / 10"><video poster="assets/vidan.webp" muted playsinline preload="none" aria-hidden="true"><source src="assets/vidan.mp4" type="video/mp4"><source src="assets/vidan.webm" type="video/webm"></video><img class="end" src="assets/vidan_det.webp" alt="A freight train passing a platform, with each wagon boxed" loading="lazy"></div>
         <a class="body" href="projects/vidan.html">
           <h3>Vidan.ai Video Analytics Platform</h3>
           <p>Real-time video analytics, dashboards and alerts running on edge devices.</p>
@@ -127,7 +122,7 @@
         </a>
       </li>
       <li class="card">
-        <div class="gif" data-gif style="--ar:16 / 10"><video poster="assets/fitx_photo.webp" muted playsinline preload="none" aria-hidden="true"><source src="assets/fitx_squat.mp4" type="video/mp4"><source src="assets/fitx_squat.webm" type="video/webm"></video><img class="end" src="assets/fitx_pose.webp" alt="A man at the bottom of a squat, with body keypoints and the knee angle drawn on him" loading="lazy"><button class="replay" type="button" aria-label="Replay clip"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 1 0 2.6-5.9M4 4v5h5"/></svg></button></div>
+        <div class="gif" data-gif style="--ar:16 / 10"><video poster="assets/fitx_photo.webp" muted playsinline preload="none" aria-hidden="true"><source src="assets/fitx_squat.mp4" type="video/mp4"><source src="assets/fitx_squat.webm" type="video/webm"></video><img class="end" src="assets/fitx_pose.webp" alt="A man at the bottom of a squat, with body keypoints and the knee angle drawn on him" loading="lazy"></div>
         <a class="body" href="projects/fitx.html">
           <h3>FitX: Real-Time Exercise Form Analysis</h3>
           <p>A mobile app that counts repetitions and flags form errors using pose estimation.</p>
