@@ -102,6 +102,61 @@
   .contact p { max-width: 52ch; margin: 0 0 6px; }
   footer { color: var(--muted); font-size: .85rem; padding-bottom: 40px; }
 
+
+  /* research */
+  .lead { max-width: 66ch; margin: 0 0 22px; }
+  .feature { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
+  .feature h3 { margin: 0 0 6px; font-size: 1.12rem; font-weight: 600; color: var(--strong); }
+  .feature > p { margin: 0 0 16px; max-width: 64ch; font-size: .97rem; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .clip { position: relative; margin: 0; }
+  .clip video, .clip img { width: 100%; display: block; border-radius: 10px; aspect-ratio: 1580 / 1312; object-fit: cover; background: #000; }
+  .clip figcaption { margin-top: 8px; font-weight: 600; color: var(--strong); font-size: .95rem; display: flex; align-items: center; gap: 8px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #2FBF8F; flex: none; }
+  .dot.off { background: #E0667A; }
+  .note { color: var(--muted); font-size: .84rem; margin: 12px 0 0; }
+  .stepper { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+  .stage { position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 699 / 581; background: #000; }
+  .stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .45s; }
+  .stage img.show { opacity: 1; }
+  .steps { display: grid; gap: 8px; }
+  .steps button { text-align: left; font: inherit; color: var(--text); background: transparent; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; cursor: pointer; display: grid; grid-template-columns: 30px 1fr; gap: 4px 10px; }
+  .steps button b { color: var(--strong); font-weight: 600; }
+  .steps button span.n { grid-row: span 2; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--chip); color: var(--chip-text); font-weight: 600; font-size: .85rem; }
+  .steps button small { color: var(--muted); font-size: .86rem; line-height: 1.45; }
+  .steps button[aria-pressed="true"] { border-color: var(--accent); background: var(--chip); }
+  .steps button[aria-pressed="true"] span.n { background: var(--accent); color: var(--accent-ink); }
+  .arch { display: grid; gap: 8px; }
+  .arch .two { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .arch .box { border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; text-align: center; font-size: .88rem; background: var(--bg); }
+  .arch .box b { display: block; color: var(--strong); font-weight: 600; font-size: .92rem; }
+  .arch .box.key { border-color: var(--accent); }
+  .arch .box.out { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .arch .box.out b { color: var(--accent-ink); }
+  .arch .down { text-align: center; color: var(--muted); line-height: 1; font-size: .9rem; }
+  @keyframes flow { 0%, 100% { box-shadow: 0 0 0 0 transparent; } 12% { box-shadow: 0 0 0 3px var(--accent); } 24% { box-shadow: 0 0 0 0 transparent; } }
+  .arch.run .box { animation: flow 7s infinite; animation-delay: calc(var(--i) * .7s); }
+  .results { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+  .results div { flex: 1 1 180px; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  .results b { display: block; color: var(--strong); font-size: 1.4rem; font-weight: 700; line-height: 1.2; }
+  .results span { color: var(--muted); font-size: .88rem; }
+
+  /* project cards */
+  .cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+  .card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+  .media { position: relative; aspect-ratio: 16 / 10; background: #0b0f17; }
+  .media { overflow: hidden; }
+  .media video, .media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .media.paper { background: #fff; }
+  .media.paper img { object-fit: contain; padding: 14px; }
+  .badge { position: absolute; left: 10px; bottom: 10px; background: rgba(10, 14, 22, .78); color: #E7ECF5; font-size: .72rem; font-weight: 500; padding: 3px 9px; border-radius: 999px; }
+  .card .body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .card h3 { margin: 0; font-size: 1.05rem; font-weight: 600; color: var(--strong); line-height: 1.3; }
+  .card .org { color: var(--muted); font-size: .9rem; }
+  .card p { margin: 4px 0 6px; font-size: .94rem; }
+  .card .links, .card .tags { margin-top: auto; padding-top: 6px; }
+
   @media (max-width: 960px) {
     .page { grid-template-columns: 1fr; gap: 0; padding: 0 20px; }
     .side { position: static; height: auto; padding: 40px 0 8px; }
@@ -114,8 +169,9 @@
     .row { grid-template-columns: 1fr; gap: 8px; }
     .thumb { width: 100%; max-width: 320px; }
     .stats { grid-template-columns: 1fr; }
+    .cards, .pair, .stepper, .arch .two { grid-template-columns: 1fr; }
   }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
 </style>
 </head>
 <body>
@@ -131,6 +187,7 @@
 
     <nav aria-label="Sections">
       <a href="#about">About</a>
+      <a href="#research">Research</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#publications">Publications</a>
@@ -162,6 +219,62 @@
       </div>
     </section>
 
+    <section id="research">
+      <h2>Research</h2>
+      <p class="lead">My current research asks a simple question that is hard to automate: are two children at play actually doing something together? Clinicians call this joint engagement. It predicts later language and is a key marker in autism research, and today it is still rated by hand, window by window, from video.</p>
+
+      <div class="feature">
+        <h3>What the model has to tell apart</h3>
+        <p>Both clips show two children at the same toy box. On the left they share one activity. On the right each plays alone.</p>
+        <div class="pair">
+          <figure class="clip"><video src="assets/engaged.mp4" poster="assets/engaged.webp" muted loop playsinline preload="none" data-auto aria-label="Two children building the same track together"></video><figcaption><span class="dot"></span>Jointly engaged</figcaption></figure>
+          <figure class="clip"><video src="assets/not-engaged.mp4" poster="assets/not-engaged.webp" muted loop playsinline preload="none" data-auto aria-label="Two children playing separately at the same box"></video><figcaption><span class="dot off"></span>Not jointly engaged</figcaption></figure>
+        </div>
+        <p class="note">Generated examples from one empty study room. No frame shows a real participant.</p>
+      </div>
+
+      <div class="feature">
+        <h3>From one camera to measurable behaviour</h3>
+        <p>A single RGB camera is enough. The pipeline turns each frame into the cues a human rater looks for.</p>
+        <div class="stepper" id="stepper">
+          <div class="stage">
+            <img class="show" src="assets/je_frame.webp" alt="Two children at a toy box, seen from a fixed camera">
+            <img src="assets/je_features.webp" alt="The same frame with person boxes, body skeletons, head boxes and gaze arrows drawn on it" loading="lazy">
+            <img src="assets/je_depth.webp" alt="A depth map of the same frame with the distance between the two children marked" loading="lazy">
+          </div>
+          <div class="steps">
+            <button type="button" aria-pressed="true"><span class="n">1</span><b>One ordinary camera</b><small>No wearables and no depth sensor. Just video of the play session.</small></button>
+            <button type="button" aria-pressed="false"><span class="n">2</span><b>Who is looking at what</b><small>Person boxes, body skeletons, masks, head boxes and an arrow from each head to its gaze point.</small></button>
+            <button type="button" aria-pressed="false"><span class="n">3</span><b>Where everyone is in 3D</b><small>Monocular depth places both children in one metric scene, giving distance, orientation and movement.</small></button>
+          </div>
+        </div>
+        <p class="note">Generated frame. Journal paper on this pipeline is in preparation.</p>
+      </div>
+
+      <div class="feature">
+        <h3>STIN: a network built around the pair</h3>
+        <p>Each person gets their own stream of pose, gaze and appearance features. The two streams then attend to each other, with the geometry between the two people biasing the attention.</p>
+        <div class="arch" id="arch">
+          <div class="two"><div class="box" style="--i:0"><b>Person A</b>pose, gaze, appearance</div><div class="box" style="--i:0"><b>Person B</b>pose, gaze, appearance</div></div>
+          <div class="down">&darr;</div>
+          <div class="two"><div class="box" style="--i:1"><b>Behaviour encoders + BiGRU</b>over time</div><div class="box" style="--i:1"><b>Behaviour encoders + BiGRU</b>shared weights</div></div>
+          <div class="down">&darr;</div>
+          <div class="box key" style="--i:2"><b>Socially biased cross-attention</b>each person attends to the other, guided by distance and facing</div>
+          <div class="down">&darr;</div>
+          <div class="box key" style="--i:3"><b>Gaze-modulated attention</b>gaze heatmaps sharpen where the pair is looking</div>
+          <div class="down">&darr;</div>
+          <div class="box" style="--i:4"><b>Pool over the pair, then over time</b></div>
+          <div class="down">&darr;</div>
+          <div class="box out" style="--i:5"><b>Engagement level</b></div>
+        </div>
+        <div class="results">
+          <div><b>94% AP</b><span>on the public UCO-LAEO benchmark</span></div>
+          <div><b>71% AP</b><span>on child pairs the model had never seen</span></div>
+          <div><b>EUVIP 2026</b><span>first-author paper</span></div>
+        </div>
+      </div>
+    </section>
+
     <section id="experience">
       <h2>Experience</h2>
       <ul class="list">
@@ -170,7 +283,7 @@
           <div>
             <h3>Graduate Research Assistant</h3>
             <div class="org">Hamad Bin Khalifa University (A-Sense), Doha</div>
-            <p>Built STIN, a temporal network that combines body pose, gaze and interpersonal distance to classify social engagement between two people in video. Also built the pipeline under it and am now working on synthetic data for child interaction video.</p>
+            <p>Built STIN (EUVIP 2026), a temporal network that combines body pose, gaze and interpersonal distance to classify social engagement between two people in video. Also built the pipeline under it and am now working on synthetic data for child interaction video.</p>
             <ul class="tags"><li>PyTorch</li><li>Pose estimation</li><li>Gaze estimation</li><li>Tracking</li><li>Video understanding</li></ul>
           </div>
         </li>
@@ -224,67 +337,67 @@
 
     <section id="projects">
       <h2>Projects</h2>
-      <ul class="list">
-        <li class="row">
-          <svg class="thumb art" viewBox="0 0 160 120" role="img" aria-label="Diagram: two people linked by gaze and distance">
-            <g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="42" cy="34" r="9"/><path d="M42 43v30M42 52l-14 14M42 52l14 12M42 73l-10 26M42 73l10 26"/>
-              <circle cx="118" cy="34" r="9"/><path d="M118 43v30M118 52l14 14M118 52l-14 12M118 73l10 26M118 73l-10 26"/>
-              <path d="M53 32h54" stroke-dasharray="4 5"/><path d="M52 108h56" opacity=".55"/><path d="M52 104v8M108 104v8" opacity=".55"/>
-            </g>
-          </svg>
-          <div>
-            <h3>STIN: reading social engagement from video</h3>
-            <div class="org">Hamad Bin Khalifa University</div>
-            <p>Decides whether two people are interacting by following their pose, where they look and how far apart they are over time. 94% AP on the UCO-LAEO benchmark and 71% AP on child pairs the model had never seen.</p>
-            <div class="links"><span>Accepted at EUVIP 2026</span></div>
-          </div>
-        </li>
-        <li class="row">
-          <svg class="thumb art" viewBox="0 0 160 120" role="img" aria-label="Diagram: a bolt with pose axes">
-            <g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
-              <path d="M62 30l26-8 22 14-4 26-26 8-22-14z"/><path d="M58 56l-22 34a16 9 -30 0 0 28 16l22-34"/>
-              <path d="M84 46l42-10" stroke="#E0475B"/><path d="M84 46L74 10" stroke="#27A888"/><path d="M84 46l14 22" stroke="#6EA8FF"/>
-            </g>
-          </svg>
-          <div>
+      <ul class="cards">
+        <li class="card">
+          <div class="media"><video src="assets/bolt.mp4" poster="assets/bolt.webp" muted loop playsinline preload="none" data-auto aria-label="A robot arm moving a fastening tool between bolts on a steel flange"></video><span class="badge">AI-generated illustration</span></div>
+          <div class="body">
             <h3>Vision for a robot that fastens bolts</h3>
-            <div class="org">4DiVISION</div>
-            <p>Finds each bolt, segments it, registers RGB against the point cloud, estimates its 6-DoF pose and streams targets to the manipulator over ROS2. Held accuracy within 1 mm in factory cells the model had not seen in training.</p>
+            <div class="org">4DiVISION, Seoul</div>
+            <p>Finds each bolt, segments it, registers RGB against the point cloud, estimates its 6-DoF pose and streams targets to the arm over ROS2. Accuracy held within 1 mm in factory cells the model had not seen.</p>
+            <ul class="tags"><li>ROS2</li><li>6-DoF pose</li><li>Point clouds</li></ul>
           </div>
         </li>
-        <li class="row">
-          <img class="thumb" src="assets/agv.webp" alt="A robot arm on a mobile base in a lab" loading="lazy">
-          <div>
+        <li class="card">
+          <div class="media"><img src="assets/agv.webp" alt="A robot arm on a mobile base in a lab" loading="lazy"></div>
+          <div class="body">
             <h3>Pose estimation for a mobile manipulator</h3>
             <div class="org">KOREATECH</div>
-            <p>Camera-based 6-DoF pose estimation for a robot arm mounted on an AGV, so the arm can align itself with its target after the vehicle parks in a slightly different place each time.</p>
+            <p>Camera-based 6-DoF pose estimation for a robot arm on an AGV, so the arm can align itself with its target after the vehicle parks in a slightly different place each time.</p>
+            <ul class="tags"><li>Pose estimation</li><li>3D shape matching</li></ul>
           </div>
         </li>
-        <li class="row">
-          <img class="thumb contain" src="assets/precisiongan.webp" alt="A printed character, a broken skeleton from a classical method, and a clean skeleton from PrecisionGAN" loading="lazy">
-          <div>
+        <li class="card">
+          <div class="media"><video src="assets/veeve.mp4" poster="assets/veeve.webp" muted loop playsinline preload="none" data-auto aria-label="A hand placing a box into a shopping cart, seen from a camera on the cart"></video><span class="badge">AI-generated illustration</span></div>
+          <div class="body">
+            <h3>Action recognition in smart shopping carts</h3>
+            <div class="org">Bleed AI, for Veeve</div>
+            <p>Real-time models that watch a cart's camera and detect items going in or coming out, running on Google Coral Edge TPUs.</p>
+            <ul class="tags"><li>Action recognition</li><li>Edge TPU</li></ul>
+          </div>
+        </li>
+        <li class="card">
+          <div class="media"><video src="assets/vidan.mp4" poster="assets/vidan.webp" muted loop playsinline preload="none" data-auto aria-label="A freight train passing a platform, seen from a fixed security camera"></video><span class="badge">AI-generated illustration</span></div>
+          <div class="body">
+            <h3>Vidan.ai: video analytics on small computers</h3>
+            <div class="org">Liquid Technologies, Karachi</div>
+            <p>Core developer of a real-time video monitoring platform. Designed its architecture and built the licence plate recognition and train monitoring modules.</p>
+            <div class="links"><a href="https://vidan.ai/">Visit Vidan.ai</a></div>
+          </div>
+        </li>
+        <li class="card">
+          <div class="media paper"><img src="assets/precisiongan.webp" alt="A printed character, a broken skeleton from a classical method, and a clean skeleton from PrecisionGAN" loading="lazy"></div>
+          <div class="body">
             <h3>PrecisionGAN</h3>
             <div class="org">KOREATECH, master's thesis</div>
-            <p>An image-to-image translation GAN that reduces historical Korean and Chinese printed characters to clean skeletons without breaking their strokes. Published in Springer IJDAR.</p>
+            <p>An image-to-image translation GAN that reduces historical Korean and Chinese printed characters to clean skeletons without breaking their strokes.</p>
             <div class="links"><a href="https://link.springer.com/article/10.1007/s10032-024-00505-7">Paper</a><a href="https://github.com/maaz9898/PrecisionGAN">Code</a></div>
           </div>
         </li>
-        <li class="row">
-          <img class="thumb contain" src="assets/metaltype.webp" alt="Pipeline from scanned page to grouped characters to reconstructed metal type" loading="lazy">
-          <div>
+        <li class="card">
+          <div class="media paper"><img src="assets/metaltype.webp" alt="Pipeline from scanned page to grouped characters to reconstructed metal type" loading="lazy"></div>
+          <div class="body">
             <h3>Tracing Joseon-era metal type</h3>
             <div class="org">KOREATECH, with the National Museum of Korea</div>
             <p>Segments characters from scans of centuries-old books, measures how similar their shapes are and groups the ones printed from the same piece of metal type.</p>
             <div class="links"><a href="http://journal.auric.kr/ieiespc/XmlViewer/f450827">Paper</a></div>
           </div>
         </li>
-        <li class="row">
-          <video class="thumb" src="assets/fitx.mp4" poster="assets/fitx.webp" muted loop playsinline preload="none" aria-label="A person doing squats with a pose skeleton drawn over them"></video>
-          <div>
+        <li class="card">
+          <div class="media"><video src="assets/fitx.mp4" poster="assets/fitx.webp" muted loop playsinline preload="none" data-auto aria-label="A person doing squats with a pose skeleton drawn over them"></video></div>
+          <div class="body">
             <h3>FitX: real-time exercise coach</h3>
             <div class="org">Mobile app</div>
-            <p>Counts reps and flags form mistakes from the phone camera. I built the prototype, chose the stack, designed the app architecture and ran the project from proposal to deployment.</p>
+            <p>Counts reps and flags form mistakes from the phone camera. I built the prototype, chose the stack and ran the project from proposal to deployment.</p>
             <ul class="tags"><li>MediaPipe</li><li>Pose estimation</li><li>Mobile</li></ul>
           </div>
         </li>
@@ -331,12 +444,30 @@
     }, { rootMargin: '-30% 0px -60% 0px' });
     document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
   })();
-  // Play the demo clip while it is hovered or focused.
-  document.querySelectorAll('video.thumb').forEach(function (v) {
-    var row = v.closest('.row');
-    row.addEventListener('mouseenter', function () { v.play().catch(function () {}); });
-    row.addEventListener('mouseleave', function () { v.pause(); });
-  });
+  // Play clips only while they are on screen. With reduced motion, show controls instead.
+  (function () {
+    var vids = [].slice.call(document.querySelectorAll('video[data-auto]'));
+    var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (still || !('IntersectionObserver' in window)) { vids.forEach(function (v) { v.controls = true; }); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) e.target.play().catch(function () {}); else e.target.pause(); });
+    }, { threshold: 0.4 });
+    vids.forEach(function (v) { io.observe(v); });
+  })();
+  // Stepper: three views of the same frame.
+  (function () {
+    var root = document.getElementById('stepper'); if (!root) return;
+    var imgs = root.querySelectorAll('.stage img'), btns = root.querySelectorAll('.steps button'), cur = 0, timer = null;
+    function show(n) { cur = n; imgs.forEach(function (im, i) { im.classList.toggle('show', i === n); }); btns.forEach(function (b, i) { b.setAttribute('aria-pressed', i === n ? 'true' : 'false'); }); }
+    btns.forEach(function (b, i) { b.addEventListener('click', function () { clearInterval(timer); show(i); }); });
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        clearInterval(timer);
+        if (es[0].isIntersecting) timer = setInterval(function () { show((cur + 1) % imgs.length); }, 2600);
+      }, { threshold: 0.5 }).observe(root);
+    }
+    var arch = document.getElementById('arch'); if (arch) arch.classList.add('run');
+  })();
 </script>
 </body>
 </html>
