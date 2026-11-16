@@ -4,10 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maaz Ahmed | Computer Vision and Robotics</title>
-<meta name="description" content="Maaz Ahmed is a machine learning engineer and researcher in computer vision, 3D perception and robotics. Experience, projects and publications.">
+<meta name="description" content="Maaz Ahmed builds computer vision for robots and for video of people. Projects, publications and contact.">
 <meta name="color-scheme" content="dark light">
 <script>
-  // Set the theme before first paint so the page never flashes the wrong one.
   (function () {
     var t = null;
     try { t = localStorage.getItem('theme'); } catch (e) {}
@@ -18,456 +17,131 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0D131F; --panel: #151D2C; --line: #232E42;
-    --text: #C9D2E3; --strong: #F1F4FA; --muted: #8492AB;
-    --accent: #6EA8FF; --accent-ink: #0D131F; --chip: #1A2740; --chip-text: #9CC2FF;
-    --shadow: 0 10px 30px rgba(0, 0, 0, .35);
-  }
-  :root[data-theme="light"] {
-    --bg: #F6F7FA; --panel: #FFFFFF; --line: #DDE2EC;
-    --text: #3B4660; --strong: #0F1A2E; --muted: #66728C;
-    --accent: #1D4FD7; --accent-ink: #FFFFFF; --chip: #E6EDFD; --chip-text: #1D4FD7;
-    --shadow: 0 10px 30px rgba(20, 35, 70, .10);
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
-  body { margin: 0; background: var(--bg); color: var(--text); font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; transition: background-color .2s, color .2s; }
-  a { color: var(--strong); text-decoration: none; }
-  a:hover { color: var(--accent); }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-  .skip { position: absolute; left: -999px; top: 8px; background: var(--accent); color: var(--accent-ink); padding: 8px 14px; border-radius: 6px; z-index: 10; }
-  .skip:focus { left: 8px; }
-
-  .page { max-width: 1180px; margin: 0 auto; padding: 0 28px; display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 72px; }
-
-  /* left column */
-  .side { position: sticky; top: 0; height: 100vh; padding: 72px 0 40px; display: flex; flex-direction: column; }
-  .portrait { width: 132px; height: 132px; border-radius: 50%; object-fit: cover; object-position: 50% 18%; border: 3px solid var(--line); background: var(--panel); }
-  .side h1 { margin: 22px 0 4px; font-size: 2.35rem; line-height: 1.1; font-weight: 700; color: var(--strong); letter-spacing: -0.02em; }
-  .side .role { margin: 0; font-size: 1.1rem; font-weight: 500; color: var(--strong); }
-  .side .pitch { margin: 14px 0 0; max-width: 30ch; color: var(--muted); }
-  .side nav { margin-top: 36px; display: grid; gap: 4px; }
-  .side nav a { display: flex; align-items: center; gap: 12px; padding: 6px 0; color: var(--muted); font-weight: 500; font-size: .92rem; }
-  .side nav a::before { content: ""; width: 28px; height: 1px; background: currentColor; transition: width .2s; }
-  .side nav a:hover, .side nav a.on { color: var(--strong); }
-  .side nav a:hover::before, .side nav a.on::before { width: 56px; }
-  .side .foot { margin-top: auto; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  .icon { display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 9px; color: var(--muted); border: 1px solid var(--line); background: transparent; cursor: pointer; }
-  .icon:hover { color: var(--accent); border-color: var(--accent); }
-  .icon svg { width: 19px; height: 19px; fill: currentColor; }
-  #theme .sun { display: none; }
-  :root[data-theme="light"] #theme .sun { display: block; }
-  :root[data-theme="light"] #theme .moon { display: none; }
-  .btn { display: inline-block; margin-top: 22px; padding: 9px 16px; border-radius: 9px; background: var(--accent); color: var(--accent-ink); font-weight: 600; font-size: .95rem; }
-  .btn:hover { color: var(--accent-ink); filter: brightness(1.08); }
-
-  /* right column */
-  main { padding: 72px 0 40px; min-width: 0; }
-  section { margin-bottom: 84px; }
-  h2 { margin: 0 0 22px; font-size: 1.35rem; font-weight: 700; color: var(--strong); letter-spacing: -0.01em; }
-  .about p { margin: 0 0 14px; max-width: 66ch; }
-  .about strong { color: var(--strong); font-weight: 600; }
-  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 26px; }
-  .stats div { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
-  .stats b { display: block; color: var(--strong); font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
-  .stats span { color: var(--muted); font-size: .9rem; }
-
-  .list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
-  .row { display: grid; grid-template-columns: 148px minmax(0, 1fr); gap: 20px; padding: 18px; margin: 0 -18px; border-radius: 12px; border: 1px solid transparent; transition: background-color .15s, border-color .15s; }
-  .row:hover { background: var(--panel); border-color: var(--line); box-shadow: var(--shadow); }
-  .when { color: var(--muted); font-size: .84rem; font-weight: 500; padding-top: 4px; font-variant-numeric: tabular-nums; }
-  .row h3 { margin: 0; font-size: 1.05rem; font-weight: 600; color: var(--strong); line-height: 1.35; }
-  .row .org { color: var(--muted); font-size: .95rem; margin: 1px 0 8px; }
-  .row p { margin: 0 0 10px; font-size: .96rem; max-width: 62ch; }
-  .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; padding: 0; }
-  .tags li { background: var(--chip); color: var(--chip-text); font-size: .78rem; font-weight: 500; padding: 3px 10px; border-radius: 999px; }
-  .links { display: flex; gap: 16px; flex-wrap: wrap; font-size: .92rem; font-weight: 500; }
-  .links a { color: var(--accent); }
-  .links a:hover { text-decoration: underline; }
-
-  .thumb { width: 148px; aspect-ratio: 4 / 3; border-radius: 8px; border: 1px solid var(--line); background: #fff; object-fit: cover; display: block; }
-  .thumb.contain { object-fit: contain; padding: 6px; }
-  .thumb.art { background: var(--panel); padding: 10px; color: var(--accent); }
-
-  .pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
-  .pubs li { padding: 14px 18px; margin: 0 -18px; border-radius: 12px; border: 1px solid transparent; }
-  .pubs li:hover { background: var(--panel); border-color: var(--line); }
-  .pubs .t { display: block; color: var(--strong); font-weight: 600; line-height: 1.4; }
-  .pubs a.t:hover { color: var(--accent); }
-  .pubs .v { color: var(--muted); font-size: .92rem; }
-  .pubs .me { color: var(--accent); font-weight: 600; }
-
-  .contact p { max-width: 52ch; margin: 0 0 6px; }
-  footer { color: var(--muted); font-size: .85rem; padding-bottom: 40px; }
-
-
-  /* research */
-  .lead { max-width: 66ch; margin: 0 0 22px; }
-  .feature { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
-  .feature h3 { margin: 0 0 6px; font-size: 1.12rem; font-weight: 600; color: var(--strong); }
-  .feature > p { margin: 0 0 16px; max-width: 64ch; font-size: .97rem; }
-  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .clip { position: relative; margin: 0; }
-  .clip video, .clip img { width: 100%; display: block; border-radius: 10px; aspect-ratio: 1580 / 1312; object-fit: cover; background: #000; }
-  .clip figcaption { margin-top: 8px; font-weight: 600; color: var(--strong); font-size: .95rem; display: flex; align-items: center; gap: 8px; }
-  .dot { width: 10px; height: 10px; border-radius: 50%; background: #2FBF8F; flex: none; }
-  .dot.off { background: #E0667A; }
-  .note { color: var(--muted); font-size: .84rem; margin: 12px 0 0; }
-  .stepper { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 20px; align-items: start; }
-  .stage { position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 699 / 581; background: #000; }
-  .stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .45s; }
-  .stage img.show { opacity: 1; }
-  .steps { display: grid; gap: 8px; }
-  .steps button { text-align: left; font: inherit; color: var(--text); background: transparent; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; cursor: pointer; display: grid; grid-template-columns: 30px 1fr; gap: 4px 10px; }
-  .steps button b { color: var(--strong); font-weight: 600; }
-  .steps button span.n { grid-row: span 2; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--chip); color: var(--chip-text); font-weight: 600; font-size: .85rem; }
-  .steps button small { color: var(--muted); font-size: .86rem; line-height: 1.45; }
-  .steps button[aria-pressed="true"] { border-color: var(--accent); background: var(--chip); }
-  .steps button[aria-pressed="true"] span.n { background: var(--accent); color: var(--accent-ink); }
-  .arch { display: grid; gap: 8px; }
-  .arch .two { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .arch .box { border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; text-align: center; font-size: .88rem; background: var(--bg); }
-  .arch .box b { display: block; color: var(--strong); font-weight: 600; font-size: .92rem; }
-  .arch .box.key { border-color: var(--accent); }
-  .arch .box.out { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-  .arch .box.out b { color: var(--accent-ink); }
-  .arch .down { text-align: center; color: var(--muted); line-height: 1; font-size: .9rem; }
-  @keyframes flow { 0%, 100% { box-shadow: 0 0 0 0 transparent; } 12% { box-shadow: 0 0 0 3px var(--accent); } 24% { box-shadow: 0 0 0 0 transparent; } }
-  .arch.run .box { animation: flow 7s infinite; animation-delay: calc(var(--i) * .7s); }
-  .results { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
-  .results div { flex: 1 1 180px; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
-  .results b { display: block; color: var(--strong); font-size: 1.4rem; font-weight: 700; line-height: 1.2; }
-  .results span { color: var(--muted); font-size: .88rem; }
-
-  /* project cards */
-  .cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
-  .card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
-  .media { position: relative; aspect-ratio: 16 / 10; background: #0b0f17; }
-  .media { overflow: hidden; }
-  .media video, .media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-  .media.paper { background: #fff; }
-  .media.paper img { object-fit: contain; padding: 14px; }
-  .badge { position: absolute; left: 10px; bottom: 10px; background: rgba(10, 14, 22, .78); color: #E7ECF5; font-size: .72rem; font-weight: 500; padding: 3px 9px; border-radius: 999px; }
-  .card .body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
-  .card h3 { margin: 0; font-size: 1.05rem; font-weight: 600; color: var(--strong); line-height: 1.3; }
-  .card .org { color: var(--muted); font-size: .9rem; }
-  .card p { margin: 4px 0 6px; font-size: .94rem; }
-  .card .links, .card .tags { margin-top: auto; padding-top: 6px; }
-
-  @media (max-width: 960px) {
-    .page { grid-template-columns: 1fr; gap: 0; padding: 0 20px; }
-    .side { position: static; height: auto; padding: 40px 0 8px; }
-    .side nav { display: none; }
-    .side .foot { margin-top: 24px; }
-    main { padding-top: 40px; }
-    section { margin-bottom: 60px; }
-  }
-  @media (max-width: 560px) {
-    .row { grid-template-columns: 1fr; gap: 8px; }
-    .thumb { width: 100%; max-width: 320px; }
-    .stats { grid-template-columns: 1fr; }
-    .cards, .pair, .stepper, .arch .two { grid-template-columns: 1fr; }
-  }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
-</style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
-<div class="page">
-
-  <header class="side">
-    <img class="portrait" src="assets/maaz.webp" alt="Portrait of Maaz Ahmed" width="132" height="132">
-    <h1>Maaz Ahmed</h1>
-    <p class="role">Machine Learning Engineer and Researcher</p>
-    <p class="pitch">Computer vision, 3D perception and robotics. I build vision systems that keep working outside the lab.</p>
-    <div><a class="btn" href="mailto:maaz9898@gmail.com">Email me</a></div>
-
-    <nav aria-label="Sections">
-      <a href="#about">About</a>
-      <a href="#research">Research</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#publications">Publications</a>
-      <a href="#contact">Contact</a>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">Maaz Ahmed</a>
+    <nav aria-label="Main">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#publications">Publications</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#contact">Contact</a>
     </nav>
+    <button class="icon" id="theme" type="button" aria-label="Switch between dark and light mode" title="Switch theme"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 14.5A8.5 8.5 0 0 1 9.5 3.6a.75.75 0 0 0-.98-.94A10 10 0 1 0 21.34 15.5a.75.75 0 0 0-.94-1Z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0-6a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V2a1 1 0 0 1 1-1Zm0 18a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1ZM1 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H2a1 1 0 0 1-1-1Zm18 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1ZM4.22 4.22a1 1 0 0 1 1.42 0l1.41 1.42a1 1 0 0 1-1.41 1.41L4.22 5.64a1 1 0 0 1 0-1.42Zm12.73 12.73a1 1 0 0 1 1.41 0l1.42 1.41a1 1 0 0 1-1.42 1.42l-1.41-1.42a1 1 0 0 1 0-1.41ZM4.22 19.78a1 1 0 0 1 0-1.42l1.42-1.41a1 1 0 0 1 1.41 1.41l-1.41 1.42a1 1 0 0 1-1.42 0ZM16.95 7.05a1 1 0 0 1 0-1.41l1.41-1.42a1 1 0 1 1 1.42 1.42l-1.42 1.41a1 1 0 0 1-1.41 0Z"/></svg></button>
+  </div>
+</header>
+<main id="content" class="wrap">
 
-    <div class="foot">
-      <a class="icon" href="https://github.com/maaz9898" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.3-.52-1.47.11-3.06 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.06.74.8 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
-      <a class="icon" href="https://www.linkedin.com/in/maazahmed98" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
-      <a class="icon" href="https://scholar.google.com/citations?user=TZpghL4AAAAJ" aria-label="Google Scholar" title="Google Scholar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 0 9.5l4.84 3.02A7.5 7.5 0 1 0 19.5 15v-2.69L22 10.75V17h2V9.5L12 2Zm0 18.5A5.5 5.5 0 0 1 6.5 15v-1.44L12 17l5.5-3.44V15a5.5 5.5 0 0 1-5.5 5.5Z"/></svg></a>
-      <button class="icon" id="theme" type="button" aria-label="Switch between dark and light mode" title="Switch theme">
-        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 14.5A8.5 8.5 0 0 1 9.5 3.6a.75.75 0 0 0-.98-.94A10 10 0 1 0 21.34 15.5a.75.75 0 0 0-.94-1Z"/></svg>
-        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0-6a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V2a1 1 0 0 1 1-1Zm0 18a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1ZM1 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H2a1 1 0 0 1-1-1Zm18 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1ZM4.22 4.22a1 1 0 0 1 1.42 0l1.41 1.42a1 1 0 0 1-1.41 1.41L4.22 5.64a1 1 0 0 1 0-1.42Zm12.73 12.73a1 1 0 0 1 1.41 0l1.42 1.41a1 1 0 0 1-1.42 1.42l-1.41-1.42a1 1 0 0 1 0-1.41ZM4.22 19.78a1 1 0 0 1 0-1.42l1.42-1.41a1 1 0 0 1 1.41 1.41l-1.41 1.42a1 1 0 0 1-1.42 0ZM16.95 7.05a1 1 0 0 1 0-1.41l1.41-1.42a1 1 0 1 1 1.42 1.42l-1.42 1.41a1 1 0 0 1-1.41 0Z"/></svg>
-      </button>
+  <section class="intro">
+    <img class="portrait" src="assets/maaz.webp" alt="Portrait of Maaz Ahmed" width="148" height="148">
+    <div>
+      <h1>Maaz Ahmed</h1>
+      <p class="role">I teach machines to see. Computer vision for robots and for video of people.</p>
+      <p class="links"><a class="btn" href="mailto:maaz9898@gmail.com">Email me</a><a href="https://github.com/maaz9898">GitHub</a><a href="https://scholar.google.com/citations?user=TZpghL4AAAAJ">Google Scholar</a><a href="https://www.linkedin.com/in/maazahmed98">LinkedIn</a></p>
     </div>
-  </header>
+  </section>
 
-  <main id="content">
+  <div class="hero">
+    <video src="assets/hero.mp4" poster="assets/hero.webp" muted loop playsinline preload="none" data-auto aria-label="A lab bench turning from a photo into a glowing 3D point cloud"></video>
+    <span class="badge">AI-generated illustration</span>
+  </div>
 
-    <section id="about" class="about">
-      <h2>About</h2>
-      <p>I'm a machine learning engineer and researcher working on <strong>computer vision, 3D perception and robotics</strong>. Right now I'm at Hamad Bin Khalifa University in Doha, building models that read social interaction between children from video, using pose, gaze and tracking.</p>
-      <p>Before that I built industrial vision in Seoul, where my pipeline guided a robot arm to fasten bolts with <strong>pose accuracy within 1 mm</strong>, and earlier shipped video analytics on edge hardware in Karachi. I hold an M.S. in computer vision from KOREATECH in South Korea.</p>
-      <p>The thread through all of it is the same question: does the model still work when it leaves the room it was trained in?</p>
-      <div class="stats">
-        <div><b>5</b><span>peer-reviewed papers, 3 as first author</span></div>
-        <div><b>&le; 1 mm</b><span>6-DoF pose accuracy on a factory robot</span></div>
-        <div><b>3 countries</b><span>Pakistan, South Korea, Qatar</span></div>
-      </div>
-    </section>
+  <section id="work">
+    <h2>Work</h2>
+    <ul class="cards">
+      <li class="card wide">
+        <div class="media" style="--ar:16 / 10"><video class="show" src="assets/engaged.mp4" poster="assets/engaged.webp" muted loop playsinline preload="none" data-auto aria-label="Two children building the same track together"></video></div>
+        <a class="body" href="projects/joint-engagement.html">
+          <h3>Are two children playing together?</h3>
+          <p>Measuring joint engagement from ordinary video.</p>
+          <ul class="tags"><li>Video understanding</li><li>Pose</li><li>Gaze</li></ul>
+          <span class="more">Open project</span>
+        </a>
+      </li>
+      <li class="card wide">
+        <div class="tabs" data-tabs><div class="stage" style="--ar:16 / 10"><img class="show" src="assets/bolt_pose.webp" alt="A robot arm over a ring of bolts with pose axes drawn on each bolt" loading="lazy"><video src="assets/bolt.mp4" poster="assets/bolt.webp" muted loop playsinline preload="none" aria-label="The robot arm moving the tool to the next bolt"></video><span class="badge">AI-generated illustration</span></div><div class="pills"><button type="button" aria-pressed="true">Pose</button><button type="button" aria-pressed="false">Clip</button></div></div>
+        <a class="body" href="projects/robot-pose.html">
+          <h3>Robots that find things within a millimetre</h3>
+          <p>6-DoF pose estimation for industrial robot arms.</p>
+          <ul class="tags"><li>6-DoF pose</li><li>ROS2</li><li>Point clouds</li></ul>
+          <span class="more">Open project</span>
+        </a>
+      </li>
+      <li class="card">
+        <div class="media" style="--ar:16 / 10"><video class="show" src="assets/skeleton.mp4" poster="assets/skeleton.webp" muted loop playsinline preload="none" data-auto aria-label="Three printed characters thinning down to skeletons"></video><span class="badge">Illustration</span></div>
+        <a class="body" href="projects/precisiongan.html">
+          <h3>PrecisionGAN</h3>
+          <p>Thick historical print in, clean one-pixel skeleton out.</p>
+          <ul class="tags"><li>GAN</li><li>Image-to-image</li><li>Springer IJDAR</li></ul>
+          <span class="more">Open project</span>
+        </a>
+      </li>
+      <li class="card">
+        <div class="media" style="--ar:16 / 10"><video class="show" src="assets/metaltype.mp4" poster="assets/metaltype-anim.webp" muted loop playsinline preload="none" data-auto aria-label="Twelve prints of one character sorting into three groups"></video><span class="badge">Illustration</span></div>
+        <a class="body" href="projects/metal-type.html">
+          <h3>Tracing Joseon metal type</h3>
+          <p>Which prints came from the same piece of metal?</p>
+          <ul class="tags"><li>Shape similarity</li><li>Document analysis</li><li>Cultural heritage</li></ul>
+          <span class="more">Open project</span>
+        </a>
+      </li>
+      <li class="card">
+        <div class="tabs" data-tabs><div class="stage" style="--ar:16 / 10"><img class="show" src="assets/veeve_det.webp" alt="A hand placing a box into a cart with keypoints and a box drawn on it" loading="lazy"><video src="assets/veeve.mp4" poster="assets/veeve.webp" muted loop playsinline preload="none" aria-label="A hand placing a box into a shopping cart"></video><span class="badge">AI-generated illustration</span></div><div class="pills"><button type="button" aria-pressed="true">Model view</button><button type="button" aria-pressed="false">Clip</button></div></div>
+        <a class="body" href="projects/smart-cart.html">
+          <h3>Smart shopping carts</h3>
+          <p>A cart that knows what went in and what came out.</p>
+          <ul class="tags"><li>Action recognition</li><li>Edge TPU</li><li>Real time</li></ul>
+          <span class="more">Open project</span>
+        </a>
+      </li>
+      <li class="card wide">
+        <div class="tabs" data-tabs><div class="stage" style="--ar:16 / 10"><img class="show" src="assets/vidan_det.webp" alt="A freight train with a box around each wagon" loading="lazy"><video src="assets/vidan.mp4" poster="assets/vidan.webp" muted loop playsinline preload="none" aria-label="A freight train passing a platform"></video><span class="badge">AI-generated illustration</span></div><div class="pills"><button type="button" aria-pressed="true">Model view</button><button type="button" aria-pressed="false">Clip</button></div></div>
+        <a class="body" href="projects/vidan.html">
+          <h3>Vidan.ai</h3>
+          <p>Video analytics on small computers.</p>
+          <ul class="tags"><li>Train monitoring</li><li>Plate recognition</li><li>Edge devices</li></ul>
+          <span class="more">Open project</span>
+        </a>
+      </li>
+      <li class="card wide">
+        <div class="media" style="--ar:16 / 10"><video class="show" src="assets/fitx.mp4" poster="assets/fitx.webp" muted loop playsinline preload="none" data-auto aria-label="A person doing squats with a pose skeleton drawn over them"></video></div>
+        <a class="body" href="projects/fitx.html">
+          <h3>FitX exercise coach</h3>
+          <p>Counts reps and catches bad form from a phone camera.</p>
+          <ul class="tags"><li>Pose estimation</li><li>MediaPipe</li><li>Mobile</li></ul>
+          <span class="more">Open project</span>
+        </a>
+      </li>
+    </ul>
+  </section>
 
-    <section id="research">
-      <h2>Research</h2>
-      <p class="lead">My current research asks a simple question that is hard to automate: are two children at play actually doing something together? Clinicians call this joint engagement. It predicts later language and is a key marker in autism research, and today it is still rated by hand, window by window, from video.</p>
+  <section id="publications">
+    <h2>Publications</h2>
+    <ul class="pubs"><li><span class="t">STIN: A Socio-Temporal Interaction Network for Dyadic Interaction Analysis</span><span class="v">EUVIP 2026. <span class="me">First author</span></span></li><li><a class="t" href="https://link.springer.com/article/10.1007/s10032-024-00505-7">PrecisionGAN: Enhanced Image-to-Image Translation for Preserving Structural Integrity in Skeletonized Images</a><span class="v">IJDAR (Springer), 2024. <span class="me">First author</span></span></li><li><a class="t" href="http://journal.auric.kr/ieiespc/XmlViewer/f450827">Evaluating Similarity between Characters Printed Using Ancient Movable Metal Types</a><span class="v">IEIE Transactions on Smart Processing and Computing, 2025. <span class="me">First author</span></span></li><li><a class="t" href="https://paper.cricit.kr/user/search/site/ieie2018/cart_rdoc.asp?URL=files/filename%3Fnum%3D457024%26db%3DRD_R&dn=457024&db=RD_R&usernum=0&seid=">Smoothed Boundary Distance Loss Function for Enhancing Character Extraction from High-Resolution Scans of Historical Documents</a><span class="v">IEIE Transactions on Smart Processing and Computing, 2025. Second author</span></li><li><a class="t" href="https://diglib.eg.org/items/930f4c5d-f291-4cf6-868a-b03688164b69">Estimating the Number of Chases Used for Printing Books with Movable Metal Types</a><span class="v">Eurographics GCH, 2023. Second author</span></li></ul>
+  </section>
 
-      <div class="feature">
-        <h3>What the model has to tell apart</h3>
-        <p>Both clips show two children at the same toy box. On the left they share one activity. On the right each plays alone.</p>
-        <div class="pair">
-          <figure class="clip"><video src="assets/engaged.mp4" poster="assets/engaged.webp" muted loop playsinline preload="none" data-auto aria-label="Two children building the same track together"></video><figcaption><span class="dot"></span>Jointly engaged</figcaption></figure>
-          <figure class="clip"><video src="assets/not-engaged.mp4" poster="assets/not-engaged.webp" muted loop playsinline preload="none" data-auto aria-label="Two children playing separately at the same box"></video><figcaption><span class="dot off"></span>Not jointly engaged</figcaption></figure>
-        </div>
-        <p class="note">Generated examples from one empty study room. No frame shows a real participant.</p>
-      </div>
+  <section id="experience">
+    <h2>Experience</h2>
+    <ul class="slim"><li><span class="when">2025 to now</span><span><b>Graduate Research Assistant</b> <span class="at">Hamad Bin Khalifa University, Doha</span></span></li><li><span class="when">2025</span><span><b>Machine Learning Researcher</b> <span class="at">4DiVISION, Seoul</span></span></li><li><span class="when">2023 to 2025</span><span><b>M.S. and Research Assistant</b> <span class="at">KOREATECH, South Korea</span></span></li><li><span class="when">2022 to 2023</span><span><b>AI Project Manager</b> <span class="at">Bleed AI, remote</span></span></li><li><span class="when">2021 to 2022</span><span><b>Machine Learning Engineer</b> <span class="at">Liquid Technologies, Karachi</span></span></li><li><span class="when">2020 to 2021</span><span><b>Embedded Systems Engineer</b> <span class="at">Sudoware, Karachi</span></span></li></ul>
+  </section>
 
-      <div class="feature">
-        <h3>From one camera to measurable behaviour</h3>
-        <p>A single RGB camera is enough. The pipeline turns each frame into the cues a human rater looks for.</p>
-        <div class="stepper" id="stepper">
-          <div class="stage">
-            <img class="show" src="assets/je_frame.webp" alt="Two children at a toy box, seen from a fixed camera">
-            <img src="assets/je_features.webp" alt="The same frame with person boxes, body skeletons, head boxes and gaze arrows drawn on it" loading="lazy">
-            <img src="assets/je_depth.webp" alt="A depth map of the same frame with the distance between the two children marked" loading="lazy">
-          </div>
-          <div class="steps">
-            <button type="button" aria-pressed="true"><span class="n">1</span><b>One ordinary camera</b><small>No wearables and no depth sensor. Just video of the play session.</small></button>
-            <button type="button" aria-pressed="false"><span class="n">2</span><b>Who is looking at what</b><small>Person boxes, body skeletons, masks, head boxes and an arrow from each head to its gaze point.</small></button>
-            <button type="button" aria-pressed="false"><span class="n">3</span><b>Where everyone is in 3D</b><small>Monocular depth places both children in one metric scene, giving distance, orientation and movement.</small></button>
-          </div>
-        </div>
-        <p class="note">Generated frame. Journal paper on this pipeline is in preparation.</p>
-      </div>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p class="links"><a href="mailto:maaz9898@gmail.com">maaz9898@gmail.com</a><a href="https://www.linkedin.com/in/maazahmed98">LinkedIn</a><a href="https://github.com/maaz9898">GitHub</a><a href="https://scholar.google.com/citations?user=TZpghL4AAAAJ">Google Scholar</a></p>
+  </section>
 
-      <div class="feature">
-        <h3>STIN: a network built around the pair</h3>
-        <p>Each person gets their own stream of pose, gaze and appearance features. The two streams then attend to each other, with the geometry between the two people biasing the attention.</p>
-        <div class="arch" id="arch">
-          <div class="two"><div class="box" style="--i:0"><b>Person A</b>pose, gaze, appearance</div><div class="box" style="--i:0"><b>Person B</b>pose, gaze, appearance</div></div>
-          <div class="down">&darr;</div>
-          <div class="two"><div class="box" style="--i:1"><b>Behaviour encoders + BiGRU</b>over time</div><div class="box" style="--i:1"><b>Behaviour encoders + BiGRU</b>shared weights</div></div>
-          <div class="down">&darr;</div>
-          <div class="box key" style="--i:2"><b>Socially biased cross-attention</b>each person attends to the other, guided by distance and facing</div>
-          <div class="down">&darr;</div>
-          <div class="box key" style="--i:3"><b>Gaze-modulated attention</b>gaze heatmaps sharpen where the pair is looking</div>
-          <div class="down">&darr;</div>
-          <div class="box" style="--i:4"><b>Pool over the pair, then over time</b></div>
-          <div class="down">&darr;</div>
-          <div class="box out" style="--i:5"><b>Engagement level</b></div>
-        </div>
-        <div class="results">
-          <div><b>94% AP</b><span>on the public UCO-LAEO benchmark</span></div>
-          <div><b>71% AP</b><span>on child pairs the model had never seen</span></div>
-          <div><b>EUVIP 2026</b><span>first-author paper</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <h2>Experience</h2>
-      <ul class="list">
-        <li class="row">
-          <div class="when">Sep 2025 to now</div>
-          <div>
-            <h3>Graduate Research Assistant</h3>
-            <div class="org">Hamad Bin Khalifa University (A-Sense), Doha</div>
-            <p>Built STIN (EUVIP 2026), a temporal network that combines body pose, gaze and interpersonal distance to classify social engagement between two people in video. Also built the pipeline under it and am now working on synthetic data for child interaction video.</p>
-            <ul class="tags"><li>PyTorch</li><li>Pose estimation</li><li>Gaze estimation</li><li>Tracking</li><li>Video understanding</li></ul>
-          </div>
-        </li>
-        <li class="row">
-          <div class="when">Feb 2025 to Jul 2025</div>
-          <div>
-            <h3>Machine Learning Researcher</h3>
-            <div class="org">4DiVISION, Seoul</div>
-            <p>Built the vision pipeline for an automated robotic bolt fastening cell, and automated switch-position inspection on the company's Tesseravue product, designed to cut manual QA time by about 70%.</p>
-            <ul class="tags"><li>ROS2</li><li>6-DoF pose</li><li>Point clouds</li><li>Instance segmentation</li><li>C++</li></ul>
-          </div>
-        </li>
-        <li class="row">
-          <div class="when">Mar 2023 to Feb 2025</div>
-          <div>
-            <h3>Graduate Research Assistant</h3>
-            <div class="org">KOREATECH, Computer Vision and Video Processing Lab, Cheonan</div>
-            <p>Master's research on image-to-image translation for historical documents, pose estimation for a mobile manipulator, and a National Museum of Korea funded study of Joseon-era metal type.</p>
-            <ul class="tags"><li>GANs</li><li>PyTorch</li><li>Pose estimation</li><li>Document analysis</li></ul>
-          </div>
-        </li>
-        <li class="row">
-          <div class="when">Jan 2022 to Mar 2023</div>
-          <div>
-            <h3>AI Project Manager</h3>
-            <div class="org">Bleed AI, remote</div>
-            <p>Led a team of five across more than 10 client computer vision projects and built models hands-on, including real-time action recognition for Veeve smart shopping carts on Google Coral Edge TPUs.</p>
-            <ul class="tags"><li>Action recognition</li><li>Edge TPU</li><li>MediaPipe</li><li>Team lead</li></ul>
-          </div>
-        </li>
-        <li class="row">
-          <div class="when">Aug 2021 to Feb 2022</div>
-          <div>
-            <h3>Machine Learning Engineer</h3>
-            <div class="org">Liquid Technologies, Karachi</div>
-            <p>Core developer of <a href="https://vidan.ai/">Vidan.ai</a>, a real-time video analytics platform. Designed its architecture and built the licence plate recognition and train monitoring modules for single-board computers.</p>
-            <ul class="tags"><li>ALPR</li><li>Video analytics</li><li>Jetson</li><li>Edge deployment</li></ul>
-          </div>
-        </li>
-        <li class="row">
-          <div class="when">Jan 2020 to Aug 2021</div>
-          <div>
-            <h3>Embedded Systems Engineer</h3>
-            <div class="org">Sudoware, Karachi</div>
-            <p>Built wireless sensor networks for hydroponic farms and IoT applications for industrial clients.</p>
-            <ul class="tags"><li>ESP32</li><li>Raspberry Pi</li><li>MQTT</li><li>BLE</li></ul>
-          </div>
-        </li>
-      </ul>
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <ul class="cards">
-        <li class="card">
-          <div class="media"><video src="assets/bolt.mp4" poster="assets/bolt.webp" muted loop playsinline preload="none" data-auto aria-label="A robot arm moving a fastening tool between bolts on a steel flange"></video><span class="badge">AI-generated illustration</span></div>
-          <div class="body">
-            <h3>Vision for a robot that fastens bolts</h3>
-            <div class="org">4DiVISION, Seoul</div>
-            <p>Finds each bolt, segments it, registers RGB against the point cloud, estimates its 6-DoF pose and streams targets to the arm over ROS2. Accuracy held within 1 mm in factory cells the model had not seen.</p>
-            <ul class="tags"><li>ROS2</li><li>6-DoF pose</li><li>Point clouds</li></ul>
-          </div>
-        </li>
-        <li class="card">
-          <div class="media"><img src="assets/agv.webp" alt="A robot arm on a mobile base in a lab" loading="lazy"></div>
-          <div class="body">
-            <h3>Pose estimation for a mobile manipulator</h3>
-            <div class="org">KOREATECH</div>
-            <p>Camera-based 6-DoF pose estimation for a robot arm on an AGV, so the arm can align itself with its target after the vehicle parks in a slightly different place each time.</p>
-            <ul class="tags"><li>Pose estimation</li><li>3D shape matching</li></ul>
-          </div>
-        </li>
-        <li class="card">
-          <div class="media"><video src="assets/veeve.mp4" poster="assets/veeve.webp" muted loop playsinline preload="none" data-auto aria-label="A hand placing a box into a shopping cart, seen from a camera on the cart"></video><span class="badge">AI-generated illustration</span></div>
-          <div class="body">
-            <h3>Action recognition in smart shopping carts</h3>
-            <div class="org">Bleed AI, for Veeve</div>
-            <p>Real-time models that watch a cart's camera and detect items going in or coming out, running on Google Coral Edge TPUs.</p>
-            <ul class="tags"><li>Action recognition</li><li>Edge TPU</li></ul>
-          </div>
-        </li>
-        <li class="card">
-          <div class="media"><video src="assets/vidan.mp4" poster="assets/vidan.webp" muted loop playsinline preload="none" data-auto aria-label="A freight train passing a platform, seen from a fixed security camera"></video><span class="badge">AI-generated illustration</span></div>
-          <div class="body">
-            <h3>Vidan.ai: video analytics on small computers</h3>
-            <div class="org">Liquid Technologies, Karachi</div>
-            <p>Core developer of a real-time video monitoring platform. Designed its architecture and built the licence plate recognition and train monitoring modules.</p>
-            <div class="links"><a href="https://vidan.ai/">Visit Vidan.ai</a></div>
-          </div>
-        </li>
-        <li class="card">
-          <div class="media paper"><img src="assets/precisiongan.webp" alt="A printed character, a broken skeleton from a classical method, and a clean skeleton from PrecisionGAN" loading="lazy"></div>
-          <div class="body">
-            <h3>PrecisionGAN</h3>
-            <div class="org">KOREATECH, master's thesis</div>
-            <p>An image-to-image translation GAN that reduces historical Korean and Chinese printed characters to clean skeletons without breaking their strokes.</p>
-            <div class="links"><a href="https://link.springer.com/article/10.1007/s10032-024-00505-7">Paper</a><a href="https://github.com/maaz9898/PrecisionGAN">Code</a></div>
-          </div>
-        </li>
-        <li class="card">
-          <div class="media paper"><img src="assets/metaltype.webp" alt="Pipeline from scanned page to grouped characters to reconstructed metal type" loading="lazy"></div>
-          <div class="body">
-            <h3>Tracing Joseon-era metal type</h3>
-            <div class="org">KOREATECH, with the National Museum of Korea</div>
-            <p>Segments characters from scans of centuries-old books, measures how similar their shapes are and groups the ones printed from the same piece of metal type.</p>
-            <div class="links"><a href="http://journal.auric.kr/ieiespc/XmlViewer/f450827">Paper</a></div>
-          </div>
-        </li>
-        <li class="card">
-          <div class="media"><video src="assets/fitx.mp4" poster="assets/fitx.webp" muted loop playsinline preload="none" data-auto aria-label="A person doing squats with a pose skeleton drawn over them"></video></div>
-          <div class="body">
-            <h3>FitX: real-time exercise coach</h3>
-            <div class="org">Mobile app</div>
-            <p>Counts reps and flags form mistakes from the phone camera. I built the prototype, chose the stack and ran the project from proposal to deployment.</p>
-            <ul class="tags"><li>MediaPipe</li><li>Pose estimation</li><li>Mobile</li></ul>
-          </div>
-        </li>
-      </ul>
-    </section>
-
-    <section id="publications">
-      <h2>Publications</h2>
-      <ul class="pubs">
-        <li><span class="t">STIN: A Socio-Temporal Interaction Network for Dyadic Interaction Analysis</span><span class="v">EUVIP 2026, accepted. <span class="me">First author</span></span></li>
-        <li><a class="t" href="https://link.springer.com/article/10.1007/s10032-024-00505-7">PrecisionGAN: Enhanced Image-to-Image Translation for Preserving Structural Integrity in Skeletonized Images</a><span class="v">International Journal on Document Analysis and Recognition (Springer), 2024. <span class="me">First author</span></span></li>
-        <li><a class="t" href="http://journal.auric.kr/ieiespc/XmlViewer/f450827">Evaluating Similarity between Characters Printed Using Ancient Movable Metal Types</a><span class="v">IEIE Transactions on Smart Processing and Computing, 2025. <span class="me">First author</span></span></li>
-        <li><a class="t" href="https://paper.cricit.kr/user/search/site/ieie2018/cart_rdoc.asp?URL=files/filename%3Fnum%3D457024%26db%3DRD_R&dn=457024&db=RD_R&usernum=0&seid=">Smoothed Boundary Distance Loss Function for Enhancing Character Extraction from High-Resolution Scans of Historical Documents</a><span class="v">IEIE Transactions on Smart Processing and Computing, 2025, accepted. Second author</span></li>
-        <li><a class="t" href="https://diglib.eg.org/items/930f4c5d-f291-4cf6-868a-b03688164b69">Estimating the Number of Chases Used for Printing Books with Movable Metal Types</a><span class="v">Eurographics Workshop on Graphics and Cultural Heritage, 2023. Second author</span></li>
-      </ul>
-    </section>
-
-    <section id="contact" class="contact">
-      <h2>Contact</h2>
-      <p>I'm open to computer vision and robotics roles and to PhD positions. The fastest way to reach me is email.</p>
-      <div class="links" style="margin-top:12px"><a href="mailto:maaz9898@gmail.com">maaz9898@gmail.com</a><a href="https://www.linkedin.com/in/maazahmed98">LinkedIn</a><a href="https://github.com/maaz9898">GitHub</a><a href="https://scholar.google.com/citations?user=TZpghL4AAAAJ">Google Scholar</a></div>
-    </section>
-
-    <footer>Maaz Ahmed, Doha, Qatar</footer>
-  </main>
-</div>
-
-<script>
-  // Theme switch, remembered per browser.
-  document.getElementById('theme').addEventListener('click', function () {
-    var next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
-    document.documentElement.dataset.theme = next;
-    try { localStorage.setItem('theme', next); } catch (e) {}
-  });
-  // Highlight the section in view in the side nav.
-  (function () {
-    var links = [].slice.call(document.querySelectorAll('.side nav a'));
-    if (!('IntersectionObserver' in window)) return;
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); });
-      });
-    }, { rootMargin: '-30% 0px -60% 0px' });
-    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
-  })();
-  // Play clips only while they are on screen. With reduced motion, show controls instead.
-  (function () {
-    var vids = [].slice.call(document.querySelectorAll('video[data-auto]'));
-    var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (still || !('IntersectionObserver' in window)) { vids.forEach(function (v) { v.controls = true; }); return; }
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) e.target.play().catch(function () {}); else e.target.pause(); });
-    }, { threshold: 0.4 });
-    vids.forEach(function (v) { io.observe(v); });
-  })();
-  // Stepper: three views of the same frame.
-  (function () {
-    var root = document.getElementById('stepper'); if (!root) return;
-    var imgs = root.querySelectorAll('.stage img'), btns = root.querySelectorAll('.steps button'), cur = 0, timer = null;
-    function show(n) { cur = n; imgs.forEach(function (im, i) { im.classList.toggle('show', i === n); }); btns.forEach(function (b, i) { b.setAttribute('aria-pressed', i === n ? 'true' : 'false'); }); }
-    btns.forEach(function (b, i) { b.addEventListener('click', function () { clearInterval(timer); show(i); }); });
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) {
-        clearInterval(timer);
-        if (es[0].isIntersecting) timer = setInterval(function () { show((cur + 1) % imgs.length); }, 2600);
-      }, { threshold: 0.5 }).observe(root);
-    }
-    var arch = document.getElementById('arch'); if (arch) arch.classList.add('run');
-  })();
-</script>
+</main>
+<footer class="wrap foot">
+  <span>Maaz Ahmed, Doha, Qatar</span>
+  <span class="social">
+    <a class="icon" href="https://github.com/maaz9898" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.3-.52-1.47.11-3.06 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.06.74.8 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+    <a class="icon" href="https://www.linkedin.com/in/maazahmed98" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
+    <a class="icon" href="https://scholar.google.com/citations?user=TZpghL4AAAAJ" aria-label="Google Scholar" title="Google Scholar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 0 9.5l4.84 3.02A7.5 7.5 0 1 0 19.5 15v-2.69L22 10.75V17h2V9.5L12 2Zm0 18.5A5.5 5.5 0 0 1 6.5 15v-1.44L12 17l5.5-3.44V15a5.5 5.5 0 0 1-5.5 5.5Z"/></svg></a>
+  </span>
+</footer>
+<script src="assets/site.js"></script>
 </body>
 </html>
