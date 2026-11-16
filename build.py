@@ -221,16 +221,35 @@ def projects(pre):
             slug='fitx', title='FitX: Real-Time Exercise Form Analysis', kicker='Mobile app',
             line='A mobile app that counts repetitions and flags form errors using pose estimation.',
             tags=['Pose estimation', 'MediaPipe', 'Mobile'],
-            card=media(vid('fitx', 'A person doing squats with a pose skeleton drawn over them', True, P, True), '16 / 10'),
-            facts=[('Role', 'Prototype, architecture, project lead'), ('Stack', 'Python, MediaPipe'), ('Features', 'Rep counter, mistake detection')],
-            body=lambda: f'''
+            card=compare('fitx_photo.webp', 'fitx_pose.webp', 'A man at the bottom of a squat. Drag to reveal the detected body keypoints and knee angle', P),
+            facts=[('Role', 'Prototype, architecture, project lead'), ('Stack', 'Python, MediaPipe'), ('Features', 'Rep counter, form error detection'), ('Platform', 'Mobile')],
+            body=lambda: f"""
 <h2>Overview</h2>
 <p>The app tracks body joints through the phone camera, counts each repetition and notifies the user when their form deviates.</p>
-<div class="two-up">
-  {figure(media(vid('fitx', 'A person doing squats with a pose skeleton drawn over them', True, P, True), '16 / 10'))}
-  {figure(media(img('fitx_phone.webp', 'The app on a phone showing a squat with joint angles', True, P), '429 / 884'))}
+{compare('fitx_photo.webp', 'fitx_pose.webp', 'A man at the bottom of a squat. Drag to reveal the detected body keypoints and knee angle', P)}
+
+<h2>How It Works</h2>
+<p>Joint angles are computed from the detected keypoints on every frame. A repetition counts only when the knee angle passes the depth threshold and returns to standing. Try both modes.</p>
+<div class="fx" data-fitx>
+  <div class="phone"><canvas width="300" height="520" role="img" aria-label="A stick figure doing squats with a live knee angle, a rep counter and form feedback"></canvas></div>
+  <div class="fx-side">
+    <div class="pills"><button type="button" aria-pressed="true" data-mode="good">Full squats</button><button type="button" aria-pressed="false" data-mode="shallow">Shallow squats</button></div>
+    <dl class="fx-read">
+      <div><dt>Repetitions</dt><dd data-reps>0</dd></div>
+      <div><dt>Knee angle</dt><dd><span data-angle>180</span>&deg;</dd></div>
+      <div><dt>Feedback</dt><dd data-msg>Ready</dd></div>
+    </dl>
+    <p class="note">Interactive illustration of the counting logic. A shallow squat never reaches the depth threshold, so it is flagged and not counted.</p>
+  </div>
 </div>
-'''),
+
+<h2>In Use</h2>
+<div class="two-up">
+  {figure(media(vid('fitx_squat', 'A man standing up from a squat and lowering back down', True, P, True, 'fitx_photo.webp'), '16 / 10'), 'A full repetition, from the bottom of the squat to standing and back.')}
+  {figure(media(vid('fitx', 'A person doing squats with a pose skeleton drawn over them', True, P, True), '16 / 10'), 'Output from the working prototype.')}
+</div>
+{figure(media(img('fitx_phone.webp', 'The FitX app on a phone showing a squat with the skeleton and joint angle', True, P), '429 / 884'), 'The app on a phone.')}
+"""),
     ]
 
 PUBS = [
@@ -388,7 +407,7 @@ def build_home():
     skills = ''.join(f'<div><dt>{k}</dt><dd>{v}</dd></div>' for k, v in SKILLS)
     body = f'''
   <section class="intro">
-    <div class="who"><img class="portrait" src="assets/maaz.webp" alt="Portrait of Maaz Ahmed" width="148" height="148"><span class="det" aria-hidden="true"><i>engineer 0.99</i></span></div>
+    <img class="portrait" src="assets/maaz.webp" alt="Portrait of Maaz Ahmed" width="148" height="148">
     <div>
       <h1>Maaz Ahmed</h1>
       <p class="role">Machine Learning Engineer and Researcher. I build computer vision systems for robotics, 3D perception and human behaviour analysis.</p>
@@ -397,8 +416,8 @@ def build_home():
   </section>
 
   <div class="herowrap">
-    {compare('hero_photo.webp', 'hero_cloud.webp', 'A robotics lab bench. Drag to reveal the same scene as a 3D point cloud', '', '1600 / 672')}
-    <p class="hint">Drag the line. On one side is what you see, on the other what the machine sees.</p>
+    {compare('hero_photo.webp', 'hero_cloud.webp', 'A robot arm with a camera over a steel part. Drag to reveal the depth map of the same scene', '', '1600 / 672')}
+    <p class="hint">Drag the line to switch between the camera view and the depth map.</p>
   </div>
 
   <section id="work">

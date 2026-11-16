@@ -39,7 +39,7 @@
 <main id="content" class="wrap">
 
   <section class="intro">
-    <div class="who"><img class="portrait" src="assets/maaz.webp" alt="Portrait of Maaz Ahmed" width="148" height="148"><span class="det" aria-hidden="true"><i>engineer 0.99</i></span></div>
+    <img class="portrait" src="assets/maaz.webp" alt="Portrait of Maaz Ahmed" width="148" height="148">
     <div>
       <h1>Maaz Ahmed</h1>
       <p class="role">Machine Learning Engineer and Researcher. I build computer vision systems for robotics, 3D perception and human behaviour analysis.</p>
@@ -48,8 +48,8 @@
   </section>
 
   <div class="herowrap">
-    <div class="cmp" data-cmp style="--ar:1600 / 672"><img src="assets/hero_cloud.webp" alt="" loading="lazy"><img class="over" src="assets/hero_photo.webp" alt="A robotics lab bench. Drag to reveal the same scene as a 3D point cloud" loading="lazy"><span class="handle" aria-hidden="true"></span><input type="range" min="0" max="100" value="55" aria-label="Drag to compare the camera view with the machine view"></div>
-    <p class="hint">Drag the line. On one side is what you see, on the other what the machine sees.</p>
+    <div class="cmp" data-cmp style="--ar:1600 / 672"><img src="assets/hero_cloud.webp" alt="" loading="lazy"><img class="over" src="assets/hero_photo.webp" alt="A robot arm with a camera over a steel part. Drag to reveal the depth map of the same scene" loading="lazy"><span class="handle" aria-hidden="true"></span><input type="range" min="0" max="100" value="55" aria-label="Drag to compare the camera view with the machine view"></div>
+    <p class="hint">Drag the line to switch between the camera view and the depth map.</p>
   </div>
 
   <section id="work">
@@ -119,7 +119,7 @@
         </a>
       </li>
       <li class="card">
-        <div class="media" style="--ar:16 / 10"><video class="show" src="assets/fitx.mp4" poster="assets/fitx.webp" muted loop playsinline preload="none" data-auto aria-label="A person doing squats with a pose skeleton drawn over them"></video></div>
+        <div class="cmp" data-cmp style="--ar:16 / 10"><img src="assets/fitx_pose.webp" alt="" loading="lazy"><img class="over" src="assets/fitx_photo.webp" alt="A man at the bottom of a squat. Drag to reveal the detected body keypoints and knee angle" loading="lazy"><span class="handle" aria-hidden="true"></span><input type="range" min="0" max="100" value="55" aria-label="Drag to compare the camera view with the machine view"></div>
         <a class="body" href="projects/fitx.html">
           <h3>FitX: Real-Time Exercise Form Analysis</h3>
           <p>A mobile app that counts repetitions and flags form errors using pose estimation.</p>

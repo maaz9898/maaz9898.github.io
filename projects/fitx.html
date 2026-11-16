@@ -47,14 +47,33 @@
       <ul class="tags"><li>Pose estimation</li><li>MediaPipe</li><li>Mobile</li></ul>
       
     </header>
-    <dl class="facts"><div><dt>Role</dt><dd>Prototype, architecture, project lead</dd></div><div><dt>Stack</dt><dd>Python, MediaPipe</dd></div><div><dt>Features</dt><dd>Rep counter, mistake detection</dd></div></dl>
+    <dl class="facts"><div><dt>Role</dt><dd>Prototype, architecture, project lead</dd></div><div><dt>Stack</dt><dd>Python, MediaPipe</dd></div><div><dt>Features</dt><dd>Rep counter, form error detection</dd></div><div><dt>Platform</dt><dd>Mobile</dd></div></dl>
     <div class="prose">
 <h2>Overview</h2>
 <p>The app tracks body joints through the phone camera, counts each repetition and notifies the user when their form deviates.</p>
-<div class="two-up">
-  <figure class="fig"><div class="media" style="--ar:16 / 10"><video class="show" src="../assets/fitx.mp4" poster="../assets/fitx.webp" muted loop playsinline preload="none" data-auto aria-label="A person doing squats with a pose skeleton drawn over them"></video></div></figure>
-  <figure class="fig"><div class="media" style="--ar:429 / 884"><img class="show" src="../assets/fitx_phone.webp" alt="The app on a phone showing a squat with joint angles" loading="lazy"></div></figure>
+<div class="cmp" data-cmp style="--ar:16 / 10"><img src="../assets/fitx_pose.webp" alt="" loading="lazy"><img class="over" src="../assets/fitx_photo.webp" alt="A man at the bottom of a squat. Drag to reveal the detected body keypoints and knee angle" loading="lazy"><span class="handle" aria-hidden="true"></span><input type="range" min="0" max="100" value="55" aria-label="Drag to compare the camera view with the machine view"></div>
+
+<h2>How It Works</h2>
+<p>Joint angles are computed from the detected keypoints on every frame. A repetition counts only when the knee angle passes the depth threshold and returns to standing. Try both modes.</p>
+<div class="fx" data-fitx>
+  <div class="phone"><canvas width="300" height="520" role="img" aria-label="A stick figure doing squats with a live knee angle, a rep counter and form feedback"></canvas></div>
+  <div class="fx-side">
+    <div class="pills"><button type="button" aria-pressed="true" data-mode="good">Full squats</button><button type="button" aria-pressed="false" data-mode="shallow">Shallow squats</button></div>
+    <dl class="fx-read">
+      <div><dt>Repetitions</dt><dd data-reps>0</dd></div>
+      <div><dt>Knee angle</dt><dd><span data-angle>180</span>&deg;</dd></div>
+      <div><dt>Feedback</dt><dd data-msg>Ready</dd></div>
+    </dl>
+    <p class="note">Interactive illustration of the counting logic. A shallow squat never reaches the depth threshold, so it is flagged and not counted.</p>
+  </div>
 </div>
+
+<h2>In Use</h2>
+<div class="two-up">
+  <figure class="fig"><div class="media" style="--ar:16 / 10"><video class="show" src="../assets/fitx_squat.mp4" poster="../assets/fitx_photo.webp" muted loop playsinline preload="none" data-auto aria-label="A man standing up from a squat and lowering back down"></video></div><figcaption>A full repetition, from the bottom of the squat to standing and back.</figcaption></figure>
+  <figure class="fig"><div class="media" style="--ar:16 / 10"><video class="show" src="../assets/fitx.mp4" poster="../assets/fitx.webp" muted loop playsinline preload="none" data-auto aria-label="A person doing squats with a pose skeleton drawn over them"></video></div><figcaption>Output from the working prototype.</figcaption></figure>
+</div>
+<figure class="fig"><div class="media" style="--ar:429 / 884"><img class="show" src="../assets/fitx_phone.webp" alt="The FitX app on a phone showing a squat with the skeleton and joint angle" loading="lazy"></div><figcaption>The app on a phone.</figcaption></figure>
 </div>
     <nav class="pn" aria-label="More projects">
       <a href="vidan.html"><span>Previous</span><b>Vidan.ai Video Analytics Platform</b></a>
