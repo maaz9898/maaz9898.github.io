@@ -11,14 +11,52 @@
 
 var STILL = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Clips marked data-auto play only while on screen. With reduced motion they get controls instead.
+// Clips behave like GIFs: each plays once when it scrolls into view, then rests on a still.
+// Hovering (mouse) or tapping (touch) plays it again; a replay button covers keyboards and screen readers.
+// Clips with the loop attribute are live feeds and simply run while on screen.
 (function () {
-  var vids = [].slice.call(document.querySelectorAll('video[data-auto]'));
-  if (STILL || !('IntersectionObserver' in window)) { vids.forEach(function (v) { v.controls = true; }); return; }
-  var io = new IntersectionObserver(function (es) {
-    es.forEach(function (e) { if (e.isIntersecting) e.target.play().catch(function () {}); else e.target.pause(); });
-  }, { threshold: 0.35 });
-  vids.forEach(function (v) { io.observe(v); });
+  var IO = 'IntersectionObserver' in window;
+  var HOVER = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var ICON = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 1 0 2.6-5.9M4 4v5h5"/></svg>';
+
+  function wire(root, v) {
+    var btn = root.querySelector('.replay');
+    if (!btn) {
+      btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'replay'; btn.setAttribute('aria-label', 'Replay clip'); btn.innerHTML = ICON;
+      root.appendChild(btn);
+    }
+    function rest() { root.classList.remove('playing'); }
+    function play() {
+      if (root.classList.contains('playing')) return;
+      root.classList.add('playing');
+      try { v.currentTime = 0; } catch (e) {}
+      var p = v.play();
+      if (p && p.catch) p.catch(rest);          // autoplay refused (for example low power mode): stay on the still
+    }
+    v.addEventListener('ended', rest);
+    v.addEventListener('error', rest);
+    btn.addEventListener('click', function (e) { e.stopPropagation(); play(); });
+    root.addEventListener('click', play);
+    if (HOVER) root.addEventListener('mouseenter', play);
+    if (STILL || !IO) return;                    // reduced motion: nothing moves until asked
+    var seen = false;
+    new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { if (!seen) { seen = true; play(); } }
+      else if (root.classList.contains('playing')) { v.pause(); rest(); }
+    }, { threshold: 0.5 }).observe(root);
+  }
+
+  document.querySelectorAll('[data-gif]').forEach(function (root) { wire(root, root.querySelector('video')); });
+
+  [].slice.call(document.querySelectorAll('video[data-auto]')).forEach(function (v) {
+    if (v.loop) {
+      if (STILL || !IO) { v.controls = true; return; }
+      new IntersectionObserver(function (es) { if (es[0].isIntersecting) v.play().catch(function () {}); else v.pause(); }, { threshold: 0.35 }).observe(v);
+      return;
+    }
+    var root = v.parentElement; root.classList.add('once'); wire(root, v);
+  });
 })();
 
 // Tabbed visuals: click a pill, or let them cycle while on screen until you do.

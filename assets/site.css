@@ -63,6 +63,17 @@ h1 { margin: 0 0 8px; font-size: clamp(2.2rem, 5vw, 3.3rem); line-height: 1.05; 
 .cmp.glide { transition: --pos .9s ease; }
 @property --pos { syntax: "<percentage>"; inherits: true; initial-value: 55%; }
 .herowrap .cmp { border-radius: 18px; }
+/* Clips that behave like GIFs: play once when seen, rest on a still, replay on hover or tap. */
+.gif { position: relative; overflow: hidden; aspect-ratio: var(--ar, 16 / 10); background: #05080e; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.gif video, .gif .end { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.gif .end { transition: opacity .45s ease; }
+.gif.playing .end { opacity: 0; }
+.replay { position: absolute; right: 10px; bottom: 10px; z-index: 3; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: rgba(10, 14, 22, .74); color: #fff; display: grid; place-items: center; cursor: pointer; opacity: 1; transition: opacity .2s, background .15s; }
+.replay:hover { background: var(--accent); color: var(--accent-ink); }
+.playing > .replay { opacity: 0; pointer-events: none; }
+.once { position: relative; cursor: pointer; }
+figure.clip.once > .replay { bottom: auto; top: 10px; }
+@media (prefers-reduced-motion: reduce) { .gif .end, .replay { transition: none; } }
 .hint { margin: 10px 0 0; color: var(--muted); font-size: .9rem; }
 
 /* FitX demo */

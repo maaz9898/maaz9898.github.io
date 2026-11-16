@@ -9,9 +9,23 @@ AI = None
 def img(src, alt, show=False, pre=''):
     return f'<img{" class=\"show\"" if show else ""} src="{pre}assets/{src}" alt="{html.escape(alt)}" loading="lazy">'
 
-def vid(name, alt, show=False, pre='', auto=False, poster=None):
-    return (f'<video{" class=\"show\"" if show else ""} src="{pre}assets/{name}.mp4" poster="{pre}assets/{poster or name + ".webp"}" '
-            f'muted loop playsinline preload="none"{" data-auto" if auto else ""} aria-label="{html.escape(alt)}"></video>')
+def sources(name, pre=''):
+    """MP4 (H.264) first for Safari and phones, WebM (VP9) for browsers shipped without H.264."""
+    return f'<source src="{pre}assets/{name}.mp4" type="video/mp4"><source src="{pre}assets/{name}.webm" type="video/webm">'
+
+def vid(name, alt, show=False, pre='', auto=False, poster=None, loop=False):
+    """A short clip. With auto it plays once when it scrolls into view and again on hover or tap; loop is for live feeds."""
+    return (f'<video{" class=\"show\"" if show else ""} poster="{pre}assets/{poster or name + ".webp"}" '
+            f'muted{" loop" if loop else ""} playsinline preload="none"{" data-auto" if auto else ""} aria-label="{html.escape(alt)}">{sources(name, pre)}</video>')
+
+def clip(name, alt, pre='', end=None, poster=None, ar='16 / 10'):
+    """Card visual that behaves like a GIF: plays once when seen, rests on the analysed frame, replays on hover or tap."""
+    e = f'<img class="end" src="{pre}assets/{end}" alt="{html.escape(alt)}" loading="lazy">' if end else ''
+    return (f'<div class="gif" data-gif style="--ar:{ar}">'
+            f'<video poster="{pre}assets/{poster or name + ".webp"}" muted playsinline preload="none" '
+            f'{"aria-hidden=\"true\"" if end else "aria-label=\"" + html.escape(alt) + "\""}>{sources(name, pre)}</video>{e}'
+            f'<button class="replay" type="button" aria-label="Replay clip"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">'
+            f'<path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 1 0 2.6-5.9M4 4v5h5"/></svg></button></div>')
 
 def tabs(items, ar='16 / 10', badge=None):
     stage = ''.join(m for m, _ in items)
@@ -43,7 +57,7 @@ def film_annot(pre):
     return f"""<div class="annot" data-annot data-step="0">
   <div class="stage" style="--ar:1312 / 864">
     <img src="{pre}assets/cadreal.webp" alt="The alignment rig: a hollow white cylinder held in clamps on a gantry, a smaller cylinder on a stage to its left, and a round camera opening in the base plate below" loading="lazy">
-    <video src="{pre}assets/insert.mp4" muted loop playsinline preload="none" aria-label="The smaller cylinder sliding into the hollow one"></video>
+    <video muted playsinline preload="none" aria-label="The smaller cylinder sliding into the hollow one">{sources("insert", pre)}</video>
     <svg class="ov" viewBox="0 0 1312 864" aria-hidden="true">
       <g class="s1">
         <ellipse class="cam" cx="797" cy="707" rx="108" ry="30"/>
@@ -80,7 +94,7 @@ def projects(pre):
             slug='joint-engagement', title='Automated Assessment of Joint Engagement in Children', kicker='Hamad Bin Khalifa University, Sep 2025 – Present',
             line='Video models that measure social engagement between two children from a single camera.',
             tags=['Video understanding', 'Pose', 'Gaze', 'PyTorch'],
-            card=compare('je_frame.webp', 'je_features.webp', 'Two children at a toy box. Drag to reveal the detected skeletons and gaze', P),
+            card=clip('engaged', 'Two children at a toy box, with the detected skeletons and gaze drawn over them', P, 'je_features.webp'),
             facts=[('Role', 'Lead researcher'), ('Where', 'A-Sense, HBKU, Doha'), ('Paper', 'STIN, EUVIP 2026'), ('Stack', 'PyTorch, pose and gaze models')],
             body=lambda: f'''
 <h2>Problem</h2>
@@ -106,7 +120,7 @@ def projects(pre):
             slug='bolt-fastening', title='Vision-Guided Robotic Bolt Fastening', kicker='4DiVISION, Seoul, Feb 2025 – Jul 2025',
             line='6-DoF pose estimation that guides an industrial robot arm to within 1 mm.',
             tags=['6-DoF pose', 'ROS2', 'Point clouds', 'C++'],
-            card=compare('bolt.webp', 'bolt_pose.webp', 'A robot arm over a ring of bolts. Drag to reveal the estimated pose of each bolt', P),
+            card=clip('bolt', 'A robot arm over a ring of bolts, with the estimated pose of each bolt drawn on it', P, 'bolt_pose.webp'),
             facts=[('Role', 'ML researcher'), ('Where', '4DiVISION, Seoul'), ('Accuracy', 'Within 1 mm'), ('Stack', 'ROS2, PyTorch, Open3D, C++')],
             body=lambda: f"""
 <h2>Overview</h2>
@@ -121,7 +135,7 @@ def projects(pre):
             slug='film-roll', title='Vision-Based Alignment for Film Roll Handling', kicker='KOREATECH, Mar 2023 – Feb 2025',
             line='Camera-based pose estimation that aligns two cylinders for automated insertion.',
             tags=['Pose estimation', 'Ellipse fitting', '3D shape matching'],
-            card=tabs([(img('cadreal.webp', 'The alignment rig with a hollow white cylinder in clamps and a smaller cylinder beside it', True, P), 'Rig'), (vid('insert', 'The smaller cylinder sliding into the hollow one', False, P, False, 'cadreal.webp'), 'Insertion')], '1312 / 864', AI),
+            card=clip('insert', 'The alignment rig sliding the smaller cylinder into the hollow one', P, None, 'cadreal.webp', '1312 / 864'),
             facts=[('Role', 'Graduate researcher'), ('Where', 'KOREATECH'), ('Problem', 'One cylinder into another'), ('Measured', 'dX, dY and centre distance')],
             body=lambda: f"""
 <h2>Overview</h2>
@@ -135,7 +149,7 @@ def projects(pre):
             slug='precisiongan', title='PrecisionGAN: Skeletonization of Historical Printed Characters', kicker="KOREATECH, master's thesis, Mar 2023 – Feb 2025",
             line='A GAN that extracts clean, structure-preserving skeletons from historical print.',
             tags=['GAN', 'Image-to-image', 'Springer IJDAR'],
-            card=compare('sk_before.webp', 'sk_after.webp', 'Three printed characters. Drag to reveal their skeletons', P),
+            card=clip('skeleton', 'Three printed characters reduced to their skeletons', P, 'sk_after.webp', 'sk_before.webp'),
             facts=[('Role', 'First author'), ('Where', 'KOREATECH'), ('Published', 'IJDAR, Springer, 2024'), ('Stack', 'PyTorch')],
             links=[('Paper', 'https://link.springer.com/article/10.1007/s10032-024-00505-7'), ('Code', 'https://github.com/maaz9898/PrecisionGAN')],
             body=lambda: f'''
@@ -154,7 +168,7 @@ def projects(pre):
             slug='metal-type', title='Movable Metal Type Analysis for Joseon-Era Books', kicker='KOREATECH with the National Museum of Korea, Mar 2023 – Feb 2025',
             line='Shape similarity analysis that identifies prints made from the same metal type.',
             tags=['Shape similarity', 'Document analysis', 'Cultural heritage'],
-            card=compare('mt_before.webp', 'mt_after.webp', 'Twelve prints of one character. Drag to reveal them grouped by metal type', P),
+            card=clip('metaltype', 'Twelve prints of one character grouped by the metal type that printed them', P, 'mt_after.webp', 'mt_before.webp'),
             facts=[('Role', 'Researcher, first and second author'), ('Where', 'KOREATECH'), ('Funded by', 'National Museum of Korea'), ('Papers', '3')],
             links=[('Similarity paper', 'http://journal.auric.kr/ieiespc/XmlViewer/f450827'), ('Chases paper', 'https://diglib.eg.org/items/930f4c5d-f291-4cf6-868a-b03688164b69')],
             body=lambda: f'''
@@ -169,7 +183,7 @@ def projects(pre):
             slug='smart-cart', title='Real-Time Action Recognition for Smart Shopping Carts', kicker='Bleed AI, for Veeve, Jan 2022 – Mar 2023',
             line='Edge models that detect items being added to or removed from a cart.',
             tags=['Action recognition', 'Edge TPU', 'Real time'],
-            card=compare('veeve.webp', 'veeve_det.webp', 'A hand placing a box into a cart. Drag to reveal what the model detects', P),
+            card=clip('veeve', 'A hand placing a box into a cart, with the detected hand and item outlined', P, 'veeve_det.webp'),
             facts=[('Role', 'Project lead and engineer'), ('Client', 'Veeve'), ('Runs on', 'Google Coral Edge TPU'), ('Team', '5 engineers')],
             body=lambda: f'''
 <h2>Overview</h2>
@@ -181,7 +195,7 @@ def projects(pre):
             slug='vidan', title='Vidan.ai Video Analytics Platform', kicker='Liquid Technologies, Karachi, Aug 2021 – Feb 2022',
             line='Real-time video analytics, dashboards and alerts running on edge devices.',
             tags=['Video analytics', 'Dashboards', 'Edge devices'],
-            card=compare('vidan.webp', 'vidan_det.webp', 'A freight train passing a platform. Drag to reveal the detected wagons', P),
+            card=clip('vidan', 'A freight train passing a platform, with each wagon boxed', P, 'vidan_det.webp'),
             facts=[('Role', 'Core developer'), ('Where', 'Liquid Technologies'), ('Built', 'Architecture, ALPR, train monitoring, dashboards'), ('Runs on', 'Single-board computers')],
             links=[('vidan.ai', 'https://vidan.ai/')],
             body=lambda: f"""
@@ -191,7 +205,7 @@ def projects(pre):
   <div class="dash-top"><b>Operations overview</b><span class="live"><i></i>Live</span></div>
   <div class="dash-grid">
     <div class="cams">
-      <figure class="cam">{vid('vidan', 'A freight train passing a platform', True, P, True)}<figcaption>Rail yard<span>Train monitoring</span></figcaption></figure>
+      <figure class="cam">{vid('vidan', 'A freight train passing a platform', True, P, True, None, True)}<figcaption>Rail yard<span>Train monitoring</span></figcaption></figure>
       <figure class="cam">{img('gate.webp', 'A van at a gate with its number plate boxed', True, P)}<figcaption>Main gate<span>Plate recognition</span></figcaption></figure>
       <figure class="cam">{img('ppe.webp', 'Workers on a factory floor boxed green or red by safety gear', True, P)}<figcaption>Floor 2<span>Safety gear</span></figcaption></figure>
       <figure class="cam">{img('zone.webp', 'A forklift entering a red restricted zone in a warehouse', True, P)}<figcaption>Warehouse B<span>Restricted zone</span></figcaption></figure>
@@ -221,7 +235,7 @@ def projects(pre):
             slug='fitx', title='FitX: Real-Time Exercise Form Analysis', kicker='Mobile app',
             line='A mobile app that counts repetitions and flags form errors using pose estimation.',
             tags=['Pose estimation', 'MediaPipe', 'Mobile'],
-            card=compare('fitx_photo.webp', 'fitx_pose.webp', 'A man at the bottom of a squat. Drag to reveal the detected body keypoints and knee angle', P),
+            card=clip('fitx_squat', 'A man at the bottom of a squat, with body keypoints and the knee angle drawn on him', P, 'fitx_pose.webp', 'fitx_photo.webp'),
             facts=[('Role', 'Prototype, architecture, project lead'), ('Stack', 'Python, MediaPipe'), ('Features', 'Rep counter, form error detection'), ('Platform', 'Mobile')],
             body=lambda: f"""
 <h2>Overview</h2>
