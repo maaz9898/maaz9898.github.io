@@ -254,9 +254,9 @@ def projects(pre):
 
 PUBS = [
     ('STIN: A Socio-Temporal Interaction Network for Dyadic Interaction Analysis', None, 'EUVIP 2026', True),
-    ('PrecisionGAN: Enhanced Image-to-Image Translation for Preserving Structural Integrity in Skeletonized Images', 'https://link.springer.com/article/10.1007/s10032-024-00505-7', 'IJDAR (Springer), 2024', True),
-    ('Evaluating Similarity between Characters Printed Using Ancient Movable Metal Types', 'http://journal.auric.kr/ieiespc/XmlViewer/f450827', 'IEIE Transactions on Smart Processing and Computing, 2025', True),
+    ('Evaluating Similarity between Characters Printed Using Ancient Movable Metal Types', 'http://journal.auric.kr/ieiespc/XmlViewer/f450827', 'IEIE Transactions on Smart Processing and Computing, 2026', True),
     ('Smoothed Boundary Distance Loss Function for Enhancing Character Extraction from High-Resolution Scans of Historical Documents', 'https://paper.cricit.kr/user/search/site/ieie2018/cart_rdoc.asp?URL=files/filename%3Fnum%3D457024%26db%3DRD_R&dn=457024&db=RD_R&usernum=0&seid=', 'IEIE Transactions on Smart Processing and Computing, 2025', False),
+    ('PrecisionGAN: Enhanced Image-to-Image Translation for Preserving Structural Integrity in Skeletonized Images', 'https://link.springer.com/article/10.1007/s10032-024-00505-7', 'IJDAR (Springer), 2024', True),
     ('Estimating the Number of Chases Used for Printing Books with Movable Metal Types', 'https://diglib.eg.org/items/930f4c5d-f291-4cf6-868a-b03688164b69', 'Eurographics GCH, 2023', False),
 ]
 
