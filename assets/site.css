@@ -89,7 +89,7 @@ h2 { margin: 0 0 22px; font-size: 1.5rem; font-weight: 700; color: var(--strong)
 .pubs .v { color: var(--muted); font-size: .92rem; }
 .pubs .me { color: var(--accent); font-weight: 600; }
 .slim { list-style: none; margin: 0; padding: 0; }
-.slim li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding: 13px 0; border-top: 1px solid var(--line); align-items: baseline; }
+.slim li { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 16px; padding: 13px 0; border-top: 1px solid var(--line); align-items: baseline; }
 .slim li:first-child { border-top: 0; padding-top: 0; }
 .slim .when { color: var(--muted); font-size: .9rem; font-variant-numeric: tabular-nums; }
 .slim b { color: var(--strong); font-weight: 600; }

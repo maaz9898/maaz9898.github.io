@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Are two children playing together? | Maaz Ahmed</title>
-<meta name="description" content="Measuring joint engagement from ordinary video.">
+<title>Automated Assessment of Joint Engagement in Children | Maaz Ahmed</title>
+<meta name="description" content="Video models that measure social engagement between two children from a single camera.">
 <meta name="color-scheme" content="dark light">
 <script>
   (function () {
@@ -25,7 +25,7 @@
   <div class="wrap bar">
     <a class="brand" href="../index.html">Maaz Ahmed</a>
     <nav aria-label="Main">
-      <a href="../index.html#work">Work</a>
+      <a href="../index.html#work">Projects</a>
       <a href="../index.html#publications">Publications</a>
       <a href="../index.html#experience">Experience</a>
       <a href="../index.html#contact">Contact</a>
@@ -36,44 +36,44 @@
 <main id="content" class="wrap">
 
   <article class="project">
-    <a class="back" href="../index.html#work">All work</a>
+    <a class="back" href="../index.html#work">All projects</a>
     <header class="phead">
-      <p class="kicker">Hamad Bin Khalifa University, 2025 to now</p>
-      <h1>Are two children playing together?</h1>
-      <p class="role">Measuring joint engagement from ordinary video.</p>
+      <p class="kicker">Hamad Bin Khalifa University, Sep 2025 – Present</p>
+      <h1>Automated Assessment of Joint Engagement in Children</h1>
+      <p class="role">Video models that measure social engagement between two children from a single camera.</p>
       <ul class="tags"><li>Video understanding</li><li>Pose</li><li>Gaze</li><li>PyTorch</li></ul>
       
     </header>
     <dl class="facts"><div><dt>Role</dt><dd>Lead researcher</dd></div><div><dt>Where</dt><dd>A-Sense, HBKU, Doha</dd></div><div><dt>Paper</dt><dd>STIN, EUVIP 2026</dd></div><div><dt>Stack</dt><dd>PyTorch, pose and gaze models</dd></div></dl>
     <div class="prose">
-<h2>The question</h2>
-<p>Clinicians rate how engaged two children are with each other by watching video, window by window. It is slow, and it is one of the measures autism research leans on most.</p>
+<h2>Problem</h2>
+<p>Joint engagement between children is a key behavioural measure in autism research. It is currently rated manually from video, one window at a time, which is slow and difficult to scale.</p>
 <div class="pair">
-  <figure class="clip"><video class="show" src="../assets/engaged.mp4" poster="../assets/engaged.webp" muted loop playsinline preload="none" data-auto aria-label="Two children building the same track together"></video><figcaption><span class="dot"></span>Engaged. One shared activity</figcaption></figure>
-  <figure class="clip"><video class="show" src="../assets/not-engaged.mp4" poster="../assets/not-engaged.webp" muted loop playsinline preload="none" data-auto aria-label="Two children playing separately at the same box"></video><figcaption><span class="dot off"></span>Not engaged. Each plays alone</figcaption></figure>
+  <figure class="clip"><video class="show" src="../assets/engaged.mp4" poster="../assets/engaged.webp" muted loop playsinline preload="none" data-auto aria-label="Two children building the same track together"></video><figcaption><span class="dot"></span>Jointly engaged: one shared activity</figcaption></figure>
+  <figure class="clip"><video class="show" src="../assets/not-engaged.mp4" poster="../assets/not-engaged.webp" muted loop playsinline preload="none" data-auto aria-label="Two children playing separately at the same box"></video><figcaption><span class="dot off"></span>Not jointly engaged: parallel play</figcaption></figure>
 </div>
 <p class="note">Generated examples. No frame shows a real participant.</p>
 
-<h2>What the model looks at</h2>
+<h2>Input Signals</h2>
 <div class="tabs" data-tabs><div class="stage" style="--ar:699 / 581"><img class="show" src="../assets/je_frame.webp" alt="Two children at a toy box, seen from a fixed camera" loading="lazy"><img src="../assets/je_features.webp" alt="The same frame with boxes, body skeletons and gaze arrows" loading="lazy"><img src="../assets/je_depth.webp" alt="A depth map of the same frame with the distance between the children marked" loading="lazy"></div><div class="pills"><button type="button" aria-pressed="true">Video</button><button type="button" aria-pressed="false">Pose and gaze</button><button type="button" aria-pressed="false">Depth and distance</button></div></div>
-<p class="note">Generated frame. A journal paper on the 3D part is in preparation.</p>
+<p class="note">Generated frame. A journal paper on the 3D pipeline is in preparation.</p>
 
-<h2>STIN</h2>
-<p>Each child gets a stream of pose, gaze and appearance features. The two streams attend to each other, and the distance and facing between the pair steer that attention.</p>
+<h2>Model: STIN</h2>
+<p>STIN represents each child with a stream of pose, gaze and appearance features. Cross-attention between the two streams is guided by the distance and orientation between the pair.</p>
 <figure class="fig"><div class="media paper" style="--ar:1018 / 1449"><img class="show" src="../assets/stin_arch.webp" alt="Architecture of STIN: two per-person streams, cross-attention between them, pooling and a classifier" loading="lazy"></div><figcaption>STIN architecture, from the paper.</figcaption></figure>
 
-<h2>Result</h2>
+<h2>Results</h2>
 <div class="stats"><div><b>94% AP</b><span>public UCO-LAEO benchmark</span></div><div><b>71% AP</b><span>child pairs never seen in training</span></div><div><b>EUVIP 2026</b><span>first-author paper</span></div></div>
 </div>
     <nav class="pn" aria-label="More projects">
-      <a href="fitx.html"><span>Previous</span><b>FitX exercise coach</b></a>
-      <a href="bolt-fastening.html"><span>Next</span><b>A robot that fastens bolts by sight</b></a>
+      <a href="fitx.html"><span>Previous</span><b>FitX: Real-Time Exercise Form Analysis</b></a>
+      <a href="bolt-fastening.html"><span>Next</span><b>Vision-Guided Robotic Bolt Fastening</b></a>
     </nav>
   </article>
 
 </main>
 <footer class="wrap foot">
-  <span>Maaz Ahmed, Doha, Qatar. Some project visuals are illustrations made for this site.</span>
+  <span>Maaz Ahmed, Doha, Qatar. Some project visuals are illustrative.</span>
   <span class="social">
     <a class="icon" href="https://github.com/maaz9898" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.3-.52-1.47.11-3.06 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.06.74.8 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
     <a class="icon" href="https://www.linkedin.com/in/maazahmed98" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
