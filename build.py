@@ -233,12 +233,49 @@ PUBS = [
 ]
 
 EXPERIENCE = [
-    ('Sep 2025 – Present', 'Graduate Research Assistant', 'Hamad Bin Khalifa University (A-Sense), Doha'),
-    ('Feb 2025 – Jul 2025', 'Machine Learning Researcher', '4DiVISION, Seoul'),
-    ('Mar 2023 – Feb 2025', 'Graduate Research Assistant', 'KOREATECH, Computer Vision and Video Processing Lab, Cheonan'),
-    ('Jan 2022 – Mar 2023', 'AI Project Manager', 'Bleed AI, remote'),
-    ('Aug 2021 – Feb 2022', 'Machine Learning Engineer', 'Liquid Technologies, Karachi'),
-    ('Jan 2020 – Aug 2021', 'Embedded Systems Engineer', 'Sudoware, Karachi'),
+    dict(when='Sep 2025 – Present', title='Graduate Research Assistant', org='Hamad Bin Khalifa University (A-Sense)', loc='Doha, Qatar',
+         bullets=['Built STIN, a temporal network that combines body pose, gaze and interpersonal distance to classify social engagement between two people in video. It reaches 94% AP on the UCO-LAEO benchmark and 71% AP on unseen child pairs. Published at EUVIP 2026.',
+                  'Built the video pipeline behind it, from person detection and tracking to pose and gaze target estimation on free-play recordings.',
+                  'Building a synthetic data framework for child interaction video, because privacy and IRB rules keep recordings of children out of public datasets.'],
+         links=[('Joint engagement project', 'joint-engagement')]),
+    dict(when='Feb 2025 – Jul 2025', title='Machine Learning Researcher', org='4DiVISION', loc='Seoul, South Korea',
+         bullets=['Built the vision pipeline for an automated robotic bolt fastening cell, covering bolt detection, instance segmentation, RGB and point cloud registration, 6-DoF pose estimation and ROS2 nodes that stream target poses to the manipulator.',
+                  'Held pose accuracy within 1 mm in factory cells the model had not seen during training.',
+                  'Developed automated switch-position verification on Tesseravue, the company inspection product, designed to cut manual QA time by about 70%.'],
+         links=[('Bolt fastening project', 'bolt-fastening')]),
+    dict(when='Mar 2023 – Feb 2025', title='Graduate Research Assistant', org='KOREATECH, Computer Vision and Video Processing Lab', loc='Cheonan, South Korea',
+         bullets=['Developed PrecisionGAN, an image-to-image translation GAN that skeletonizes historical Korean and Chinese printed characters while preserving stroke structure. Published as first author in Springer IJDAR.',
+                  'Developed camera-based pose estimation that aligns two cylinders for automated insertion on a film roll handling rig.',
+                  'Worked on a National Museum of Korea funded project that uses image similarity measures to analyze Joseon-era movable metal type and printing methods.'],
+         links=[('PrecisionGAN', 'precisiongan'), ('Film roll alignment', 'film-roll'), ('Metal type analysis', 'metal-type')]),
+    dict(when='Jan 2022 – Mar 2023', title='AI Project Manager', org='Bleed AI', loc='Remote, United States',
+         bullets=['Led a team of five engineers across more than 10 client computer vision projects, owning scope, budgets, staffing and delivery, and built and trained models hands-on.',
+                  'For Veeve (smart shopping carts), implemented real-time action recognition on cart camera streams to detect items being added or removed, deployed on Google Coral Edge TPUs.',
+                  'Contributed to camera-based sports and fitness analytics and a hand-tracking therapy app for patients with a rare form of hand arthritis.'],
+         links=[('Smart cart project', 'smart-cart'), ('FitX', 'fitx')]),
+    dict(when='Aug 2021 – Feb 2022', title='Machine Learning Engineer', org='Liquid Technologies', loc='Karachi, Pakistan',
+         bullets=['Core developer of Vidan.ai, a real-time video analytics platform for industrial and security monitoring.',
+                  'Designed the platform architecture and built the automatic license plate recognition and train monitoring modules, along with dashboards for live views, counts and alerts.',
+                  'Optimized and deployed production vision models on single-board computers.'],
+         links=[('Vidan.ai project', 'vidan')]),
+    dict(when='Jan 2020 – Aug 2021', title='Embedded Systems Engineer', org='Sudoware', loc='Karachi, Pakistan',
+         bullets=['Led development of a wireless sensor network for hydroponic farms using Raspberry Pi and NodeMCU nodes over MQTT, BLE and HTTP, with remote camera streaming.',
+                  'Built IoT applications for industrial clients on ESP32, Arduino, Raspberry Pi, OpenWRT and Jetson Nano.'],
+         links=[]),
+]
+
+EDUCATION = [
+    ('Mar 2023 – Feb 2025', 'Master of Science (M.S.) in Future Convergence Engineering, Computer Vision', 'Korea University of Technology and Education (KOREATECH), Cheonan, South Korea', 'GPA 4.25 / 4.5. Thesis: PrecisionGAN, enhanced image-to-image translation for preserving structural integrity in skeletonized images.'),
+    ('Sep 2017 – Jun 2021', 'Bachelor of Engineering (B.E.) in Electrical Engineering', 'DHA Suffa University, Karachi, Pakistan', 'GPA 3.5 / 4.0.'),
+]
+
+SKILLS = [
+    ('Programming', 'Python, C++, C, MATLAB, Bash'),
+    ('Deep learning', 'PyTorch, TensorFlow, Keras, CNN and transformer architectures, vision-language models (VLMs), multimodal learning, generative models (GANs, generative AI)'),
+    ('Computer vision', 'OpenCV, YOLO, Detectron2, MMPose, OpenPose, object detection, instance segmentation, human pose estimation, 6-DoF object pose estimation, depth estimation, gaze estimation, multi-object tracking, video action recognition'),
+    ('3D and robotics', 'ROS2 (ROS), Open3D, PCL, camera calibration, sensor fusion, LiDAR, RGB-D and point cloud registration, 3D reconstruction, robot manipulator integration'),
+    ('Deployment and MLOps', 'TensorRT, ONNX, CUDA, NVIDIA Jetson, Google Coral Edge TPU, Raspberry Pi, ESP32, Docker, FastAPI, AWS, GCP, Git, Linux'),
+    ('Languages', 'English (fluent, IELTS 8.0), Urdu and Hindi (native), Korean (basic)'),
 ]
 
 ICONS = {
@@ -272,6 +309,8 @@ def page(title, desc, pre, body):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{pre}assets/site.css">
+<link rel="canonical" href="https://maaz9898.github.io/">
+<script type="application/ld+json">{{"@context":"https://schema.org","@type":"Person","name":"Maaz Ahmed","jobTitle":"Machine Learning Engineer and Researcher","email":"mailto:maaz9898@gmail.com","url":"https://maaz9898.github.io/","address":{{"@type":"PostalAddress","addressLocality":"Doha","addressCountry":"QA"}},"alumniOf":["Korea University of Technology and Education","DHA Suffa University"],"knowsAbout":["Computer vision","Deep learning","6-DoF pose estimation","3D perception","Robotics","ROS2","PyTorch","Video understanding"],"sameAs":["https://github.com/maaz9898","https://www.linkedin.com/in/maazahmed98","https://scholar.google.com/citations?user=TZpghL4AAAAJ"]}}</script>
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -280,8 +319,9 @@ def page(title, desc, pre, body):
     <a class="brand" href="{pre}index.html">Maaz Ahmed</a>
     <nav aria-label="Main">
       <a href="{pre}index.html#work">Projects</a>
-      <a href="{pre}index.html#publications">Publications</a>
       <a href="{pre}index.html#experience">Experience</a>
+      <a href="{pre}index.html#skills">Skills</a>
+      <a href="{pre}index.html#publications">Publications</a>
       <a href="{pre}index.html#contact">Contact</a>
     </nav>
     <button class="icon" id="theme" type="button" aria-label="Switch between dark and light mode" title="Switch theme">{icon('moon', 'moon')}{icon('sun', 'sun')}</button>
@@ -321,7 +361,22 @@ def build_home():
     for t, url, venue, first in PUBS:
         tt = f'<a class="t" href="{url}">{t}</a>' if url else f'<span class="t">{t}</span>'
         pubs += f'<li>{tt}<span class="v">{venue}. {"<span class=\"me\">First author</span>" if first else "Second author"}</span></li>'
-    exp = ''.join(f'<li><span class="when">{w}</span><span><b>{t}</b> <span class="at">{o}</span></span></li>' for w, t, o in EXPERIENCE)
+    exp = ''
+    for e in EXPERIENCE:
+        bl = ''.join(f'<li>{b}</li>' for b in e['bullets'])
+        ln = ''.join(f'<a href="projects/{slug}.html">{t}</a>' for t, slug in e['links'])
+        exp += f'''
+      <article class="job">
+        <p class="when">{e['when']}</p>
+        <div>
+          <h3>{e['title']}</h3>
+          <p class="at">{e['org']}, {e['loc']}</p>
+          <ul>{bl}</ul>
+          {f'<p class="links small">{ln}</p>' if ln else ''}
+        </div>
+      </article>'''
+    edu = ''.join(f'<article class="job"><p class="when">{w}</p><div><h3>{d}</h3><p class="at">{o}</p><p class="plain">{n}</p></div></article>' for w, d, o, n in EDUCATION)
+    skills = ''.join(f'<div><dt>{k}</dt><dd>{v}</dd></div>' for k, v in SKILLS)
     body = f'''
   <section class="intro">
     <img class="portrait" src="assets/maaz.webp" alt="Portrait of Maaz Ahmed" width="148" height="148">
@@ -342,14 +397,24 @@ def build_home():
     </ul>
   </section>
 
+  <section id="experience">
+    <h2>Experience</h2>
+    {exp}
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    {edu}
+  </section>
+
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <dl class="skills">{skills}</dl>
+  </section>
+
   <section id="publications">
     <h2>Publications</h2>
     <ul class="pubs">{pubs}</ul>
-  </section>
-
-  <section id="experience">
-    <h2>Experience</h2>
-    <ul class="slim">{exp}</ul>
   </section>
 
   <section id="contact">

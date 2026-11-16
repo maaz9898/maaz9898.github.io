@@ -18,6 +18,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="canonical" href="https://maaz9898.github.io/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Maaz Ahmed","jobTitle":"Machine Learning Engineer and Researcher","email":"mailto:maaz9898@gmail.com","url":"https://maaz9898.github.io/","address":{"@type":"PostalAddress","addressLocality":"Doha","addressCountry":"QA"},"alumniOf":["Korea University of Technology and Education","DHA Suffa University"],"knowsAbout":["Computer vision","Deep learning","6-DoF pose estimation","3D perception","Robotics","ROS2","PyTorch","Video understanding"],"sameAs":["https://github.com/maaz9898","https://www.linkedin.com/in/maazahmed98","https://scholar.google.com/citations?user=TZpghL4AAAAJ"]}</script>
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -26,8 +28,9 @@
     <a class="brand" href="index.html">Maaz Ahmed</a>
     <nav aria-label="Main">
       <a href="index.html#work">Projects</a>
-      <a href="index.html#publications">Publications</a>
       <a href="index.html#experience">Experience</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#publications">Publications</a>
       <a href="index.html#contact">Contact</a>
     </nav>
     <button class="icon" id="theme" type="button" aria-label="Switch between dark and light mode" title="Switch theme"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 14.5A8.5 8.5 0 0 1 9.5 3.6a.75.75 0 0 0-.98-.94A10 10 0 1 0 21.34 15.5a.75.75 0 0 0-.94-1Z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0-6a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V2a1 1 0 0 1 1-1Zm0 18a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1ZM1 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H2a1 1 0 0 1-1-1Zm18 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1ZM4.22 4.22a1 1 0 0 1 1.42 0l1.41 1.42a1 1 0 0 1-1.41 1.41L4.22 5.64a1 1 0 0 1 0-1.42Zm12.73 12.73a1 1 0 0 1 1.41 0l1.42 1.41a1 1 0 0 1-1.42 1.42l-1.41-1.42a1 1 0 0 1 0-1.41ZM4.22 19.78a1 1 0 0 1 0-1.42l1.42-1.41a1 1 0 0 1 1.41 1.41l-1.41 1.42a1 1 0 0 1-1.42 0ZM16.95 7.05a1 1 0 0 1 0-1.41l1.41-1.42a1 1 0 1 1 1.42 1.42l-1.42 1.41a1 1 0 0 1-1.41 0Z"/></svg></button>
@@ -126,14 +129,78 @@
     </ul>
   </section>
 
+  <section id="experience">
+    <h2>Experience</h2>
+    
+      <article class="job">
+        <p class="when">Sep 2025 – Present</p>
+        <div>
+          <h3>Graduate Research Assistant</h3>
+          <p class="at">Hamad Bin Khalifa University (A-Sense), Doha, Qatar</p>
+          <ul><li>Built STIN, a temporal network that combines body pose, gaze and interpersonal distance to classify social engagement between two people in video. It reaches 94% AP on the UCO-LAEO benchmark and 71% AP on unseen child pairs. Published at EUVIP 2026.</li><li>Built the video pipeline behind it, from person detection and tracking to pose and gaze target estimation on free-play recordings.</li><li>Building a synthetic data framework for child interaction video, because privacy and IRB rules keep recordings of children out of public datasets.</li></ul>
+          <p class="links small"><a href="projects/joint-engagement.html">Joint engagement project</a></p>
+        </div>
+      </article>
+      <article class="job">
+        <p class="when">Feb 2025 – Jul 2025</p>
+        <div>
+          <h3>Machine Learning Researcher</h3>
+          <p class="at">4DiVISION, Seoul, South Korea</p>
+          <ul><li>Built the vision pipeline for an automated robotic bolt fastening cell, covering bolt detection, instance segmentation, RGB and point cloud registration, 6-DoF pose estimation and ROS2 nodes that stream target poses to the manipulator.</li><li>Held pose accuracy within 1 mm in factory cells the model had not seen during training.</li><li>Developed automated switch-position verification on Tesseravue, the company inspection product, designed to cut manual QA time by about 70%.</li></ul>
+          <p class="links small"><a href="projects/bolt-fastening.html">Bolt fastening project</a></p>
+        </div>
+      </article>
+      <article class="job">
+        <p class="when">Mar 2023 – Feb 2025</p>
+        <div>
+          <h3>Graduate Research Assistant</h3>
+          <p class="at">KOREATECH, Computer Vision and Video Processing Lab, Cheonan, South Korea</p>
+          <ul><li>Developed PrecisionGAN, an image-to-image translation GAN that skeletonizes historical Korean and Chinese printed characters while preserving stroke structure. Published as first author in Springer IJDAR.</li><li>Developed camera-based pose estimation that aligns two cylinders for automated insertion on a film roll handling rig.</li><li>Worked on a National Museum of Korea funded project that uses image similarity measures to analyze Joseon-era movable metal type and printing methods.</li></ul>
+          <p class="links small"><a href="projects/precisiongan.html">PrecisionGAN</a><a href="projects/film-roll.html">Film roll alignment</a><a href="projects/metal-type.html">Metal type analysis</a></p>
+        </div>
+      </article>
+      <article class="job">
+        <p class="when">Jan 2022 – Mar 2023</p>
+        <div>
+          <h3>AI Project Manager</h3>
+          <p class="at">Bleed AI, Remote, United States</p>
+          <ul><li>Led a team of five engineers across more than 10 client computer vision projects, owning scope, budgets, staffing and delivery, and built and trained models hands-on.</li><li>For Veeve (smart shopping carts), implemented real-time action recognition on cart camera streams to detect items being added or removed, deployed on Google Coral Edge TPUs.</li><li>Contributed to camera-based sports and fitness analytics and a hand-tracking therapy app for patients with a rare form of hand arthritis.</li></ul>
+          <p class="links small"><a href="projects/smart-cart.html">Smart cart project</a><a href="projects/fitx.html">FitX</a></p>
+        </div>
+      </article>
+      <article class="job">
+        <p class="when">Aug 2021 – Feb 2022</p>
+        <div>
+          <h3>Machine Learning Engineer</h3>
+          <p class="at">Liquid Technologies, Karachi, Pakistan</p>
+          <ul><li>Core developer of Vidan.ai, a real-time video analytics platform for industrial and security monitoring.</li><li>Designed the platform architecture and built the automatic license plate recognition and train monitoring modules, along with dashboards for live views, counts and alerts.</li><li>Optimized and deployed production vision models on single-board computers.</li></ul>
+          <p class="links small"><a href="projects/vidan.html">Vidan.ai project</a></p>
+        </div>
+      </article>
+      <article class="job">
+        <p class="when">Jan 2020 – Aug 2021</p>
+        <div>
+          <h3>Embedded Systems Engineer</h3>
+          <p class="at">Sudoware, Karachi, Pakistan</p>
+          <ul><li>Led development of a wireless sensor network for hydroponic farms using Raspberry Pi and NodeMCU nodes over MQTT, BLE and HTTP, with remote camera streaming.</li><li>Built IoT applications for industrial clients on ESP32, Arduino, Raspberry Pi, OpenWRT and Jetson Nano.</li></ul>
+          
+        </div>
+      </article>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <article class="job"><p class="when">Mar 2023 – Feb 2025</p><div><h3>Master of Science (M.S.) in Future Convergence Engineering, Computer Vision</h3><p class="at">Korea University of Technology and Education (KOREATECH), Cheonan, South Korea</p><p class="plain">GPA 4.25 / 4.5. Thesis: PrecisionGAN, enhanced image-to-image translation for preserving structural integrity in skeletonized images.</p></div></article><article class="job"><p class="when">Sep 2017 – Jun 2021</p><div><h3>Bachelor of Engineering (B.E.) in Electrical Engineering</h3><p class="at">DHA Suffa University, Karachi, Pakistan</p><p class="plain">GPA 3.5 / 4.0.</p></div></article>
+  </section>
+
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <dl class="skills"><div><dt>Programming</dt><dd>Python, C++, C, MATLAB, Bash</dd></div><div><dt>Deep learning</dt><dd>PyTorch, TensorFlow, Keras, CNN and transformer architectures, vision-language models (VLMs), multimodal learning, generative models (GANs, generative AI)</dd></div><div><dt>Computer vision</dt><dd>OpenCV, YOLO, Detectron2, MMPose, OpenPose, object detection, instance segmentation, human pose estimation, 6-DoF object pose estimation, depth estimation, gaze estimation, multi-object tracking, video action recognition</dd></div><div><dt>3D and robotics</dt><dd>ROS2 (ROS), Open3D, PCL, camera calibration, sensor fusion, LiDAR, RGB-D and point cloud registration, 3D reconstruction, robot manipulator integration</dd></div><div><dt>Deployment and MLOps</dt><dd>TensorRT, ONNX, CUDA, NVIDIA Jetson, Google Coral Edge TPU, Raspberry Pi, ESP32, Docker, FastAPI, AWS, GCP, Git, Linux</dd></div><div><dt>Languages</dt><dd>English (fluent, IELTS 8.0), Urdu and Hindi (native), Korean (basic)</dd></div></dl>
+  </section>
+
   <section id="publications">
     <h2>Publications</h2>
     <ul class="pubs"><li><span class="t">STIN: A Socio-Temporal Interaction Network for Dyadic Interaction Analysis</span><span class="v">EUVIP 2026. <span class="me">First author</span></span></li><li><a class="t" href="https://link.springer.com/article/10.1007/s10032-024-00505-7">PrecisionGAN: Enhanced Image-to-Image Translation for Preserving Structural Integrity in Skeletonized Images</a><span class="v">IJDAR (Springer), 2024. <span class="me">First author</span></span></li><li><a class="t" href="http://journal.auric.kr/ieiespc/XmlViewer/f450827">Evaluating Similarity between Characters Printed Using Ancient Movable Metal Types</a><span class="v">IEIE Transactions on Smart Processing and Computing, 2025. <span class="me">First author</span></span></li><li><a class="t" href="https://paper.cricit.kr/user/search/site/ieie2018/cart_rdoc.asp?URL=files/filename%3Fnum%3D457024%26db%3DRD_R&dn=457024&db=RD_R&usernum=0&seid=">Smoothed Boundary Distance Loss Function for Enhancing Character Extraction from High-Resolution Scans of Historical Documents</a><span class="v">IEIE Transactions on Smart Processing and Computing, 2025. Second author</span></li><li><a class="t" href="https://diglib.eg.org/items/930f4c5d-f291-4cf6-868a-b03688164b69">Estimating the Number of Chases Used for Printing Books with Movable Metal Types</a><span class="v">Eurographics GCH, 2023. Second author</span></li></ul>
-  </section>
-
-  <section id="experience">
-    <h2>Experience</h2>
-    <ul class="slim"><li><span class="when">Sep 2025 – Present</span><span><b>Graduate Research Assistant</b> <span class="at">Hamad Bin Khalifa University (A-Sense), Doha</span></span></li><li><span class="when">Feb 2025 – Jul 2025</span><span><b>Machine Learning Researcher</b> <span class="at">4DiVISION, Seoul</span></span></li><li><span class="when">Mar 2023 – Feb 2025</span><span><b>Graduate Research Assistant</b> <span class="at">KOREATECH, Computer Vision and Video Processing Lab, Cheonan</span></span></li><li><span class="when">Jan 2022 – Mar 2023</span><span><b>AI Project Manager</b> <span class="at">Bleed AI, remote</span></span></li><li><span class="when">Aug 2021 – Feb 2022</span><span><b>Machine Learning Engineer</b> <span class="at">Liquid Technologies, Karachi</span></span></li><li><span class="when">Jan 2020 – Aug 2021</span><span><b>Embedded Systems Engineer</b> <span class="at">Sudoware, Karachi</span></span></li></ul>
   </section>
 
   <section id="contact">

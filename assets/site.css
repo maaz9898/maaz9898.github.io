@@ -94,6 +94,19 @@ h2 { margin: 0 0 22px; font-size: 1.5rem; font-weight: 700; color: var(--strong)
 .slim .when { color: var(--muted); font-size: .9rem; font-variant-numeric: tabular-nums; }
 .slim b { color: var(--strong); font-weight: 600; }
 .slim .at { color: var(--muted); }
+.job { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 8px 24px; padding: 22px 0; border-top: 1px solid var(--line); }
+.job:first-of-type { border-top: 0; padding-top: 0; }
+.job .when { margin: 2px 0 0; color: var(--muted); font-size: .9rem; font-variant-numeric: tabular-nums; }
+.job h3 { margin: 0; font-size: 1.1rem; font-weight: 600; color: var(--strong); line-height: 1.35; }
+.job .at { margin: 2px 0 10px; color: var(--muted); }
+.job ul { margin: 0; padding-left: 1.1em; max-width: 72ch; }
+.job li { margin: 0 0 6px; }
+.job .plain { margin: 0; max-width: 72ch; }
+.links.small { margin-top: 10px; font-size: .92rem; gap: 16px; }
+.skills { margin: 0; display: grid; gap: 14px; }
+.skills div { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 24px; }
+.skills dt { color: var(--strong); font-weight: 600; }
+.skills dd { margin: 0; max-width: 72ch; }
 .foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 72px; padding-bottom: 40px; color: var(--muted); font-size: .88rem; }
 .social { display: flex; gap: 10px; }
 
@@ -191,6 +204,7 @@ h2 { margin: 0 0 22px; font-size: 1.5rem; font-weight: 700; color: var(--strong)
   .card, .card.wide { grid-column: auto; }
   .pair, .two-up, .stats, .pn { grid-template-columns: 1fr; }
   .slim li { grid-template-columns: 1fr; gap: 2px; }
+  .job, .skills div { grid-template-columns: 1fr; gap: 4px; }
   section { padding-top: 54px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
