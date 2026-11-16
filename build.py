@@ -316,7 +316,7 @@ ICONS = {
 def icon(n, cls=''):
     return f'<svg{f" class=\"{cls}\"" if cls else ""} viewBox="0 0 24 24" aria-hidden="true">{ICONS[n]}</svg>'
 
-def page(title, desc, pre, body):
+def page(title, desc, pre, body, og='home', path=''):
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -337,7 +337,15 @@ def page(title, desc, pre, body):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{pre}assets/site.css">
-<link rel="canonical" href="https://maaz9898.github.io/">
+<link rel="canonical" href="https://maaz9898.github.io/{path}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{html.escape(title)}">
+<meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:url" content="https://maaz9898.github.io/{path}">
+<meta property="og:image" content="https://maaz9898.github.io/assets/og/{og}.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"Person","name":"Maaz Ahmed","jobTitle":"Machine Learning Engineer and Researcher","email":"mailto:maaz9898@gmail.com","url":"https://maaz9898.github.io/","address":{{"@type":"PostalAddress","addressLocality":"Doha","addressCountry":"QA"}},"alumniOf":["Korea University of Technology and Education","DHA Suffa University"],"knowsAbout":["Computer vision","Deep learning","6-DoF pose estimation","3D perception","Robotics","ROS2","PyTorch","Video understanding"],"sameAs":["https://github.com/maaz9898","https://www.linkedin.com/in/maazahmed98","https://scholar.google.com/citations?user=TZpghL4AAAAJ"]}}</script>
 </head>
 <body>
@@ -480,7 +488,7 @@ def build_projects():
   </article>
 '''
         open(os.path.join(ROOT, 'projects', p['slug'] + '.html'), 'w', encoding='utf8').write(
-            page(p['title'] + ' | Maaz Ahmed', p['line'], '../', body))
+            page(p['title'] + ' | Maaz Ahmed', p['line'], '../', body, p['slug'], 'projects/' + p['slug'] + '.html'))
 
 if __name__ == '__main__':
     build_home(); build_projects(); print('built', 1 + len(projects('')), 'pages')
