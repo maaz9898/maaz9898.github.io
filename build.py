@@ -313,7 +313,7 @@ EDUCATION = [
 
 SKILLS = [
     ('Programming', 'Python, C++, C, MATLAB, Bash'),
-    ('Deep learning', 'PyTorch, TensorFlow, Keras, CNN and transformer architectures, vision-language models (VLMs), multimodal learning, generative models (GANs, generative AI)'),
+    ('Deep learning', 'PyTorch, TensorFlow, Keras, CNN and transformer architectures, vision-language models (VLMs), multimodal learning, GANs, generative AI'),
     ('Computer vision', 'OpenCV, YOLO, Detectron2, MMPose, OpenPose, object detection, instance segmentation, human pose estimation, 6-DoF object pose estimation, depth estimation, gaze estimation, multi-object tracking, video action recognition'),
     ('3D and robotics', 'ROS2 (ROS), Open3D, PCL, camera calibration, sensor fusion, LiDAR, RGB-D and point cloud registration, 3D reconstruction, robot manipulator integration'),
     ('Deployment and MLOps', 'TensorRT, ONNX, CUDA, NVIDIA Jetson, Google Coral Edge TPU, Raspberry Pi, ESP32, Docker, FastAPI, AWS, GCP, Git, Linux'),
