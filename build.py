@@ -123,9 +123,9 @@ def projects(pre):
         dict(
             slug='bolt-fastening', title='Vision-Guided Robotic Bolt Fastening', kicker='4DiVISION, Seoul, Feb 2025 – Jul 2025',
             line='6-DoF pose estimation that guides an industrial robot arm to within 1 mm.',
-            tags=['6-DoF pose', 'ROS2', 'Point clouds', 'C++'],
+            tags=['6-DoF pose', 'ROS2', 'Point clouds', 'C++', 'Jetson Orin'],
             card=clip('bolt', 'A robot arm over a ring of bolts, with the estimated pose of each bolt drawn on it', P, 'bolt_pose.webp'),
-            facts=[('Role', 'ML researcher'), ('Where', '4DiVISION, Seoul'), ('Accuracy', 'Within 1 mm'), ('Stack', 'ROS2, PyTorch, Open3D, C++')],
+            facts=[('Role', 'ML researcher'), ('Where', '4DiVISION, Seoul'), ('Accuracy', 'Within 1 mm'), ('Stack', 'ROS2, PyTorch, Open3D, C++'), ('Runs on', 'NVIDIA Jetson Orin')],
             body=lambda: f"""
 <h2>Overview</h2>
 <p>An industrial robot arm must place a fastening tool on every bolt of a part whose exact position is not known in advance. The vision pipeline detects each bolt, estimates its 6-DoF pose and sends the targets to the arm.</p>
@@ -188,12 +188,12 @@ def projects(pre):
             line='Edge models that detect items being added to or removed from a cart.',
             tags=['Action recognition', 'Edge TPU', 'Real time'],
             card=clip('veeve', 'A hand placing a box into a cart, with the detected hand and item outlined', P, 'veeve_det.webp'),
-            facts=[('Role', 'Project lead and engineer'), ('Client', 'Veeve'), ('Runs on', 'Google Coral Edge TPU'), ('Team', '5 engineers')],
+            facts=[('Role', 'Project lead and engineer'), ('Client', 'Veeve'), ('Runs on', 'Edge devices'), ('Team', '5 engineers')],
             body=lambda: f'''
 <h2>Overview</h2>
 <p>A camera mounted on the cart observes the basket. The model recognises items being added or removed in real time on a low-power edge accelerator.</p>
 {tabs([(img('veeve_det.webp', 'A hand placing a box into a cart with keypoints and a box drawn on it', True, P), 'Model view'), (vid('veeve', 'A hand placing a box into a shopping cart', False, P), 'Clip')], '16 / 10', AI)}
-{stats([('Real time', 'on Coral Edge TPU'), ('10+', 'client projects led at Bleed AI'), ('5', 'engineers on the team')])}
+{stats([('Real time', 'on edge devices'), ('10+', 'client projects led at Bleed AI'), ('5', 'engineers on the team')])}
 '''),
         dict(
             slug='vidan', title='Vidan.ai Video Analytics Platform', kicker='Liquid Technologies, Karachi, Aug 2021 – Feb 2022',
@@ -285,7 +285,7 @@ EXPERIENCE = [
                   'Building a synthetic data framework for child interaction video, because privacy and IRB rules keep recordings of children out of public datasets.'],
          links=[('Joint engagement project', 'joint-engagement')]),
     dict(when='Feb 2025 – Jul 2025', title='Machine Learning Researcher', org='4DiVISION', loc='Seoul, South Korea',
-         bullets=['Built the vision pipeline for an automated robotic bolt fastening cell, covering bolt detection, instance segmentation, RGB and point cloud registration, 6-DoF pose estimation and ROS2 nodes that stream target poses to the manipulator.',
+         bullets=['Built the vision pipeline for an automated robotic bolt fastening cell, covering bolt detection, instance segmentation, RGB and point cloud registration, 6-DoF pose estimation and ROS2 nodes that stream target poses to the manipulator, deployed on NVIDIA Jetson Orin.',
                   'Held pose accuracy within 1 mm in factory cells the model had not seen during training.',
                   'Developed automated switch-position verification on Tesseravue, the company inspection product, designed to cut manual QA time by about 70%.'],
          links=[('Bolt fastening project', 'bolt-fastening')]),
@@ -296,7 +296,7 @@ EXPERIENCE = [
          links=[('PrecisionGAN', 'precisiongan'), ('Film roll alignment', 'film-roll'), ('Metal type analysis', 'metal-type')]),
     dict(when='Jan 2022 – Mar 2023', title='AI Project Manager', org='Bleed AI', loc='Remote, United States',
          bullets=['Led a team of five engineers across more than 10 client computer vision projects, owning scope, budgets, staffing and delivery, and built and trained models hands-on.',
-                  'For Veeve (smart shopping carts), implemented real-time action recognition on cart camera streams to detect items being added or removed, deployed on Google Coral Edge TPUs.',
+                  'For Veeve (smart shopping carts), implemented real-time action recognition on cart camera streams to detect items being added or removed, deployed on edge devices.',
                   'Contributed to camera-based sports and fitness analytics and a hand-tracking therapy app for patients with a rare form of hand arthritis.'],
          links=[('Smart cart project', 'smart-cart'), ('FitX', 'fitx')]),
     dict(when='Aug 2021 – Feb 2022', title='Machine Learning Engineer', org='Liquid Technologies', loc='Karachi, Pakistan',
@@ -320,7 +320,7 @@ SKILLS = [
     ('Deep learning', 'PyTorch, TensorFlow, Keras, CNN and transformer architectures, vision-language models (VLMs), multimodal learning, GANs, generative AI'),
     ('Computer vision', 'OpenCV, YOLO, Detectron2, MMPose, OpenPose, object detection, instance segmentation, human pose estimation, 6-DoF object pose estimation, depth estimation, gaze estimation, multi-object tracking, video action recognition'),
     ('3D and robotics', 'ROS2 (ROS), Open3D, PCL, camera calibration, sensor fusion, LiDAR, RGB-D and point cloud registration, 3D reconstruction, robot manipulator integration'),
-    ('Deployment and MLOps', 'TensorRT, ONNX, CUDA, NVIDIA Jetson, Google Coral Edge TPU, Raspberry Pi, ESP32, Docker, FastAPI, AWS, GCP, Git, Linux'),
+    ('Deployment and MLOps', 'TensorRT, ONNX, CUDA, NVIDIA Jetson, Raspberry Pi, ESP32, Docker, FastAPI, AWS, GCP, Git, Linux'),
     ('Languages', 'English (fluent, IELTS 8.0), Urdu and Hindi (native), Korean (basic)'),
 ]
 
